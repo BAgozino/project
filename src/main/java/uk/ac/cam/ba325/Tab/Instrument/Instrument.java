@@ -5,6 +5,22 @@ package uk.ac.cam.ba325.Tab.Instrument;
  */
 public abstract class Instrument {
 
-    public int time;
-    public String hitType;
+    private int time;
+    private String hitType;
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public String getHitType() {
+        return hitType;
+    }
+
+    public void setHitType(String hitType) {
+        this.hitType = hitType;
+    }
 }
