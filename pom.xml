@@ -18,6 +18,16 @@
             <!--<groupId>net.sf.jsi</groupId>-->
             <!--<artifactId>jsi</artifactId>-->
         <!--</dependency>-->
+
+
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.0.6.Final</version>
+        </dependency>
+
+
     </dependencies>
 
     <properties>
