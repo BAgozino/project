@@ -55,9 +55,10 @@ public class Parser {
 
         for(ArrayList<Lexer.Token> track : tokenTracks){
             trackPathName = m_outputDirectory+"/"+String.valueOf(trackNumber)+".txt";
-            //todo translate track to string
-            //todo save string to trackPathName file
-            //todo record in track database
+            trackNumber++;
+            //todo 1. translate track to string
+            //todo 2. save string to trackPathName file
+            //todo 3. record in track database
         }
     }
 
