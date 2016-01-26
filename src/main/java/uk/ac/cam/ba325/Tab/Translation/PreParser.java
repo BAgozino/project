@@ -1,6 +1,9 @@
 package uk.ac.cam.ba325.Tab.Translation;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by biko on 27/11/15.
@@ -75,6 +78,7 @@ public class PreParser {
                     groupedTracks.add(currentTokens);
                     currentTokens = new ArrayList<Lexer.Token>();
                     newLineCount = 0;
+                    buildingTrack = false;
 
                 }else if (buildingTrack){
                     currentTokens.add(token);
@@ -91,8 +95,36 @@ public class PreParser {
             groupedTracks.add(currentTokens);
         }
 
+
+        for(int i = 0; i<groupedTracks.size(); i++ ){
+            currentTokens = groupedTracks.get(i);
+
+        }
+
         return groupedTracks;
     }
 
 
+    private boolean validate(ArrayList<Lexer.Token> singleTrack){
+
+        List<Integer> startPointers = new LinkedList<>();
+        startPointers.add(0);
+
+        for(int i=0; i<singleTrack.size(); i++){
+            Lexer.Token token = singleTrack.get(i);
+
+            if (token.type == Lexer.TokenType.NEWLINE){
+                try{
+                    singleTrack.get(i + 1);
+                } catch (IndexOutOfBoundsException e) {
+                    break;
+
+                }
+                startPointers.add(i+1);
+            }
+
+        }
+
+        for()
+    }
 }

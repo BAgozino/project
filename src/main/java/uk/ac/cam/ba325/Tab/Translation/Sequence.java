@@ -32,6 +32,13 @@ public class Sequence {
     }
 
 
+
+
+
+
+
+
+
     /**]
      *  writes the sequence to file in the order of
      *  HighHats:
@@ -90,4 +97,5 @@ public class Sequence {
         }
 
     }
+
 }
