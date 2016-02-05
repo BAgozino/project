@@ -7,7 +7,8 @@ import java.util.regex.Matcher;
 public class Lexer {
     public static enum TokenType {
         // Token types cannot have underscores
-        INSTRUMENT("HighHat|H|S|B"), TRACKDIVIDER("\\|"), BEAT("x|o"), REST("-"),NEWLINE("\n"), WHITESPACE("[ \t\f\r]+");
+        INSTRUMENT("HH|H|CC|Rd|SN|S|B|T1|T2|FT"), TRACKDIVIDER("\\|"), BEAT("x|X|o|#|s|c|b|o|O|g|f|b|B|@"),
+        REST("-"),NEWLINE("\n"), WHITESPACE("[ \t\f\r]+");
 
         public final String pattern;
 
@@ -74,7 +75,6 @@ public class Lexer {
                 "Tabbed By:Jeff Sawinski\n" +
                 "E-mail:sawinsk@bolt.com \n" +
                 "\n" +
-                "\n" +"HighHat|x---x-x-x---x-x-|\n" +
                 "H|x---x-x-x---x-x-|\n" +
                 "S|o---o-------o---|\n" +
                 "B|o---o---oo--o---|";

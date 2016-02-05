@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -a arr=("Tab1","Tab2","Tab3");
+workingDirectory = $(pwd)
 
 
 function newMidish  { #input in the form: p t d c

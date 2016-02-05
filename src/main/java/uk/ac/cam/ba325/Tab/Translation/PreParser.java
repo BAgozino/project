@@ -1,5 +1,7 @@
 package uk.ac.cam.ba325.Tab.Translation;
 
+import uk.ac.cam.ba325.Tab.Instrument.*;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -105,26 +107,74 @@ public class PreParser {
     }
 
 
-    private boolean validate(ArrayList<Lexer.Token> singleTrack){
+    public static ArrayList<ArrayList<Lexer.Token>> splitInstruments(ArrayList<Lexer.Token> tokens) throws ParseException{
+        ArrayList<ArrayList<Lexer.Token>> instrumentTracks = new ArrayList<>();
+        ArrayList<Lexer.Token> singleInstrument = new ArrayList<>();
 
-        List<Integer> startPointers = new LinkedList<>();
-        startPointers.add(0);
+        for(Lexer.Token token:tokens){
+            if(token.type == Lexer.TokenType.NEWLINE) {
+                instrumentTracks.add(new ArrayList<Lexer.Token>(singleInstrument));
+                singleInstrument = new ArrayList<>();
+            } else {
+                singleInstrument.add(token);
+            }
+        }
 
-        for(int i=0; i<singleTrack.size(); i++){
-            Lexer.Token token = singleTrack.get(i);
+        for (int i=0; i<instrumentTracks.size()-1; i++){
+            if (instrumentTracks.get(i).size() != instrumentTracks.get(i+1).size()){
+                throw new ParseException("Instrument Tracks are of uneven length",0);
+            }
+        }
 
-            if (token.type == Lexer.TokenType.NEWLINE){
-                try{
-                    singleTrack.get(i + 1);
-                } catch (IndexOutOfBoundsException e) {
-                    break;
+        return instrumentTracks;
 
-                }
-                startPointers.add(i+1);
+
+    }
+
+    /**
+     *
+     * @assert lists within tokens are of even length
+     * @param tokens a list of one block of lines
+     * @return
+     */
+    public static ArrayList<Sequence> sequences(ArrayList<ArrayList<Lexer.Token>> tokens){
+        ArrayList<Sequence> sequences = new ArrayList<>();
+
+        Instrument[] instruments = new Instrument[tokens.size()];
+        ArrayList<
+
+        for (int i = 0; i< tokens.size(); i++){
+            Lexer.Token token = tokens.get(i).get(0);
+
+            if((token.data.equals("HH"))||(token.data.equals("H"))){
+                instruments[i] = new HighHat();
+            } else if(token.data.equals("CC")){
+                instruments[i] = new CrashCymbal();
+            } else if(token.data.equals("Rd")){
+                instruments[i] = new RideCymbal();
+            } else if((token.data.equals("SN"))||(token.data.equals("S"))){
+                instruments[i] = new SnareDrum();
+            } else if(token.data.equals("B")){
+                instruments[i] = new BassDrum();
+            } else if(token.data.equals("T1")){
+                instruments[i] = new HighTom();
+            } else if(token.data.equals("T2")){
+                instruments[i] = new LowTom();
+            } else if(token.data.equals("FT")){
+                instruments[i] = new FloorTom();
             }
 
         }
 
-        for()
+        for (int i=0; i<tokens.get(0).size(); i++){
+
+        }
+
+    }
+
+
+    private static ArrayList<Sequence> createSequence(Instrument[] instrument,
+                                                       ArrayList<ArrayList<Lexer.Token>> tokens){
+        for
     }
 }
