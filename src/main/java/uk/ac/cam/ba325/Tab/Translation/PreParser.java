@@ -131,50 +131,7 @@ public class PreParser {
 
     }
 
-    /**
-     *
-     * @assert lists within tokens are of even length
-     * @param tokens a list of one block of lines
-     * @return
-     */
-    public static ArrayList<Sequence> sequences(ArrayList<ArrayList<Lexer.Token>> tokens){
-        ArrayList<Sequence> sequences = new ArrayList<>();
-
-        Instrument[] instruments = new Instrument[tokens.size()];
-        ArrayList<
-
-        for (int i = 0; i< tokens.size(); i++){
-            Lexer.Token token = tokens.get(i).get(0);
-
-            if((token.data.equals("HH"))||(token.data.equals("H"))){
-                instruments[i] = new HighHat();
-            } else if(token.data.equals("CC")){
-                instruments[i] = new CrashCymbal();
-            } else if(token.data.equals("Rd")){
-                instruments[i] = new RideCymbal();
-            } else if((token.data.equals("SN"))||(token.data.equals("S"))){
-                instruments[i] = new SnareDrum();
-            } else if(token.data.equals("B")){
-                instruments[i] = new BassDrum();
-            } else if(token.data.equals("T1")){
-                instruments[i] = new HighTom();
-            } else if(token.data.equals("T2")){
-                instruments[i] = new LowTom();
-            } else if(token.data.equals("FT")){
-                instruments[i] = new FloorTom();
-            }
-
-        }
-
-        for (int i=0; i<tokens.get(0).size(); i++){
-
-        }
-
-    }
 
 
-    private static ArrayList<Sequence> createSequence(Instrument[] instrument,
-                                                       ArrayList<ArrayList<Lexer.Token>> tokens){
-        for
-    }
+
 }

@@ -29,7 +29,7 @@ public class Sequence {
     List<Strike> rideCymbals;
 
     private static enum InstrumentType{
-        HIGHHAT
+
     }
 
 

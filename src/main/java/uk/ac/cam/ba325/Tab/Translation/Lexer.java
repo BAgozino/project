@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 public class Lexer {
     public static enum TokenType {
         // Token types cannot have underscores
-        INSTRUMENT("HH|H|CC|Rd|SN|S|B|T1|T2|FT"), TRACKDIVIDER("\\|"), BEAT("x|X|o|#|s|c|b|o|O|g|f|b|B|@"),
+        INSTRUMENT("HH|H|CC|RD|SN|S|BD|B|T1|T2|FT"), TRACKDIVIDER("\\|"), BEAT("x|X|o|#|s|c|b|g|f|b|B|@"),
         REST("-"),NEWLINE("\n"), WHITESPACE("[ \t\f\r]+");
 
         public final String pattern;
@@ -40,7 +40,7 @@ public class Lexer {
         StringBuffer tokenPatternsBuffer = new StringBuffer();
         for (TokenType tokenType : TokenType.values())
             tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
-        Pattern tokenPatterns = Pattern.compile(new String(tokenPatternsBuffer.substring(1)));
+        Pattern tokenPatterns = Pattern.compile(new String(tokenPatternsBuffer.substring(1)),Pattern.CASE_INSENSITIVE);
 
         // Begin matching tokens
         Matcher matcher = tokenPatterns.matcher(input);
