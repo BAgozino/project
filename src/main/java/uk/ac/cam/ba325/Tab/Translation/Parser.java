@@ -2,7 +2,13 @@ package uk.ac.cam.ba325.Tab.Translation;
 
 import java.io.*;
 import java.nio.file.FileSystemException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import uk.ac.cam.ba325.Tab.Translation.Exceptions.AlreadySetException;
+import uk.ac.cam.ba325.Tab.Translation.Sequence;
 
 /**
  * Created by biko on 20/11/15.
@@ -11,7 +17,7 @@ public class Parser {
 
     private File m_inputFile;
     private String m_outputDirectory;
-
+    private static final int RESOLUTION = 16;
 
     public Parser(File inputFile, String outputDirectory){
         m_inputFile = inputFile;
@@ -42,7 +48,61 @@ public class Parser {
         return PreParser.groupTracks(lexedTokens);
     }
 
-    public void parseToFile(ArrayList<ArrayList<Lexer.Token>> tokenTracks) throws FileSystemException{
+    public List<Sequence> createSequences(ArrayList<ArrayList<Lexer.Token>> groupedTracks)
+            throws ParseException, AlreadySetException{
+        ArrayList<ArrayList<ArrayList<Lexer.Token>>> splitInstruments = new ArrayList<>();
+        for(ArrayList<Lexer.Token> track : groupedTracks){
+            try{
+                splitInstruments.add(PreParser.splitInstruments(track));
+            }catch(ParseException pe){
+                //skip
+                pe.printStackTrace();
+            }
+
+        }
+
+        ArrayList<ArrayList<ArrayList<ArrayList<Lexer.Token>>>> readyToCreateSequence = new ArrayList<>();
+        for(ArrayList<ArrayList<Lexer.Token>> tracks : splitInstruments){
+            ArrayList<ArrayList<ArrayList<Lexer.Token>>> splitLines = new ArrayList<>();
+            for(ArrayList<Lexer.Token> line : tracks){
+                splitLines.add(PreParser.splitLineIntoSequences(line));
+            }
+            readyToCreateSequence.add(splitLines);
+        }
+
+
+        ArrayList<Sequence> sequences = new ArrayList<>();
+        String instrument;
+        boolean[] sequenceAlreadyCreated;
+        //TODO: loop over readyToCreateSequences and make the sequences which you can add to sequences.
+        for(ArrayList<ArrayList<ArrayList<Lexer.Token>>> track : readyToCreateSequence){
+            sequenceAlreadyCreated = new boolean[track.get(0).size()-1];
+            List<Sequence> currentTrack = new LinkedList<>();
+            for(ArrayList<ArrayList<Lexer.Token>> line : track){
+                instrument = line.get(0).get(0).data;
+
+                for(int i = 1; i<line.size(); i++){
+                    ArrayList<Lexer.Token> sequenceComponent = line.get(i);
+                    if (sequenceComponent.size() == RESOLUTION) {
+                        if (sequenceAlreadyCreated[i - 1]) {
+                            currentTrack.get(i - 1).fillLine(instrument, sequenceComponent);
+                        } else {
+                            currentTrack.add(new Sequence(RESOLUTION));
+                            sequenceAlreadyCreated[i - 1] = true;
+                            currentTrack.get(i - 1).fillLine(instrument, sequenceComponent);
+                        }
+                    } else {
+                        //nil
+                    }
+
+                }
+            }
+            sequences.addAll(currentTrack);
+        }
+        return sequences;
+    }
+
+    public void parseToFile(List<Sequence> sequences) throws FileSystemException, IOException{
         int trackNumber = 0;
         File directory = new File(m_outputDirectory);
         if(!directory.mkdirs()){
@@ -53,18 +113,19 @@ public class Parser {
 
         //TODO add record song table
 
-        for(ArrayList<Lexer.Token> track : tokenTracks){
+        for(Sequence sequence : sequences){
             trackPathName = m_outputDirectory+"/"+String.valueOf(trackNumber)+".txt";
             trackNumber++;
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(trackPathName)));
+            sequence.writeToFile(writer);
+            writer.flush();
             //todo 1. translate track to string
             //todo 2. save string to trackPathName file
             //todo 3. record in track database
         }
     }
 
-    public void writeToFile(ArrayList<Lexer.Token> track){
 
-    }
 
     public File getM_inputFile() {
         return m_inputFile;

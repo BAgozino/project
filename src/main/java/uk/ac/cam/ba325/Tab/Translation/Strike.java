@@ -13,6 +13,15 @@ public class Strike {
     public Strike(int value){
         this.value = value;
     }
+    public Strike(Lexer.Token token){
+        if(token.type == Lexer.TokenType.BEAT){
+            value = 1;
+        }else if(token.type == Lexer.TokenType.REST){
+            value = 0;
+        }else{
+            value = -1;
+        }
+    }
 
     @Override
     public String toString(){

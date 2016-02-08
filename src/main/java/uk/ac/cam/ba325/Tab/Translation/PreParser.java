@@ -34,7 +34,10 @@ public class PreParser {
                     break;
                 }
                 case TRACKDIVIDER:{
-                    //nil
+                    if (!lineHasInstrument){
+                        tokens.remove(i);
+                        i--;
+                    }
                     break;
                 }
                 case BEAT:{
@@ -84,7 +87,7 @@ public class PreParser {
 
                 }else if (buildingTrack){
                     currentTokens.add(token);
-                    newLineCount = 0;
+
 
                 }
             } else {
@@ -107,27 +110,49 @@ public class PreParser {
     }
 
 
+
     public static ArrayList<ArrayList<Lexer.Token>> splitInstruments(ArrayList<Lexer.Token> tokens) throws ParseException{
         ArrayList<ArrayList<Lexer.Token>> instrumentTracks = new ArrayList<>();
-        ArrayList<Lexer.Token> singleInstrument = new ArrayList<>();
+        ArrayList<Lexer.Token> currentList = new ArrayList<>();
+        for(Lexer.Token token :tokens){
 
-        for(Lexer.Token token:tokens){
-            if(token.type == Lexer.TokenType.NEWLINE) {
-                instrumentTracks.add(new ArrayList<Lexer.Token>(singleInstrument));
-                singleInstrument = new ArrayList<>();
-            } else {
-                singleInstrument.add(token);
+            if (token.type == Lexer.TokenType.NEWLINE){
+                if(!currentList.isEmpty()) {
+                    instrumentTracks.add(new ArrayList<Lexer.Token>(currentList));
+                }
+                currentList = new ArrayList<>();
+            }else{
+                currentList.add(token);
             }
         }
 
-        for (int i=0; i<instrumentTracks.size()-1; i++){
-            if (instrumentTracks.get(i).size() != instrumentTracks.get(i+1).size()){
-                throw new ParseException("Instrument Tracks are of uneven length",0);
+        for(int i=0; i<instrumentTracks.size()-1; i++){
+            if(instrumentTracks.get(i).size()!=instrumentTracks.get(i+1).size()){
+                throw new ParseException("lengths are off",0);
+            }
+        }
+        if(!currentList.isEmpty()) {
+            instrumentTracks.add(currentList);
+        }
+        return instrumentTracks;
+
+
+    }
+
+    public static ArrayList<ArrayList<Lexer.Token>> splitLineIntoSequences(ArrayList<Lexer.Token> tokens){
+        ArrayList<ArrayList<Lexer.Token>> instrumentTracks = new ArrayList<>();
+        ArrayList<Lexer.Token> currentList = new ArrayList<>();
+        for(Lexer.Token token :tokens){
+
+            if (token.type == Lexer.TokenType.TRACKDIVIDER){
+                instrumentTracks.add(new ArrayList<Lexer.Token>(currentList));
+                currentList = new ArrayList<>();
+            }else{
+                currentList.add(token);
             }
         }
 
         return instrumentTracks;
-
 
     }
 

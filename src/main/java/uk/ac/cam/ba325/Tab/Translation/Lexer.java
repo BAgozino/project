@@ -1,5 +1,10 @@
 package uk.ac.cam.ba325.Tab.Translation;
 
+import uk.ac.cam.ba325.Tab.Translation.Exceptions.AlreadySetException;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -7,7 +12,7 @@ import java.util.regex.Matcher;
 public class Lexer {
     public static enum TokenType {
         // Token types cannot have underscores
-        INSTRUMENT("HH|H|CC|RD|SN|S|BD|B|T1|T2|FT"), TRACKDIVIDER("\\|"), BEAT("x|X|o|#|s|c|b|g|f|b|B|@"),
+        INSTRUMENT("HH|HF|H|CC|C|RD|R|SN|S|BD|B|T1|HT|T2|LT|FT|T"), TRACKDIVIDER("\\|"), BEAT("x|X|o|#|s|c|b|g|f|b|B|@"),
         REST("-"),NEWLINE("\n"), WHITESPACE("[ \t\f\r]+");
 
         public final String pattern;
@@ -37,7 +42,7 @@ public class Lexer {
         ArrayList<Token> tokens = new ArrayList<Token>();
 
         // Lexer logic begins here
-        StringBuffer tokenPatternsBuffer = new StringBuffer();
+        StringBuilder tokenPatternsBuffer = new StringBuilder();
         for (TokenType tokenType : TokenType.values())
             tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
         Pattern tokenPatterns = Pattern.compile(new String(tokenPatternsBuffer.substring(1)),Pattern.CASE_INSENSITIVE);
@@ -75,13 +80,34 @@ public class Lexer {
                 "Tabbed By:Jeff Sawinski\n" +
                 "E-mail:sawinsk@bolt.com \n" +
                 "\n" +
-                "H|x---x-x-x---x-x-|\n" +
-                "S|o---o-------o---|\n" +
-                "B|o---o---oo--o---|";
+                "H|x---x-x-x---x-x-|o---o---oo--o---|\n" +
+                "S|o---o-------o---|o---o---oo--o---|\n" +
+                "B|o---o---oo--o---|o---o---oo--o---|\n" +
+                "Testing this sceneario\n" +
+                "\n" +
+                "Highhat Test\n" +
+                "S|o---o---oo--o---|-xx-| what if comments are here xoxo?\n" +
+                "\n" +
+                "S o---o---oo--o---|";
 
         // Create tokens and print them
         ArrayList<Token> tokens = lex(input);
-        PreParser.removeComments(tokens);
+        Parser parser = new Parser(new File(""),"src/main/resources/Dataset/test");
+        try {
+            ArrayList<ArrayList<Token>> preParsed = parser.preParse(tokens);
+            parser.parseToFile(parser.createSequences(parser.preParse(tokens)));
+        }catch (ParseException pe){
+            //// TODO: 06/02/16
+            pe.printStackTrace();
+        }catch (AlreadySetException ase){
+            //// TODO: 06/02/16
+            ase.printStackTrace();
+            
+        }catch (IOException ioe){
+            //// TODO: 06/02/16
+
+            ioe.printStackTrace();
+        }
         ArrayList<ArrayList<Token>> groupedTokens = PreParser.groupTracks(tokens);
         for (Token token : tokens)
             System.out.println(token);

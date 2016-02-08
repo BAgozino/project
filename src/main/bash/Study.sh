@@ -13,7 +13,7 @@ midish -b -v <<END
 	dnew 0 "14:0" ro
 	tnew drums
 	r
-	save "$1-$2-$3-$4" ; export "$1-$2-$3-$4.mid"
+	save "$1/$1-$2-$3-$4" ; export "$1/$1-$2-$3-$4.mid"
 END
 
 echo "[ANY BUTTON] to save and continue"
@@ -25,7 +25,7 @@ echo "[ANY BUTTON] to save and continue"
 function main {
 	echo "Name of the performer:"
 	read performer
-	
+	mkdir $performer
 	echo "Dataset:$dataset"
 	
 	for tab in `seq 0 9`
