@@ -6,9 +6,11 @@ import java.util.List;
 /**
  * Created by root on 08/02/16.
  */
-public class NoteDeltaSequence {
+public class NoteDeltaSequence extends LinkedList<TickDelta> {
 
-    List<TickDelta> noteDeltas = new LinkedList<>();
+
+
+
 
 
 }
