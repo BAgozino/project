@@ -1,9 +1,6 @@
 package uk.ac.cam.ba325.Tab.Translation;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+
 
 import javax.print.Doc;
 import java.io.IOException;
@@ -12,6 +9,7 @@ import java.io.IOException;
  * Created by root on 06/02/16.
  */
 public class Scraper {
+/*
 
     public static final String WEBSITE = "http://blindleaf.freeservers.com/Tabs/Drum/311";
     Document doc = null;
@@ -37,5 +35,6 @@ public class Scraper {
         System.out.println("title is: " + scraper.doc.title());
 
     }
+*/
 
 }

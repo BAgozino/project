@@ -32,7 +32,7 @@ public class TickDelta {
 
     public long getdTickRounded(){
 
-        return (Math.round(dTick/ROUNDVALUE)*10);
+        return (Math.round(dTick/ROUNDVALUE)*((long) ROUNDVALUE));
 
     }
 

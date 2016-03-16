@@ -7,11 +7,24 @@ import java.util.List;
  */
 public class SuffixNode {
 
-    private List<SuffixNode> children = null;
+    private List<SuffixArc> children = null;
 
-    private int
-
-
+    private int offset;
 
 
+    public List<SuffixArc> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<SuffixArc> children) {
+        this.children = children;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
 }
