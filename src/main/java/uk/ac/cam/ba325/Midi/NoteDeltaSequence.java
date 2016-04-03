@@ -11,6 +11,13 @@ public class NoteDeltaSequence extends ArrayList<TickDelta> {
 
     private long timeOfLastTick = 0;
 
+
+
+    public boolean prefixTest(int position, TickDelta tickDelta){
+
+        return this.get(position).getdTickRounded() ==tickDelta.getdTickRounded();
+    }
+
     public void addTick(long tick){
         if (timeOfLastTick == 0){
             timeOfLastTick = tick;

@@ -5,27 +5,32 @@ package uk.ac.cam.ba325.Midi.Quantisation;
  */
 public class SuffixPointer {
 
-    private int index;
-    private int length;
+    private int start;
+    //exclusive
+    private int end;
 
-    public SuffixPointer(int index, int length){
-        this.index = index;
-        this.length = length;
+    public SuffixPointer(int start) {
+        this.start = start;
     }
 
-    public int getIndex() {
-        return index;
+    public SuffixPointer(int start, int end){
+        this.start = start;
+        this.end = end;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public int getStart() {
+        return start;
     }
 
-    public int getLength() {
-        return length;
+    public void setStart(int start) {
+        this.start = start;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public int getEnd() {
+        return end;
+    }
+
+    public void setEnd(int end) {
+        this.end = end;
     }
 }
