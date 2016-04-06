@@ -6,7 +6,7 @@ package uk.ac.cam.ba325.Midi;
 public class TickDelta {
 
     public static final int ERROR_RANGE = 20;
-    public static final double ROUNDVALUE = 10.0;
+    public static final double ROUNDVALUE = 1.0;
 
     private long dTick;
 
@@ -31,9 +31,14 @@ public class TickDelta {
     }
 
     public long getdTickRounded(){
-
+        if(dTick <0){
+            return dTick;
+        }
         return (Math.round(dTick/ROUNDVALUE)*((long) ROUNDVALUE));
 
+    }
+    public static long roundTick(long tick){
+        return (Math.round(tick/ROUNDVALUE)*((long) ROUNDVALUE));
     }
 
     public void setdTick(long dTick) {
