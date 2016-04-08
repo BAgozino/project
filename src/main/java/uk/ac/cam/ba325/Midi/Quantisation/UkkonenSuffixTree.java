@@ -19,12 +19,12 @@ public class UkkonenSuffixTree {
         private SuffixTreeNode suffixLink;
 
         public void addChild(SuffixTreeNode node, int iterationPoint){
-            if(m_activeNode == m_root){
+//            if(m_activeNode == m_root){
+//                node.setSuffixIndex(iterationPoint);
+//            } else {
                 node.setSuffixIndex(iterationPoint);
-            } else {
-                node.setSuffixIndex(m_activeNode.getSuffixIndex());
                 m_activeNode.setSuffixIndex(-1);
-            }
+//            }
             children.add(node);
         }
 
@@ -34,7 +34,8 @@ public class UkkonenSuffixTree {
 
             //next.start += m_activeLength;
             //split.addChild(next.getStart(),next);
-            this.addChild(newNode(end.getValue()+1,m_leafEnd),0 );
+            this.addChild(newNode(end.getValue()+1,m_leafEnd),suffixIndex);
+            this.setSuffixIndex(-1);
         }
         public SuffixTreeNode getChild(int edgeStart){
             TickDelta edge, query = m_sequence.get(edgeStart);
@@ -51,6 +52,10 @@ public class UkkonenSuffixTree {
 
         private int suffixIndex;
 
+
+        public int getSuffixLength(){
+            return 1+end.getValue()-start;
+        }
         public List<SuffixTreeNode> getChildren() {
             return children;
         }
@@ -143,6 +148,7 @@ public class UkkonenSuffixTree {
         m_lastNewNode = null;
 
         while(m_remainingSuffixCount > 0){
+            m_activeEdgeStart = position-m_remainingSuffixCount+1;
             if (m_activeLength == 0)
                 m_activeEdge = position; //as we are just sitting at the node
 
@@ -159,7 +165,6 @@ public class UkkonenSuffixTree {
                     m_lastNewNode = null;
                 }
             } else {
-
                 if (walkDown(next)){ //if the edge is too long start again from the next node
                     continue;
                 }
@@ -204,6 +209,7 @@ public class UkkonenSuffixTree {
             else if(m_activeNode != m_root){
                 m_activeNode = m_activeNode.suffixLink;
             }
+
         }
     }
 
@@ -221,7 +227,77 @@ public class UkkonenSuffixTree {
             this.extendSuffixTree(i);
         }
 
+        indexLeafNodes(0,m_root);
+
     }
+
+    public void indexLeafNodes(int count,SuffixTreeNode node){ //Todo
+        if(node!=m_root) {
+            count += node.getSuffixLength();
+        }
+
+        List<SuffixTreeNode> children = node.getChildren();
+        if(children.isEmpty()){
+            node.setSuffixIndex(node.getEnd()-count+1);
+        }else{
+            for(SuffixTreeNode child : children){
+                indexLeafNodes(count,child);
+            }
+        }
+
+    }
+
+    public void print(){
+        StringBuilder builder = new StringBuilder();
+
+        addNodeToStringBuilder(m_root,builder);
+        System.out.println(builder.toString());
+
+    }
+
+    int h_level=0;
+    public void addNodeToStringBuilder(SuffixTreeNode node, StringBuilder stringBuilder){
+         for(int i =0; i<h_level; i++){
+             stringBuilder.append("|");
+         }
+        if(node == m_root){
+            stringBuilder.append("(root");
+        }else{
+            stringBuilder.append("-");
+            stringBuilder.append("\"");
+            for(int i =node.getStart();i<=node.getEnd();i++){
+
+                stringBuilder.append(m_sequence.get(i).getdTick());
+                if(i!=node.getEnd()) {
+                    stringBuilder.append(",");
+                }
+            }
+
+            stringBuilder.append("\"");
+            stringBuilder.append("-(");
+            stringBuilder.append(node.getSuffixIndex());
+
+
+
+
+        }
+        if(node.getChildren().isEmpty()) {
+            stringBuilder.append(")\n     ");
+
+        }else {
+            stringBuilder.append(")-\n     ");
+            for (SuffixTreeNode currNode : node.getChildren()) {
+                h_level++;
+                addNodeToStringBuilder(currNode, stringBuilder);
+                h_level--;
+
+
+            }
+        }
+    }
+
+
+
 
     public static void main(String[] args){
         NoteDeltaSequence testSequence = new NoteDeltaSequence();
@@ -234,6 +310,6 @@ public class UkkonenSuffixTree {
 
         UkkonenSuffixTree testTree = new UkkonenSuffixTree(testSequence);
 
-        System.out.print(testTree);
+        testTree.print();
     }
 }
