@@ -247,6 +247,8 @@ public class UkkonenSuffixTree {
 
     }
 
+
+
     public void print(){
         StringBuilder builder = new StringBuilder();
 

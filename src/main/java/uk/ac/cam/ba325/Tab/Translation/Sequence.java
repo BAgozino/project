@@ -45,7 +45,7 @@ public class Sequence {
     }
 
     private static enum InstrumentType{
-        HIGHHAT("HH|HF|H"), CRASHCYMBAL("CC|C"), RIDECYMBAL("RD|R"), SNAREDRUM("SN|S"), BASSDRUM("BD|B"),
+        HIGHHAT("HH|HF|H"), CRASHCYMBAL("CC|C1|C2|C"), RIDECYMBAL("RD|R"), SNAREDRUM("SN|S"), BASSDRUM("BD|B"),
         HIGHTOM("T1|HT"), LOWTOM("T2|LT"), FLOORTOM("FT|T");
 
         public final String pattern;

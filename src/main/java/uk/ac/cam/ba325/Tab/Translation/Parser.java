@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 import uk.ac.cam.ba325.Tab.Translation.Exceptions.AlreadySetException;
 import uk.ac.cam.ba325.Tab.Translation.Sequence;
@@ -55,15 +56,16 @@ public class Parser {
             try{
                 splitInstruments.add(PreParser.splitInstruments(track));
             }catch(ParseException pe){
-                //skip
-                pe.printStackTrace();
+                //skip whole track sequence
+                //pe.printStackTrace();
             }
 
         }
 
         ArrayList<ArrayList<ArrayList<ArrayList<Lexer.Token>>>> readyToCreateSequence = new ArrayList<>();
+        ArrayList<ArrayList<ArrayList<Lexer.Token>>> splitLines;
         for(ArrayList<ArrayList<Lexer.Token>> tracks : splitInstruments){
-            ArrayList<ArrayList<ArrayList<Lexer.Token>>> splitLines = new ArrayList<>();
+            splitLines = new ArrayList<>();
             for(ArrayList<Lexer.Token> line : tracks){
                 splitLines.add(PreParser.splitLineIntoSequences(line));
             }
@@ -82,7 +84,10 @@ public class Parser {
                 instrument = line.get(0).get(0).data;
 
                 for(int i = 1; i<line.size(); i++){
+
+
                     ArrayList<Lexer.Token> sequenceComponent = line.get(i);
+
                     if (sequenceComponent.size() == RESOLUTION) {
                         if (sequenceAlreadyCreated[i - 1]) {
                             currentTrack.get(i - 1).fillLine(instrument, sequenceComponent);
@@ -104,9 +109,9 @@ public class Parser {
 
     public void parseToFile(List<Sequence> sequences) throws FileSystemException, IOException{
         int trackNumber = 0;
-        File directory = new File(m_outputDirectory);
+        File directory = new File(m_outputDirectory+"/"+h_band+"/"+h_song);
         if(!directory.mkdirs()){
-            throw new FileSystemException(m_outputDirectory,"none","Failed to mkdirs");
+            throw new FileSystemException(m_outputDirectory+"/"+h_band+"/"+h_song,"none","Failed to mkdirs");
         }
 
         String trackPathName;
@@ -114,7 +119,7 @@ public class Parser {
         //TODO add record song table
 
         for(Sequence sequence : sequences){
-            trackPathName = m_outputDirectory+"/"+String.valueOf(trackNumber)+".txt";
+            trackPathName = m_outputDirectory+"/"+h_band+"/"+h_song+"/"+String.valueOf(trackNumber)+".txt";
             trackNumber++;
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(trackPathName)));
             sequence.writeToFile(writer);
@@ -125,7 +130,35 @@ public class Parser {
         }
     }
 
+    String h_band;
+    String h_song;
+    /**
+     * prints to resources/Database/{band}/{song}/{sequenceNumber}.txt
+     * @param files
+     * @throws FileNotFoundException
+     */
+    public void parseDatabase(File[] files) throws FileNotFoundException{
+       for(File file: files){
+            if(file.isDirectory()){
+                h_band = file.getName();
+                parseDatabase(file.listFiles());
+            } else {
+                h_song = file.getName();
+                parse(file);
+            }
+        }
+    }
 
+
+
+    public void parse(File file) throws FileNotFoundException{
+        ArrayList<Lexer.Token> tokens = Lexer.tokeniseFile(file);
+        try {
+            this.parseToFile(this.createSequences(this.preParse(tokens)));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public File getM_inputFile() {
         return m_inputFile;
@@ -142,4 +175,15 @@ public class Parser {
     public void setM_outputDirectory(String m_outputDirectory) {
         this.m_outputDirectory = m_outputDirectory;
     }
+
+    public static void main(String[] args){
+        File file = new File("/home/biko/Projects/Database/blindleaf.freeservers.com/Tabs/Drum");
+        Parser parser = new Parser(file,"src/main/resources/Database");
+        try {
+            parser.parseDatabase(file.listFiles());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }

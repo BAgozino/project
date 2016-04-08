@@ -24,7 +24,16 @@ public class PreParser {
             switch (token.type){
                 case INSTRUMENT:{
                     lineHasInstrument = true;
-                    if (tokens.get(i+1).type != Lexer.TokenType.TRACKDIVIDER){
+                    try{
+                        Lexer.Token t1 = tokens.get(i+1);
+                        if (tokens.get(i+1).type != Lexer.TokenType.TRACKDIVIDER){
+                            tokens.remove(i);
+                            i--;
+                            lineHasInstrument = false;
+
+                        }
+
+                    }catch (IndexOutOfBoundsException e){
                         tokens.remove(i);
                         i--;
                         lineHasInstrument = false;
@@ -128,7 +137,7 @@ public class PreParser {
 
         for(int i=0; i<instrumentTracks.size()-1; i++){
             if(instrumentTracks.get(i).size()!=instrumentTracks.get(i+1).size()){
-                throw new ParseException("lengths are off",0);
+                throw new ParseException("lengths are off, skipping the whole line",0);
             }
         }
         if(!currentList.isEmpty()) {

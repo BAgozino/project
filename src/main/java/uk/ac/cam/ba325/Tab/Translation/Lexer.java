@@ -2,17 +2,17 @@ package uk.ac.cam.ba325.Tab.Translation;
 
 import uk.ac.cam.ba325.Tab.Translation.Exceptions.AlreadySetException;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class Lexer {
     public static enum TokenType {
         // Token types cannot have underscores
-        INSTRUMENT("HH|HF|H|CC|C|RD|R|SN|S|BD|B|T1|HT|T2|LT|FT|T"), TRACKDIVIDER("\\|"), BEAT("x|X|o|#|s|c|b|g|f|b|B|@"),
+        INSTRUMENT("HH|HF|H|CC|C1|C2|C|RD|R|SN|S|BD|B|T1|HT|T2|LT|FT|T"), TRACKDIVIDER("\\|"), BEAT("x|X|o|#|s|c|b|g|f|b|B|@"),
         REST("-"),NEWLINE("\n"), WHITESPACE("[ \t\f\r]+");
 
         public final String pattern;
@@ -72,23 +72,151 @@ public class Lexer {
         return tokens;
     }
 
+
+    public static ArrayList<Token> tokeniseFile(File file) throws FileNotFoundException{//TODO
+        ArrayList<Token> tokens = new ArrayList<>();
+        Scanner scanner = new Scanner(file);
+        while(scanner.hasNextLine()){
+            tokens.addAll(lex(scanner.nextLine()+"\n"));
+        }
+        return tokens;
+    }
     public static void main(String[] args) {
-        String input = "from- myguitartabs.com\n" +
-                "band=Eminem\n" +
-                "song=The Real Slim Shady\n" +
-                "tabtype=drum\n" +
-                "Tabbed By:Jeff Sawinski\n" +
-                "E-mail:sawinsk@bolt.com \n" +
+        String input = "From: MYguitartabs.com\n" +
+                "Bad Religion\n" +
+                "I Love My Computer\n" +
+                "New America\n" +
+                "Bobby Schayer\n" +
+                "Tabbed by: TheBioLogic\n" +
                 "\n" +
-                "H|x---x-x-x---x-x-|o---o---oo--o---|\n" +
-                "S|o---o-------o---|o---o---oo--o---|\n" +
-                "B|o---o---oo--o---|o---o---oo--o---|\n" +
-                "Testing this sceneario\n" +
+                "c=cross-stick\n" +
                 "\n" +
-                "Highhat Test\n" +
-                "S|o---o---oo--o---|-xx-| what if comments are here xoxo?\n" +
                 "\n" +
-                "S o---o---oo--o---|";
+                "Intro:\n" +
+                "\n" +
+                "  |-----------Repeat x4-------------|\n" +
+                "c |x---------------|----------------|\n" +
+                "h |--x-x-x-x-x-x-x-|x-x-x-x-x-x-x-x-|\n" +
+                "s |----s-------s---|----s-------s---|\n" +
+                "b |b-----b-b-b-----|b-b---b-b-b-----|\n" +
+                "\n" +
+                "Verse:\n" +
+                "\n" +
+                "c |----------------|----------------|----------------|----------------|\n" +
+                "h |x-x-x-x-x-x-x-x-|x-x-x-x-x-x-x-x-|x-x-x-x-x-x-x-x-|x-x-x-x-x-------|\n" +
+                "s |----c-------c---|----c-------c---|----c-------c---|----c-----------|\n" +
+                "ft|----------------|----------------|----------------|----------o-o---|\n" +
+                "b |b-------b-b-----|b-b-----b-b-----|b-b-----b-b-----|b-b-----b-------|\n" +
+                "\n" +
+                "  |-------------Repeat x2-----------|\n" +
+                "c |x---------------|----------------|----------------|----------------|\n" +
+                "h |--x-x-x-x-x-x-x-|x-x-x-x-x-x-x-x-|x-x-x-x-x-x-x-x-|x-x-x-----------|\n" +
+                "s |----s-------s---|----s-------s---|----s-------s---|----s-----------|\n" +
+                "b |b-------b-b-----|b-b-----b-b-----|b-b-----b-b-----|b-b-------------|\n" +
+                "\n" +
+                "\n" +
+                "c |x---------------|----------------|\n" +
+                "h |--x-x-x-x-x-x-x-|----------------|\n" +
+                "s |----s-------s---|----------------|\n" +
+                "ft|----------------|o-o-o-o-o-o-o-o-|\n" +
+                "b |b-b-----b-b-----|b-b-b-b-b-b-b-b-|\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "Chorus:\n" +
+                "\n" +
+                "  |-----------Repeat x3-------------|\n" +
+                "c |x---------------|----------------|x---------------|----------------|\n" +
+                "r |----x---x---x---|x---x---x---x---|----x---x---x---|----------------|\n" +
+                "s |----s-------s---|----s-------s---|----s-------s---|----f-------f---|\n" +
+                "b |b-------b-b-----|b-b-----b-b-----|b-------b-b-----|b-b-----b-b-----|\n" +
+                "\n" +
+                "\n" +
+                "Interlude:\n" +
+                "\n" +
+                "  |-----------Repeat x2-------------|\n" +
+                "c |x---------------|----------------|\n" +
+                "h |--x-x-x-x-x-x-x-|x-x-x-x-x-x-x-x-|\n" +
+                "s |----s-------s---|----s-------s---|\n" +
+                "b |b-----b-b-b-----|b-b---b-b-b-----|\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "Verse:\n" +
+                "  |-----------Repeat x4-------------|\n" +
+                "c |x---------------|----------------|x---------------|----------------|\n" +
+                "h |--x-x-x-x-x-x-x-|x-x-x-x-x-x-x-x-|--x-x-x-x-x-x-x-|x-x-x-----------|\n" +
+                "s |----s-------s---|----s-------s---|----s-------s---|----s-----------|\n" +
+                "b |b-------b-b-----|b-b-----b-b-----|b-b-----b-b-----|b-b-------------|\n" +
+                "\n" +
+                "\n" +
+                "c |x---------------|----------------|\n" +
+                "h |--x-x-x-x-x-x-x-|----------------|\n" +
+                "s |----s-------s---|----------------|\n" +
+                "ft|----------------|o-o-o-o-o-o-o-o-|\n" +
+                "b |b-b-----b-b-----|b-b-b-b-b-b-b-b-|\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "Repeat Chorus\n" +
+                "\n" +
+                "\n" +
+                "Interlude:\n" +
+                "\n" +
+                "  |-----------Repeat x2-------------|\n" +
+                "c |x---------------|----------------|\n" +
+                "h |--x-x-x-x-x-x-x-|x-x-x-x-x-x-x-x-|\n" +
+                "s |----s-------s---|----s-------s---|\n" +
+                "b |b-----b-b-b-----|b-b---b-b-b-----|\n" +
+                "\n" +
+                "Bridge:\n" +
+                "\n" +
+                "\t\t           |---Repeat x3----|\n" +
+                "c |x---------------|----------------|----------------|\n" +
+                "r |----x---x---x---|x---x---x---x---|----------------|\n" +
+                "s |----s---s---s---|s---s---s---s---|----------------|\n" +
+                "ft|----------------|----------------|o-o-o-o-o-o-o-o-|\n" +
+                "b |b-b----b--b----b|--b----b--b----b|b-b-b-b-b-b-b-b-|\n" +
+                "\n" +
+                "\n" +
+                "Solo:\n" +
+                "\n" +
+                "c |x---------------|----------------|x---------------|----------------|\n" +
+                "r |----x---x---x---|x---x---x---x---|----x---x---x---|x---x---x---x---|\n" +
+                "s |----s-------s---|----s-------s---|----s-------s---|----s-------s---|\n" +
+                "b |b-------b-b-----|b-b-----b-b-----|b-------b-b-----|b-b-----b-b-----|\n" +
+                "\n" +
+                "c |x---------------|----------------|x---------------|----------------|\n" +
+                "r |----x---x---x---|x---x---x---x---|----x---x---x---|----------------|\n" +
+                "s |----s-------s---|----s-------s---|----s-------s---|--------ssssssss|\n" +
+                "ft|----------------|----------------|----------------|o-o-o-o---------|\n" +
+                "b |b-------b-b-----|b-b-----b-b-----|b-------b-b-----|b-b-b-b---------|\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "Chorus:\n" +
+                "\n" +
+                "\t\t\t\t   |-----------Repeat x2-------------|\n" +
+                "c |x---------------|----------------|x---------------|----------------|\n" +
+                "r |----x---x---x---|x---x---x---x---|----x---x---x---|x---x---x---x---|\n" +
+                "s |----s-------s---|----s-------s---|----s-------s---|----s-------s---|\n" +
+                "b |b-b-----b-b-----|b-b-----b-b-----|b-------b-b-----|b-b-----b-b-----|\n" +
+                "\n" +
+                "\n" +
+                "c |x---------------|----------------|\n" +
+                "r |----x---x---x---|----------------|\n" +
+                "s |----s-------s---|----f-------f---|\n" +
+                "b |b-------b-b-----|b-b-----b-b-----|\n" +
+                "\n" +
+                "Outro:\n" +
+                "(Repeat till end)\n" +
+                "\n" +
+                "c |x---------------|----------------|\n" +
+                "r |--x-x-x-x-x-x-x-|x-x-x-x-x-x-x-x-|\n" +
+                "s |----s-------s---|----s-------s---|\n" +
+                "b |b-------b-b-----|b-b-----b-b-----|\n" +
+                "\n" +
+                "End of Tab";
 
         // Create tokens and print them
         ArrayList<Token> tokens = lex(input);
@@ -109,7 +237,7 @@ public class Lexer {
             ioe.printStackTrace();
         }
         ArrayList<ArrayList<Token>> groupedTokens = PreParser.groupTracks(tokens);
-        for (Token token : tokens)
-            System.out.println(token);
+//        for (Token token : tokens)
+//            System.out.println(token);
     }
 }
