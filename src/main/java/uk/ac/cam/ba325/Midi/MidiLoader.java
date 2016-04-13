@@ -1,6 +1,10 @@
 package uk.ac.cam.ba325.Midi;
 
+import uk.ac.cam.ba325.Midi.Quantisation.DrumNoteDeltaSuffixTree;
+import uk.ac.cam.ba325.Tab.Translation.*;
+
 import javax.sound.midi.*;
+import javax.sound.midi.Sequence;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +16,7 @@ public class MidiLoader {
 
     private Sequence m_sequence;
 
-    private boolean loadMidiFile(String path){
+    public boolean loadMidiFile(String path){
         File file = new File(path);
         boolean result = true;
         try{
@@ -25,8 +29,10 @@ public class MidiLoader {
 
     }
 
+
+
     public DrumNoteDeltaSequences buildDrumNoteDeltaSequences(){
-        DrumNoteDeltaSequences drumNoteDeltaSequences = new DrumNoteDeltaSequences();
+        DrumNoteDeltaSequences drumNoteDeltaSequences = new DrumNoteDeltaSequences(m_sequence.getTickLength());
         Track recTrack = m_sequence.getTracks()[1];
 
         for(int i=0; i<recTrack.size(); i++){
@@ -93,7 +99,7 @@ public class MidiLoader {
         return drumNoteDeltaSequences;
     }
 
-    private LinkedList<CsvMidiEvent> onEventsToCsvMidiEvent(){
+    public LinkedList<CsvMidiEvent> onEventsToCsvMidiEvent(){
         Track recTrack = m_sequence.getTracks()[1];
         LinkedList<CsvMidiEvent> csvs = new LinkedList<>();
         for(int i=0; i<recTrack.size(); i++){
@@ -118,7 +124,7 @@ public class MidiLoader {
     }
 
 
-    private boolean printCsv(String path, List<CsvMidiEvent> csvs){
+    public boolean printCsv(String path, List<CsvMidiEvent> csvs){
         try {
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(path)));
 
@@ -137,6 +143,11 @@ public class MidiLoader {
         midiLoader.loadMidiFile("../StudyData/Jared-9-2-0.mid");
         midiLoader.printCsv("../StudyData/test.txt", midiLoader.onEventsToCsvMidiEvent());
         DrumNoteDeltaSequences d = midiLoader.buildDrumNoteDeltaSequences();
+        DrumNoteDeltaSuffixTree st = new DrumNoteDeltaSuffixTree(d);
+
+        uk.ac.cam.ba325.Tab.Translation.Sequence query = st.getBestSequence();
+
+
         for(Track track : midiLoader.getSequence().getTracks()){
             System.out.println(track);
         }

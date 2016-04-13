@@ -8,7 +8,7 @@ public class Strike {
 
     public static final Strike HIT = new Strike(1);
     public static final Strike REST = new Strike(0);
-    private final int value;
+    private int value;
 
     public Strike(int value){
         this.value = value;
@@ -26,6 +26,9 @@ public class Strike {
 
     public int getValue(){
         return value;
+    }
+    public void setValue(int value){
+        this.value = value;
     }
     @Override
     public String toString(){

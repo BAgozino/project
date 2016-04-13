@@ -7,6 +7,7 @@ import uk.ac.cam.ba325.Midi.TickDelta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by root on 04/04/16.
@@ -15,6 +16,7 @@ public class UkkonenSuffixTree {
 
     public class SuffixTreeNode{
         private ArrayList<SuffixTreeNode> children = new ArrayList<>();
+
 
         private SuffixTreeNode suffixLink;
 
@@ -55,6 +57,9 @@ public class UkkonenSuffixTree {
 
         public int getSuffixLength(){
             return 1+end.getValue()-start;
+        }
+        public long sumOfEdge(){
+            return m_sequence.sumSubSequence(start,end.getValue());
         }
         public List<SuffixTreeNode> getChildren() {
             return children;
@@ -156,7 +161,7 @@ public class UkkonenSuffixTree {
             SuffixTreeNode next = m_activeNode.getChild(m_activeEdge);
             if (next == null){
                 //Rule 2
-                SuffixTreeNode node = newNode(position,m_leafEnd);
+
 
                 m_activeNode.addChild(newNode(position,m_leafEnd),position);
 
@@ -213,11 +218,65 @@ public class UkkonenSuffixTree {
         }
     }
 
+
+    long h_maxLength; //init in constructor = 50+m_sequence.getEndOfTrack()/10;
+    public RepeatedStructure getRepeatedStructure(){
+
+
+        RepeatedStructure repeatedStructure = new RepeatedStructure(0,0,m_root.getChildren().size(),this);
+
+        recursiveUpdateRepeat(repeatedStructure,0,m_root);
+
+
+
+
+        //looking for the deepest internal node that does not go over m_sequence.endOfTrack/10+h_allowance in length
+
+
+
+        return repeatedStructure;
+    }
+
+    private void recursiveUpdateRepeat(RepeatedStructure repeatedStructure, long currentLength,
+                                       SuffixTreeNode node){
+        List<SuffixTreeNode> children = node.getChildren();
+        for(SuffixTreeNode n: children){
+            if(n.getChildren().size()>0) {
+                long sumOfEdge = n.sumOfEdge();
+                int numberOfChildren = n.getChildren().size();
+                if (sumOfEdge + currentLength > h_maxLength) {
+                    //dont want to change repeatedStructure as we have now overshot
+                    //also don't want to loop over n's children as we have overshot
+
+                 } else {
+                    currentLength += sumOfEdge;
+                    long length = repeatedStructure.getLength();
+                    if (length < currentLength) {
+                        repeatedStructure.setStructure(n.getEnd(), currentLength, numberOfChildren);
+                        recursiveUpdateRepeat(repeatedStructure, currentLength, n);
+                    } else if (length == currentLength) {
+                        if (repeatedStructure.getNumberOfChildren() < numberOfChildren) {
+                            repeatedStructure.setStructure(n.getEnd(), currentLength, numberOfChildren);
+                            recursiveUpdateRepeat(repeatedStructure, currentLength, n);
+                        } else {
+                            //nil
+                            recursiveUpdateRepeat(repeatedStructure,currentLength,n);
+                        }
+                    } else { //length>currentLength
+                        //Dont want to change the repeated structure as it is still the best fit
+                        //want to change current length
+                        recursiveUpdateRepeat(repeatedStructure, currentLength, n);
+                    }
+                }
+            }
+        }
+    }
+
     public UkkonenSuffixTree(NoteDeltaSequence sequence){
         m_sequence = sequence;
         m_size = sequence.size();
         m_rootEnd = new IntPointer(-1);
-
+        h_maxLength = m_sequence.getEndOfTrack()/10+m_sequence.getEndOfTrack()/20;
 
 
         m_root = newNode(-1, m_rootEnd);
@@ -228,10 +287,9 @@ public class UkkonenSuffixTree {
         }
 
         indexLeafNodes(0,m_root);
-
     }
 
-    public void indexLeafNodes(int count,SuffixTreeNode node){ //Todo
+    public void indexLeafNodes(int count,SuffixTreeNode node){
         if(node!=m_root) {
             count += node.getSuffixLength();
         }
@@ -300,17 +358,29 @@ public class UkkonenSuffixTree {
 
 
 
-
     public static void main(String[] args){
-        NoteDeltaSequence testSequence = new NoteDeltaSequence();
+        NoteDeltaSequence testSequence = new NoteDeltaSequence(25);
         long[] ticks = {1,2,4,7,8,10,14,15,17,20,25};//
-        testSequence.add(new TickDelta(-1));
+        long[] ticks2 = {1,2,4,5,7,8,10};
+        NoteDeltaSequence testSequence2 = new NoteDeltaSequence(10);
+        testSequence2.add(new TickDelta(-1,-1));
+        for(long tick: ticks2){
+            testSequence2.addTick(tick);
+        }
+        testSequence2.add(new TickDelta(-2,-1));
+
+        testSequence.add(new TickDelta(-1,-1));
         for(long tick: ticks){
             testSequence.addTick(tick);
         }
-        testSequence.add(new TickDelta(-2));
+        testSequence.add(new TickDelta(-2,-1));
 
         UkkonenSuffixTree testTree = new UkkonenSuffixTree(testSequence);
+        UkkonenSuffixTree testTree2 = new UkkonenSuffixTree(testSequence2);
+        UkkonenSuffixTree testTreeEmpty = new UkkonenSuffixTree(new NoteDeltaSequence(0));
+        RepeatedStructure testRepeat = testTree.getRepeatedStructure();
+        RepeatedStructure testRepeat2 = testTree2.getRepeatedStructure();
+        RepeatedStructure testRepeatEmpty = testTreeEmpty.getRepeatedStructure();
 
         testTree.print();
     }

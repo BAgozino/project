@@ -5,17 +5,36 @@ package uk.ac.cam.ba325.Midi;
  */
 public class DrumNoteDeltaSequences {
 
-    private NoteDeltaSequence bassDrum = new NoteDeltaSequence();
-    private NoteDeltaSequence crashCymbal = new NoteDeltaSequence();
-    private NoteDeltaSequence floorTom = new NoteDeltaSequence();
-    private NoteDeltaSequence highHat = new NoteDeltaSequence();
-    private NoteDeltaSequence highTom = new NoteDeltaSequence();
-    private NoteDeltaSequence lowTom = new NoteDeltaSequence();
-    private NoteDeltaSequence rideCymbal = new NoteDeltaSequence();
-    private NoteDeltaSequence snareDrum = new NoteDeltaSequence();
+    private NoteDeltaSequence bassDrum;
+    private NoteDeltaSequence crashCymbal;
+    private NoteDeltaSequence floorTom;
+    private NoteDeltaSequence highHat;
+    private NoteDeltaSequence highTom;
+    private NoteDeltaSequence lowTom;
+    private NoteDeltaSequence rideCymbal;
+    private NoteDeltaSequence snareDrum;
 
+    private long length;
 
+    public DrumNoteDeltaSequences(long length){
+        this.length = length;
+        bassDrum = new NoteDeltaSequence(length);
+        crashCymbal = new NoteDeltaSequence(length);
+        floorTom = new NoteDeltaSequence(length);
+        highHat = new NoteDeltaSequence(length);
+        highTom = new NoteDeltaSequence(length);
+        lowTom = new NoteDeltaSequence(length);
+        rideCymbal = new NoteDeltaSequence(length);
+        snareDrum = new NoteDeltaSequence(length);
+    }
 
+    public long getLength() {
+        return length;
+    }
+
+    public void setLength(long length) {
+        this.length = length;
+    }
 
     public NoteDeltaSequence getBassDrum() {
         return bassDrum;

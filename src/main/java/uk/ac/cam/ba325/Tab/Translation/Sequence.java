@@ -9,9 +9,12 @@ package uk.ac.cam.ba325.Tab.Translation;
 import uk.ac.cam.ba325.Tab.Instrument.HighHat;
 import uk.ac.cam.ba325.Tab.Translation.Exceptions.AlreadySetException;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,10 +40,72 @@ public class Sequence {
     private List<Strike> crashCymbals = new LinkedList<>();
     private List<Strike> rideCymbals = new LinkedList<>();
 
+    public Sequence(String filePath) throws IOException{
+        File sequenceFile = new File(filePath);
+
+
+        Scanner scanner = new Scanner(sequenceFile);
+
+        char[] line;
+        Strike[] strikes = new Strike[resolution];
+        while(scanner.hasNextLine()){
+            line = scanner.nextLine().toCharArray();
+            for(int i = 0; i<line.length; i++){
+                strikes[i] = new Strike(line[i]);
+            }
+
+        }
+
+
+    }
+
+    public Sequence(File song) throws IOException{
+        Scanner scanner = new Scanner(song);
+
+        char[] line;
+        Strike[] strikes = new Strike[resolution];
+        while(scanner.hasNextLine()){
+            line = scanner.nextLine().toCharArray();
+            for(int i = 0; i<line.length; i++){
+                strikes[i] = new Strike(line[i]);
+            }
+
+        }
+    }
+
     public Sequence(int resolution){
         this.resolution = resolution;
         for(int i=0; i<resolution; i++){
             emptyLine.add(new Strike(0));
+        }
+    }
+
+    public void setLine(int i, Strike[] strikes){
+        switch (i){
+            case 0://highhat
+                highHats.addAll(Arrays.asList(strikes));
+                break;
+            case 1://bass
+                bassDrums.addAll(Arrays.asList(strikes));
+                break;
+            case 2://snare
+                snareDrums.addAll(Arrays.asList(strikes));
+                break;
+            case 3://floor
+                floorToms.addAll(Arrays.asList(strikes));
+                break;
+            case 4://lowtoms;
+                lowToms.addAll(Arrays.asList(strikes));
+                break;
+            case 5://hightoms;
+                highToms.addAll(Arrays.asList(strikes));
+                break;
+            case 6: //crash;
+                crashCymbals.addAll(Arrays.asList(strikes));
+                break;
+            case 7://ride
+                rideCymbals.addAll(Arrays.asList(strikes));
+                break;
         }
     }
 

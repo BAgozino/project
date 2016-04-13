@@ -9,21 +9,18 @@ public class TickDelta {
     public static final double ROUNDVALUE = 1.0;
 
     private long dTick;
+    private long endTime;
 
 
-    public TickDelta(long dTick){
+    public TickDelta(long dTick, long tick){
         this.dTick = dTick;
+        this.endTime = tick;
     }
 
-    public static boolean deltasEqual(TickDelta td1, TickDelta td2){
-        long diff = td1.getdTick()-td2.getdTick();
-        if((ERROR_RANGE >= diff)&&(diff >= -ERROR_RANGE)){
-            return true;
-        }
 
-        return false;
+    public long getEndTime() {
+        return endTime;
     }
-
 
 
     public long getdTick() {

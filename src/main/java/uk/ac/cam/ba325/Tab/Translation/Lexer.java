@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 public class Lexer {
     public static enum TokenType {
         // Token types cannot have underscores
-        INSTRUMENT("HH|HF|H|CC|C1|C2|C|RD|R|SN|S|BD|B|T1|HT|T2|LT|FT|T"), TRACKDIVIDER("\\|"), BEAT("x|X|o|#|s|c|b|g|f|b|B|@"),
+        INSTRUMENT("HH|HF|H|CC|C1|C2|C|RD|R|SN|S|BD|B|T1|HT|T2|LT|FT|T"), TRACKDIVIDER("\\|"), BEAT("x|X|o|0|#|s|c|b|g|f|b|B|@"),
         REST("-"),NEWLINE("\n"), WHITESPACE("[ \t\f\r]+");
 
         public final String pattern;
