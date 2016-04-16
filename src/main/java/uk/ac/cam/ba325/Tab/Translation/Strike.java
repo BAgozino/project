@@ -13,13 +13,13 @@ public class Strike {
     public Strike(int value){
         this.value = value;
     }
-    public Strike(Lexer.Token token){
+    public Strike(Lexer.Token token) throws  Exception{
         if(token.type == Lexer.TokenType.BEAT){
             value = 1;
         }else if(token.type == Lexer.TokenType.REST){
             value = 0;
         }else{
-            value = -1;
+            value = 0;
         }
     }
 

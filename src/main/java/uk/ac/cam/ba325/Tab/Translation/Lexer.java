@@ -81,7 +81,7 @@ public class Lexer {
         }
         return tokens;
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String input = "From: MYguitartabs.com\n" +
                 "Bad Religion\n" +
                 "I Love My Computer\n" +

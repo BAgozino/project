@@ -11,16 +11,14 @@ import uk.ac.cam.ba325.Tab.Translation.Exceptions.AlreadySetException;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.text.CharacterIterator;
 import java.text.ParseException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Helper class for printing the tracks to files
@@ -39,8 +37,20 @@ public class Sequence {
     private List<Strike> highToms = new LinkedList<>();
     private List<Strike> crashCymbals = new LinkedList<>();
     private List<Strike> rideCymbals = new LinkedList<>();
+    private ArrayList<List<Strike>> lines = new ArrayList<>(8);
 
-    public Sequence(String filePath) throws IOException{
+    public Sequence(String filePath,int resolution) throws IOException{
+
+        lines.add(0,highHats);
+        lines.add(1,bassDrums);
+        lines.add(2,snareDrums);
+        lines.add(3,floorToms);
+        lines.add(4,lowToms);
+        lines.add(5,highToms);
+        lines.add(6,crashCymbals);
+        lines.add(7,rideCymbals);
+
+        this.resolution = resolution;
         File sequenceFile = new File(filePath);
 
 
@@ -48,32 +58,57 @@ public class Sequence {
 
         char[] line;
         Strike[] strikes = new Strike[resolution];
+        int lineNumber =0;
         while(scanner.hasNextLine()){
+
             line = scanner.nextLine().toCharArray();
             for(int i = 0; i<line.length; i++){
-                strikes[i] = new Strike(line[i]);
+                strikes[i] = new Strike(Character.getNumericValue(line[i]));
             }
-
+            lines.get(lineNumber).addAll(Arrays.asList(strikes));
+            lineNumber++;
         }
 
 
     }
 
-    public Sequence(File song) throws IOException{
+    public Sequence(File song,int resolution) throws IOException{
+        lines.add(0,highHats);
+        lines.add(1,bassDrums);
+        lines.add(2,snareDrums);
+        lines.add(3,floorToms);
+        lines.add(4,lowToms);
+        lines.add(5,highToms);
+        lines.add(6,crashCymbals);
+        lines.add(7,rideCymbals);
+
+        this.resolution = resolution;
         Scanner scanner = new Scanner(song);
 
         char[] line;
         Strike[] strikes = new Strike[resolution];
+        int lineNumber =0;
         while(scanner.hasNextLine()){
+
             line = scanner.nextLine().toCharArray();
             for(int i = 0; i<line.length; i++){
-                strikes[i] = new Strike(line[i]);
+                strikes[i] = new Strike(Character.getNumericValue(line[i]));
             }
-
+            lines.get(lineNumber).addAll( Arrays.asList(strikes));
+            lineNumber++;
         }
     }
 
     public Sequence(int resolution){
+        lines.add(0,highHats);
+        lines.add(1,bassDrums);
+        lines.add(2,snareDrums);
+        lines.add(3,floorToms);
+        lines.add(4,lowToms);
+        lines.add(5,highToms);
+        lines.add(6,crashCymbals);
+        lines.add(7,rideCymbals);
+
         this.resolution = resolution;
         for(int i=0; i<resolution; i++){
             emptyLine.add(new Strike(0));
@@ -158,7 +193,7 @@ public class Sequence {
         return matchedType;
     }
 
-    public void fillLine(String instrumentData, List<Lexer.Token> beats)throws ParseException, AlreadySetException{
+    public void fillLine(String instrumentData, List<Lexer.Token> beats)throws Exception, ParseException, AlreadySetException{
         InstrumentType instrument = matchInstrument(instrumentData);
 
         switch (instrument){

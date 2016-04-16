@@ -1,6 +1,7 @@
 package uk.ac.cam.ba325.Matcher;
 
 import uk.ac.cam.ba325.Matcher.Helpers.DistanceConstants;
+import uk.ac.cam.ba325.Matcher.Helpers.DistanceMetricComparator;
 import uk.ac.cam.ba325.Matcher.Helpers.DistanceMetricResult;
 import uk.ac.cam.ba325.Matcher.Helpers.InvalidDistanceMetric;
 import uk.ac.cam.ba325.Midi.DrumNoteDeltaSequences;
@@ -8,6 +9,7 @@ import uk.ac.cam.ba325.Midi.MidiLoader;
 import uk.ac.cam.ba325.Midi.Quantisation.DrumNoteDeltaSuffixTree;
 import uk.ac.cam.ba325.Tab.Translation.Sequence;
 import uk.ac.cam.ba325.Tab.Translation.Strike;
+import com.google.common.collect.TreeMultiset;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,7 +54,7 @@ public class DistanceMetric {
 
         for(int j=1; j<n; j++){
             for(int i=1; i<m; i++){
-                if(sequence1.get(i+offset %16).getValue() == sequence2.get(j+offset %16).getValue()){
+                if(sequence1.get((i+offset) %16).getValue() == sequence2.get(j).getValue()){
                     distances[i][j] = distances[i-1][j-1];
                 }else{
                     distances[i][j] = min(distances[i-1][j] +1,distances[i][j-1] +1,distances[i-1][j-1] +1);
@@ -61,7 +63,7 @@ public class DistanceMetric {
             }
         }
 
-        return distances[m][n];
+        return distances[m-1][n-1];
     }
 
     public static int twoDimensionalCyclicEditDistance(Sequence sequence1, Sequence sequence2){
@@ -109,9 +111,9 @@ public class DistanceMetric {
 
 
         int pointInList;
-        for(int i=offset; i<shorter; i++){
-            pointInList = i % 16;
-            if(sequence1.get(pointInList) != sequence2.get(pointInList)){
+        for(int i=0; i<shorter; i++){
+            pointInList = (i+offset) % 16;
+            if(sequence1.get(pointInList).getValue() != sequence2.get(i).getValue()){
                 returnValue++;
             }
         }
@@ -127,50 +129,77 @@ public class DistanceMetric {
     }
 
 
-    public static DistanceMetricResult[] topMatches(int returnNumber,
-                                                    String metricType,
-                                                    Sequence query) throws InvalidDistanceMetric, IOException{
-        DistanceMetricResult[] results = new DistanceMetricResult[returnNumber];
-        int worstMatchIndex = 0;
+    public static TreeMultiset topMatches(int returnNumber,
+                                          String metricType,
+                                          Sequence query) throws InvalidDistanceMetric, IOException{
+        TreeMultiset results = TreeMultiset.create(new DistanceMetricComparator());
+
         File database = new File("src/main/resources/Database");
 
-            Sequence datapoint;
-            for (File band : database.listFiles()) {
-                for (File song : band.listFiles()) {
-                    for (File bar : song.listFiles()) {
-                        datapoint = new Sequence(bar);
-                        DistanceMetricResult currentResult;
-                        int distance;
-                        switch (metricType) {
-                            case DistanceConstants.CYCLIC_EDIT:
-                                distance = twoDimensionalCyclicEditDistance(query, datapoint);
+        Sequence datapoint;
+        boolean full = false; //true if full and so we need to start checking seal
+        boolean seal = false; //false if broken and so we need to update largest
+        int largest = 0;
+        String name;
 
-                                break;
-                            case DistanceConstants.CYCLIC_HAMMING:
-                                distance = twoDimensionalCyclicHammingDistance(query, datapoint);
-                                break;
-                            case DistanceConstants.STRAIGHT_EDIT:
-                                distance = twoDimensionalEditDistance(query, datapoint, 0);
-                                break;
-                            case DistanceConstants.STRAIGHT_HAMMING:
-                                distance = twoDimensionalHammingDistance(query, datapoint, 0);
-                                break;
-                            default:
-                                throw new InvalidDistanceMetric(metricType + " is not a valid Distance Metric");
-                        }
+
+        for (File band : database.listFiles()) {
+            for (File song : band.listFiles()) {
+                for (File bar : song.listFiles()) {
+                    name = band.getName() + "/" + song.getName() + "/" + bar.getName();
+                    datapoint = new Sequence(bar,16);
+                    DistanceMetricResult currentResult;
+                    int distance;
+                    switch (metricType) {
+                        case DistanceConstants.CYCLIC_EDIT:
+                            distance = twoDimensionalCyclicEditDistance(query, datapoint);
+                            break;
+                        case DistanceConstants.CYCLIC_HAMMING:
+                            distance = twoDimensionalCyclicHammingDistance(query, datapoint);
+                            break;
+                        case DistanceConstants.STRAIGHT_EDIT:
+                            distance = twoDimensionalEditDistance(query, datapoint, 0);
+                            break;
+                        case DistanceConstants.STRAIGHT_HAMMING:
+                            distance = twoDimensionalHammingDistance(query, datapoint, 0);
+                            break;
+                        default:
+                            throw new InvalidDistanceMetric(metricType + " is not a valid Distance Metric");
+                    }
                         // TODO: 13/04/16 after switch what happens?
-                        for (int i = 0; i < returnNumber; i++) {
-                            if (results[i] == null) {
-                                results[i] = new DistanceMetricResult(metricType, distance,
-                                        band.getName() + "/" + song.getName() + "/" + bar.getName());
-                            } else if (results[i].getDistance() > distance) {
-                                results[i] = new DistanceMetricResult(metricType, distance,
-                                        band.getName() + "/" + song.getName() + "/" + bar.getName());
+
+
+
+                    results.add(new DistanceMetricResult(metricType,distance,name));
+                    /*if(!full){
+                        results[largest] = new DistanceMetricResult(metricType,distance, name);
+                        if(++largest==results.length){
+                            full = true;
+                            largest = 0;
+                        }
+                    } else {
+                        if(!seal){
+                            for(int i=0; i<results.length; i++){
+                                if (results[largest].getDistance()<results[i].getDistance()){
+                                    largest = i;
+                                }
+                            }
+                            if(results[largest].getDistance()>distance){
+                                results[largest] = new DistanceMetricResult(metricType,distance,name);
+                            } else {
+                                seal = true;
+                            }
+                        } else {
+                            if(results[largest].getDistance()>distance) {
+                                results[largest] = new DistanceMetricResult(metricType, distance, name);
+                                seal = false;
                             }
                         }
-                    }
+                    }*/
+
                 }
             }
+        }
 
 
 
@@ -178,7 +207,7 @@ public class DistanceMetric {
         return results;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, InvalidDistanceMetric{
         MidiLoader midiLoader = new MidiLoader();
 
         midiLoader.loadMidiFile("../StudyData/Jared-9-2-0.mid");
@@ -186,7 +215,24 @@ public class DistanceMetric {
         DrumNoteDeltaSequences d = midiLoader.buildDrumNoteDeltaSequences();
         DrumNoteDeltaSuffixTree st = new DrumNoteDeltaSuffixTree(d);
 
+        Sequence test = new Sequence("src/main/resources/Database/Beatles/SheLovesYouTRIAL.txt/0.txt",16);
+
+
+
+
         uk.ac.cam.ba325.Tab.Translation.Sequence query = st.getBestSequence();
+        TreeMultiset hamming = topMatches(5,DistanceConstants.STRAIGHT_HAMMING,query);
+        TreeMultiset edit = topMatches(5,DistanceConstants.STRAIGHT_EDIT,query);
+        TreeMultiset cHamming = topMatches(5, DistanceConstants.CYCLIC_HAMMING,query);
+        TreeMultiset cEdit = topMatches(5, DistanceConstants.CYCLIC_EDIT,query);
+
+        int hammingD = twoDimensionalHammingDistance(test,query,0);
+        int editD = twoDimensionalEditDistance(test,query,0);
+        int cHammingD = twoDimensionalCyclicHammingDistance(test,query);
+        int cEditD = twoDimensionalCyclicEditDistance(test,query);
+
+        System.out.print("End");
+
 
 
     }

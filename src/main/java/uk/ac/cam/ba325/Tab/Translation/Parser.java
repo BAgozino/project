@@ -50,7 +50,7 @@ public class Parser {
     }
 
     public List<Sequence> createSequences(ArrayList<ArrayList<Lexer.Token>> groupedTracks)
-            throws ParseException, AlreadySetException{
+            throws Exception, ParseException, AlreadySetException{
         ArrayList<ArrayList<ArrayList<Lexer.Token>>> splitInstruments = new ArrayList<>();
         for(ArrayList<Lexer.Token> track : groupedTracks){
             try{
