@@ -1,0 +1,41 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Challenges}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Summary of related work}{chapter.1}% 4
+\BOOKMARK [0][-]{chapter.2}{Preparation}{}% 5
+\BOOKMARK [1][-]{section.2.1}{Database collection}{chapter.2}% 6
+\BOOKMARK [2][-]{subsection.2.1.1}{Beat tracking techniques}{section.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.1.2}{Feature extraction from notation}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.3}{Choice of data source}{section.2.1}% 9
+\BOOKMARK [1][-]{section.2.2}{Machine learning vs Information retrieval}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.3}{Querying}{chapter.2}% 11
+\BOOKMARK [2][-]{subsection.2.3.1}{Suffix trees}{section.2.3}% 12
+\BOOKMARK [2][-]{subsection.2.3.2}{Matching metrics}{section.2.3}% 13
+\BOOKMARK [1][-]{section.2.4}{Tools Used}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.4.1}{Midi}{section.2.4}% 15
+\BOOKMARK [2][-]{subsection.2.4.2}{Jack}{section.2.4}% 16
+\BOOKMARK [2][-]{subsection.2.4.3}{Misc}{section.2.4}% 17
+\BOOKMARK [1][-]{section.2.5}{Summary}{chapter.2}% 18
+\BOOKMARK [0][-]{chapter.3}{Implementation}{}% 19
+\BOOKMARK [1][-]{section.3.1}{Overview of system}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.2}{Parser}{chapter.3}% 21
+\BOOKMARK [2][-]{subsection.3.2.1}{Overview of Parser}{section.3.2}% 22
+\BOOKMARK [2][-]{subsection.3.2.2}{Lexical Analysis}{section.3.2}% 23
+\BOOKMARK [2][-]{subsection.3.2.3}{Information lost}{section.3.2}% 24
+\BOOKMARK [1][-]{section.3.3}{Bar Extraction}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.1}{Suffix Tree's}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.2}{Bar inferrence}{section.3.3}% 27
+\BOOKMARK [1][-]{section.3.4}{Distance metrics}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.4.1}{2D Edit distance}{section.3.4}% 29
+\BOOKMARK [2][-]{subsection.3.4.2}{Hamming Distance}{section.3.4}% 30
+\BOOKMARK [1][-]{section.3.5}{Summary}{chapter.3}% 31
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 32
+\BOOKMARK [1][-]{section.4.1}{Comparison with original aims}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.2}{Testing}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.2.1}{Dataset collection}{section.4.2}% 35
+\BOOKMARK [1][-]{section.4.3}{Performance Analysis}{chapter.4}% 36
+\BOOKMARK [1][-]{section.4.4}{Summary}{chapter.4}% 37
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 38
+\BOOKMARK [1][-]{section.5.1}{Lessons learnt}{chapter.5}% 39
+\BOOKMARK [1][-]{section.5.2}{Future work}{chapter.5}% 40
+\BOOKMARK [0][-]{section.5.2}{Bibliography}{}% 41
