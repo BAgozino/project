@@ -172,9 +172,9 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
 			\caption{\label{PercussionNotation} Shown here is a standard percussion notation bar}
 \end{figure}
-		Musical notation has been a practice in many cultures since as long as we have record\cite{Scelta}. As such the notation has been refined over thousands of years, and what we now think of as 'standard notation' has been firmly established since the 18th century\cite{Scelta}.
+		Musical notation has been a practice in many cultures since as long as we have record\cite{Scelta}. As such the notation has been refined over thousands of years, and what we now think of as 'standard notation' has been firmly established since the 18th century\cite{Scelta}. This standard is of the format of 5 horisontal lines, called a stave, with symbols at varying positions along the staves to represent the pitch and relative time of each note.
 		
-		Percussion notation, a specific music notation that pertains to percussion instruments, is much less standardised and only (relatively) recently has there been a push for a standardised practice\cite{Weinberg1994}. 
+		Percussion notation, a specific music notation that pertains to percussion instruments, is much less standardised and only (relatively) recently has there been a push for a standardised practice\cite{Weinberg1994}.
 		
 		There has been a significant research\cite{Johansen2009}\cite{BainbridgeBell2001} into Music OCR\footnotemark \footnotetext{Music Optical Character Recognition, sometimes referred to as Optical Music Recognition}, which involves using computer vision techniques in order to allow computers to read sheet music. Applying these techniques to percussion notation can enable extraction of feature sets that can be queried.
 		
@@ -183,7 +183,7 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
 			\caption{\label{DrumTablature} Shown here is an ASCII drum tablature bar}
 \end{figure}
-				In drum tablature, each line corresponds to a single component of the drumkit, as shown in figure \ref{DrumTablature}. This contrasts with standard notation, where the height of each note refers to the pitch of the note. Enthusiast transcribers have taken to the ASCII character-encoding scheme in order to share their work over collaborative databases (can I reference http://drumbum.com/drumtabs/ ??).
+				In drum tablature, each line corresponds to a single component of the drum kit, as shown in figure \ref{DrumTablature}. This contrasts with standard notation, where the height of each note refers to the pitch of the note. Enthusiast transcribers have taken to the ASCII character-encoding scheme in order to share their work over collaborative databases\footnotemark \footnotetext{http://drumbum.com/drumtabs}.
 				
 				This ASCII format, while intend to be read by people, may prove to be a great candidate for a general tablature parser. In fact, this problem has been attempted to be solved in a similar case of guitar tablature\cite{Knowles2013}. However, this solution does not solve it in the general case where the tablature may contain comments to help the human reader. My solution will have to account for this as the collaborative database will not be perfectly void of errors.
 		\subsection{\label{subsec:ChoiceOfDataSource}Choice of data source}
@@ -195,27 +195,40 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 			\item{As there is no standardised format a parser can only be tailored towards a specific practice}
 		\end{enumerate}
 		
+		Problem 1 would be solved by both of the alternatives discussed, however problem 2 can only be solved by beat tracking as percussion notation is also not standardised. 
+		
+		(todo possibly rewrite this argument to compare and contrast each data source and then conclude with ASCII drum tablature)
+		
 		
 		
 	\section{Machine learning vs Information retrieval}
 	This may make more sense in the querying section
 	\section{Querying}
 	Now that the data source has been decided, it is important to discuss how the querying system will work. I will start by outlining methods for inferring the bar from a sequence of beats on the drum. I will then discuss the possible ways of using this sequence to query the database.
+	
+
 		\subsection{Suffix trees}
-		A suffix tree\cite{Weiner1973} is a string data structure that is useful for many operations on sequences of data. We are mainly interested in it for its ability to find repeated structures in linear time\cite{Gusfield1999}.					\begin{figure}[h]
+		
+		When thinking about the design of the system from an end-user stand point I originally wanted the user to play the drum rhythm they wish to look up just once, which is then used as the example to query the database. The problem with this, as discovered after some initial data collection (see Evaluation (todo reference chapter?), was that the latency of the system caused by start up and shut down caused the example to be distorted. In order to tackle this problem I decided it was wise to design a system that could extract repeated structures from continuous play of the same bar.
+		
+		A suffix tree\cite{Weiner1973} is a tree in which each path, from root to leaf of the tree, correspond to exactly one suffix of the string used to build it. For example, with the string "BANANA" there will be a path corresponding to the suffix "A", a path for the suffix "NA", "NAN", etc. The reason it is useful is that repeated substrings, e.g. "NA", will share an edge along the tree. This means that it is easy to find repeated structures, and a linear algorithm\cite{Gusfield1999} for doing so will be presented in the Implementation(todo section) chapter.		
+\begin{figure}[h]
 			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
 			\caption{\label{SuffixTree} Suffix tree of the String "BANANA\$"}
 \end{figure}
 		
 			\subsubsection{Ukonnens algorithm}
 			Ukonnens algorithm\cite{Ukkonen1995} is an on-line solution to suffix tree construction. This is important for the implementation as for the system to work in real time the suffix tree building must efficiently work in real time. As shown in \ref{subsubsec:Ukonnens} the algorithm works in both linear time and space if run off-line which is optimal.
-		\subsection{Matching metrics}
+		\subsection{Matching techniques}
+
+		If we assume both the parser and sequence inference are able to extract features correctly, and then represent them in our database as two dimensional strings of data, we must now 		
+		
 		When we have a candidate sequence to query the database we will need to consider how to evaluate which rhythms are similar to be relevant to the user. I will discuss two distinct methods and explain my choice towards one of them 
 			\subsubsection{String metrics}
-			String metrics measure the reverse similarity, or distance, between two strings that cab 
-			
-			\subsubsection{Matching}
+			String metrics measure the reverse similarity, or distance, between two strings. There are many metrics to choose from, such as the Hamming Distance\cite{Hamming1950}, and the Levenshtein Distance
+			\subsubsection{Exact Matching}
 			RS Bird algo
+			\subsubsection{Choice of matching technique}
 	\section{Tools Used}
 		\subsection{Midi}
 		describe midi
