@@ -148,7 +148,7 @@ public class MidiLoader {
         uk.ac.cam.ba325.Tab.Translation.Sequence query = st.getBestSequence();
 
 
-        for(Track track : midiLoader.getSequence().getTracks()){
+          for(Track track : midiLoader.getSequence().getTracks()){
             System.out.println(track);
         }
 

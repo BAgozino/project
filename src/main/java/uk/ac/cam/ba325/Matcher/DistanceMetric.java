@@ -166,7 +166,7 @@ public class DistanceMetric {
                         default:
                             throw new InvalidDistanceMetric(metricType + " is not a valid Distance Metric");
                     }
-                        // TODO: 13/04/16 after switch what happens?
+
 
 
 
@@ -210,7 +210,7 @@ public class DistanceMetric {
     public static void main(String[] args) throws IOException, InvalidDistanceMetric{
         MidiLoader midiLoader = new MidiLoader();
 
-        midiLoader.loadMidiFile("../StudyData/Jared-9-2-0.mid");
+        midiLoader.loadMidiFile("../StudyData/Jared/Jared-9-2-0.mid");
         midiLoader.printCsv("../StudyData/test.txt", midiLoader.onEventsToCsvMidiEvent());
         DrumNoteDeltaSequences d = midiLoader.buildDrumNoteDeltaSequences();
         DrumNoteDeltaSuffixTree st = new DrumNoteDeltaSuffixTree(d);
