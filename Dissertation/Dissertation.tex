@@ -7,6 +7,10 @@ f% Draft #1
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 \usepackage{amsthm}
+\usepackage{tipa}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
 \newtheorem{define}{Definition}
 
 \parindent 0pt
@@ -283,7 +287,9 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 			
 			I found it logical from here to split the recording into separate note channels, each representing a component of the drum kit, in order to analyse the repeated sequences for each component individually, and then trying to infer the overall pattern from the combination of these patterns. In order to apply the string analytical techniques discussed in \ref{subsec:PrepSuffix} these Note On messages must be converted into some alphabet that encodes their timing information. The logical solution is to use the time delay between each neighbouring pairs of Note On messages rounded to some value (see Evaluation for a discussion on what is the best value to round to).
 			
-			todo talk about information lost in highhat
+			todo talk about information lost in highhat (move to evaluation?)
+			
+			todo list the drum components available
 			
 		\subsection{Misc}
 		todo jack? Java? Google TreeMultiset? give examiners all imformation regarding competency to create a solution
@@ -334,7 +340,7 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 		\begin{enumerate}
 			\item{Lexical Analysis}
 			\item{Comment removal}
-			\item{Systactic analysis}
+			\item{Syntactic analysis}
 		\end{enumerate}
 		
 		
@@ -342,13 +348,126 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 		\subsection{Lexical Analysis}
 				
 		
-		In the parser, the lexical analysis involves tokenising the text to 
+		The lexical analysis involves converting a sequence of ASCII characters, which make up the drum tablature being parsed, to a sequence of tokens. These tokens are considered individual units of information that, when viewed in isolation, can convey some entropy about the pattern.
 		
-		Token all the text with regular expressions
+		For example, if we take the single line of "HH\textpipe x-x-\textpipe" which describes a simple bar of 4 quanta where the highhat component of the drum kit is struck at the 1st and 3rd quanta, and there are rests in the 2nd and 4th quanta. This string will produce the sequence of Tokens as follows: Instrument HH, TrackDivider \textpipe, Beat x, Rest -, Beat x, Rest -, TrackDivider \textpipe. The \emph{Instrument} token is used to simplify parsing at this stage and the HH, representing a high hat, is matched at a later stage. Additionally the \emph{TrackDivider} token is used in order to provide context at a later stage.
+		
+		In order to lex the drum tablature files without complicated processing I developed a context-free grammar with the following tokens:
+		\begin{itemize}
+			\item{Instrument - representing the components of the drumkit for which that line maps to}
+			\item{TrackDivider - representing not only the starts and ends of bars, but also the divisions between them}
+			\item{Beat - representing an impulse on a drum component at that time division}
+			\item{Rest - representing a lack of impulse at that time division}
+			\item{NewLine - representing a new line in the ASCII file}
+			\item{Whitespace - representing any whitespace in the string}
+		\end{itemize}
+		Both TrackDivider and NewLine are used to provide context at a later stage, while the Whitespace was not used at any point and was only included orriginally for completeness.
+		
+		Through use of the java.util.regex package, which is available in the standard library, the tokens can be matched to through Regular Expressions. Due to the grammar being context-free, this means that lexing\footnote{Meaning providing lexical analysis for} a string occurs on-line with the complexity of $O(n)$.
+		
+		
+		todo perhaps include full lexing code in the appendix?
+		\subsection{Pre-parser}
+			In the aptly named pre-parsing stage, the parser sets up the sequence of tokens for the parser to process. The reason for this conceptual difference is that the pre-parser has no complicated processing tasks and is merely given the job of organising the data in a parse-friendly format. 
+			
 			\subsubsection{Comment removal}
-			Step through some steps of the algorithm in a place wherer comments will be removed
+			One important job for the pre-parser is to remove any of the tokens that were incorrectly matched - usually due to their appearance in the comments that are written to inform the reader of any subtlties to the performance. 
+			
+			In order to achieve this context has to be introduced into the system, so that we know what is definitly not a comment. I implemented this through a simple finite state machine shown in figure \ref{fsaf}. Iterating through the sequence of tokens while in state $S_1$ the pre-parser removes all \emph{TrackDivider}, \emph{Beat}, \emph{Rest}, and solo \emph{Instrument} tokens. The transition function T1 occurs when there is an \emph{Instrument} token followed immediately by a \emph{TrackDivider} token. This transition occurs preemptively, meaning before the pre-parser has the chance to remove the occurance of the \emph{Instrument} token.
+			
+			While in state $S_2$ the pre-parser does nothing, as it is assumed that the line is now a specification of the beats on a drum component. It transitions on T2 back to the initial state when a \emph{NewLine} token is found.
+			
+			This solution does not remove all comments but handles most of them so that the parser can find the patterns. The implementation of this can be foind in the appendix todo.
+			\begin{figure}
+			
+				 
+			\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+				
+           	    \tikzstyle{every state}=[fill=red,draw=none,text=white]
+            	\node[initial,state] (A) {$S_1$};
+            	\node[state] 		 (B) [right of =A] {$S_2$};
+            	
+            	\path (A) edge   node {T1} (B)
+            			edge [loop right]  node{T2} (A)
+            	
+            		  (B) edge     node {T3} (A)
+            				edge  node {T4} (B);
+            \end{tikzpicture}  
+            \caption{\label{fsaf} todo make this in dia and fix it}                         
+            \end{figure}
+            
+            \subsubsection{Spliting into sub-sequences}
+            Another job of the pre-parser is to analyse the sequence of tokens, now with most of the comments removed, and split the sequence in to sub-sequences recursively exactly three times. This is to allow for easy parsing which will be detailed later
+            
+            In order to describe these splits I must reiterate the structure of the tablature files. Each file may have multiple "blocks" that may refer to multiple "patterns" which can be be split into individual "lines" which each line pertaining to one drum component, as outlined in figure \ref{fig:tabStruct}.
+           
+            
+            \begin{figure}[h]
+			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
+			\caption{\label{fig:tabStruct} Here depicts the structure of a }
+\end{figure}
+
+			The first split, therefore, deals with splitting the file into these "blocks". This is done quite simply by looking for cases where \emph{NewLine} tokens occur repeatedly after populating a block, i.e. if the number of \emph{Newline} tokens excedes one (the one used to seperate lines within a block) before another token is encountered then we have reached the end of the block we are currently building.
+			
+			The next split is splitting each block into lines, this is done by splitting each block sequence on \emph{NewLine} tokens. This is counter-intuitive to the concept of the how the tablature is grouped but due to a need to verify the patterns this must be done first. This is done by veryfying that each line is of the same length as the rest. If not then the whole block is discarded as we assume it is corrupt.
+			
+			The final split is that of the individual patterns. Each line is now split on the \emph{TrackDivider} tokens. The first segment of each line is expected to map to the drum component, with the successive segments representing the beats and rests of the pattern. todo possible diagram?
+			
+			
+		\subsection{Parsing}
+			Due to all this pre-precessing the job of converting the 4 level sequences representing each drum tablature file, which was built in the previous step, to a datastructure that we can match against is very simple.
+			
+			Before I outline the method for parsing the pre-processed sequences I must first outline the structure the data will be stored in.
+			
+			\subsubsection{Sequence Specifications}
+				I introduce the concept of sequence specifications. These specifications represent a simplified view of a drum rhythm, depicted in figure \ref{fig:seqSpec}.
+				
+            \begin{figure}[h]
+			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
+			\caption{\label{fig:seqSpec} Here depicts the structure of a }
+\end{figure}
+
+				Each specification has a constant 8 rows, each mapping to one of the 8 drum components discussed in \ref{Midi}. The number of columns is determined by the resolution of the system, for this project I have chosen it to be 16 meaning that we are only looking for patterns that have 16 time divisions, reasons and consequences for doing so will be discussed in the Evaluation todo section?
+				
+				In each cell of this chart there are two possible values:
+					\begin{itemize}
+						\item{\textbf{1} - Representing a Beat impulse}
+						\item{\textbf{0} - Representing a Rest event (lack of a beat impulse)}
+					\end{itemize}
+					
+				This simplified notation therefore only depicts the \emph{reletive} timing information of the system and a lot of information is removed including power, special notes, and multiple beats within one time division are abstracted away, which again will be discussed in detail in the Evaluation chapter.
+				
+				\subsubsection{Parsing to sequence specifications}
+				
+				The job of the parser is now to create these sequence specifications based on the grouped data that was passed to it by the pre-parser. The method for doing so is outlined in algorithm \ref{algo:Parse}.
+				
+				\begin{algorithm}
+				\caption{Parsing the pre-processed tokens}
+				\label{algo:Parse}
+				\begin{algorithmic}[1]
+					\Procedure{BuildSuffixTree}{GroupedTokens gt}
+						\State{sequences = empty indexed list of Sequence Specifications}
+						\For{each Track t in gt}
+							\For{each Line l in t}
+								\State{currentInstrument = l.get(0).get(0)}
+								\For{i from 1 to l.size()}
+									\Comment{For every sequence segment in the line}
+									\State{sequenceSegment = l.get(i)}
+									\State{Add sequenceSegment to the corresponding Sequence Specification in sequences (or create a new one) by looking at the position in the line (i) and looking at currentInstrument to know which row to of the Specification to add it to}
+								\EndFor
+							\EndFor
+						\EndFor
+						
+					
+
+					\EndProcedure
+				\end{algorithmic}
+				\end{algorithm}
+				
+				One step that is masked in this algorithm in the actual implementation is that only sequenceSegments that fit the resolution of the system are added. This is to simplify the pattern matching process later. Due to the way the nature of drum tablature (see todo relevent section) this step will not result in incorrect parses of patterns, as if one sequence segment is of an incompatable resolution then all other segments will be of the same incompatable resolution. Leading to whole sequences being ignored, which means we get a smaller database but still one with integrity.
 		\subsection{Information lost}
-		Outline cases where we have lost data
+					As discussed in (todo ref relevent section) ASCII Drum Tablature has a lot of superfolous information that cannot be retrieved without significant natural language processing. Furthermore due to the lack of a standardised practice in terms of formatting, and symbol use, a large subset of the drum tablature cannot be harvested without a significantly more complicated parser. As this was not the focus of the project I decided to create a solution that would serve to create a decent database rather than one that solves the general case.
+		todo move to evaluation?
 	\section{Inference Module}
 
 	In order to extract and infer the pattern the user intended to play the Inference module has the following pipeline.
@@ -368,39 +487,54 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 		A suffix tree, as discussed in \ref{subsec:PrepSuffix}, is a data structure that will help in discovering repeated structure in each note channel. Gusfield's\cite{Gusfield1999} description of the data structure formed the basis for the implementation, along with the basis for the repeated structure extraction algorithm.
 		
 			\subsubsection{Definition of Suffix Tree's}
-			Given a string, S, of length, n, a suffix tree is said to be defined as:
+			Given a string $S$ of length $n$ a suffix tree is said to be defined as:
 			\begin{itemize}
-				\item{A tree with exactly n leaves labelled 0 to n-1}
+				\item{A tree with exactly $n$ leaves labelled $0$ to $n-1$}
 				\item{Internal nodes\footnote{Internal nodes are non-leaf, non-root nodes} have at least two children}
-				\item{Each edge is labelled with a non empty sub-string of S}
+				\item{Each edge is labelled with a non empty sub-string of $S$}
 				\item{The starting character of the label of each edge coming out of a node is unique}
-				\item{Concatenating each path from root to leaf, which is labelled with i, gives the sub-string from i to n, i.e. the suffix starting at index i}
+				\item{Concatenating each path from root to leaf, which is labelled with $i$, gives the sub-string from $i$ to $n$, i.e. the suffix starting at index $i$}
 \end{itemize}
 			
-			To ensure that no suffix is a prefix of another, a terminal symbol that is not seen in the string is used to pad S. In the literature this is usually denoted as '\$' though in practice it can be anything that is known to not occur. For this purpose I reserved the time delta '-1' for use as the terminal symbol.
+			To ensure that no suffix is a prefix of another, a terminal symbol that is not expected to be seen in the string is used to pad S. In the literature this is usually denoted as '\$' though in practice it can be anything that is known to not occur. For this purpose I reserved the time delta '-1' for use as the terminal symbol.
 
-			Because of this, all tree's in my implementation will have n+1 leaf nodes. Furthermore, since all \emph{internal nodes} are have at least two children there can be at most n such nodes. So with 1 root node there can be at most $(n+1)+n+1 = 2n$ (todo double check this) nodes in total.
+			Because of this, all tree's in my implementation will have $n+1$ leaf nodes. Furthermore, as all \emph{internal nodes} have at least two children there can be at most $n$ such nodes. So with 1 root node there can be at most $(n+1)+n+1 = 2n+2$ (todo double check this) nodes in total.
 			
 			However, this definition requires $O(n\textsuperscript{2})$ space due to the labelling of edges with the sub-strings (point 3). In order to remedy this I introduce the concept of \emph{Index pointers}. These are tuples of the form \emph{(start, end)} representing the start and end point of the substring labelling the edge. This compacts the space requirement to $\Theta(1)$ for each edge.
 			
-			This leads to the conclusion that it is possible to represent the Suffix tree in $\Theta(n)$ space, and therefore, for large values of n, the overhead for representing the the sequence as a tree is negligible.
+			This leads to the conclusion that it is possible to represent the Suffix tree in $\Theta(n)$ space, and therefore, for large values of $n$, the overhead for representing the the sequence as a tree is negligible.
 			
 			\subsection{\label{subsubsec:Ukonnens}Suffix Tree Construction: Ukonnens Algorithm}
 			Representing the tree in linear space is not enough for the performance of the system. It is also important for the system to be able to construct the trees in linear time. Furthermore, it will be ideal if the system can update the tree on-line\footnote{Meaning at most one step per character} to agree with the aim of developing a system that can be trivially extended to work in real-time. Ukkonnen\cite{Ukkonen1995} developed an algorithm that does all these things, which will be the basis for my implementation of suffix tree construction.
 			
+			\subsubsection{Implicit suffix tree}
+				The first concept that I will introduce is that of an \emph{implicit suffix tree}. If we have a suffix tree T for the sequence S\$, which is the sequence S terminated by ther terminal character \$, the \emph{implicit} suffix tree for sequence S is formed by removing every copy of \$ from the edge labels of the tree, then removing any edge that has no label and removing any node that does not have atleast two children. This is depicted in figure \ref{fig:implicitSuffixTree}
+				
+				\begin{figure}[h]
+			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
+			\caption{\label{fig:implicitSuffixTree} Here is the Suffix tree for S\$ and implicit suffix tree for S}
+\end{figure}
+
+				Further to this, a implicit suffix tree for any sub-sequence S[0..i] of S can be formed by taking the suffix tree for S[0..i]\$ and deleting the same required labels, edges, and nodes. This implicit suffix tree is notated as $T_i$.
+				
+				The name for this structure stems from the fact that, while all the information for a sequence is encoded in an implicit suffix tree, it may be just that - \emph{implicit}. This implicity happens when one of the suffix's is prefixed by another, leading to only one path where there would otherwise be two. This is important when we define the 'extendTree(int i)' function later, but for now just keep in mind that each step, i, of the algorithm constructs the implicit suffix tree $T_i$.
+				
 				\subsubsection{Overview of algorithm}
-				The overview of the algorithm is very simple, as seen in algorithm \ref{algo:Ukonnen}, though there are many implicit concepts that are hidden by this higher view - not to mention the computation that is hidden behind the 'extendTree(int i)' function. For much of this discussion we borrow Gusfields\cite{Gusfeild1999} definitions of the concepts.
+				The overview of the algorithm is very simple, as seen in algorithm \ref{algo:Ukonnen}, though there are many concepts that are hidden by this higher view that looks like, at first glance, it would run in $O(n^2)$ time. For much of this discussion we borrow Gusfields\cite{Gusfeild1999} definitions of the concepts.
 				
 				\begin{algorithm}
-				\caption{High level view of Ukkonen's algorithm}
+				\caption{High-level view of Ukkonen's algorithm provided by Gusfield\cite{Gusfield1975}}
 				\label{algo:Ukonnen}
 				\begin{algorithmic}[1]
 					\Procedure{BuildSuffixTree}{Sequence S}
-						\State initiate root node.
+						\State Construct $T_i$
 						\State n = length of S
-						\For{i from 0 to n}
-								\State{extendTree(i)}
-
+						\For{i from 1 to n-1}
+							\State{begin {phase i+1}}
+							\For{j from 1 to i+1}
+								\State{Begin {extension j}}
+								\State{Find the end of the path from the root labeled S[j..i] in the current tree. If needed, extend the path by adding character S(i+1), thus assuring that string S[j..i+1] is in the tree (possibly implicitly).}
+								
 
 						\EndFor
 
@@ -409,20 +543,10 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 				\end{algorithmic}
 				\end{algorithm}
 				
-				\subsubsection{Implicit suffix tree}
-				The first concept that I will introduce is that of an \emph{implicit suffix tree}. If we have a suffix tree T for the sequence S\$, which is the sequence S terminated by ther terminal character \$, the \emph{implicit} suffix tree for sequence S is formed by removing every copy of \$ from the edge labels of the tree, then removing any edge that has no label and removing any node that does not have atleast two children. This is depicted in figure \ref{fig:implicitSuffixTree}
 				
-				\begin{figure}[h]
-			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
-			\caption{\label{fig:implicitSuffixTree} Here is the Suffix tree for S\$ and implicit suffix tree for S}
-\end{figure}
-
-				Further to this, a implicit suffix tree for any sub-sequence S[0..i] of S can be formed by taking the suffix tree for S[0..i]\$ and deleting the same required labels, edges, and nodes. This implicit suffix tree is notated as T\textsubscript{i}.
-				
-				The name for this structure stems from the fact that, while all the information for a sequence is encoded in an implicit suffix tree, it may be just that - \emph{implicit}. This implicity happens when one of the suffix's is prefixed by another, leading to only one path where there would otherwise be two. This is important when we define the 'extendTree(int i)' function later, but for now just keep in mind that each step, i, of the algorithm constructs the implicit suffix tree T\textsubscript{i}.
 				
 				\subsubsection{Suffix extension rules}
-				In order to define this vital extendTree() function there are three rules that we need to follow. Suffix extention involves adding the next character into the implicit suffix tree built so far. 
+				In order to define the important details of the extension stages of algorithm \ref{algo:Ukonnen} 
 			\subsection{Finding repeated Structures}
 			Once the suffix tree has been built it is a simple problem to find the repeated structures from it as each internal path\footnote{Internal paths are paths starting at the root and ending at an internal node} corresponds to a repeated point. For this I implemented a simple DFS\footnote{Depth-First Search} algorithm
 			todo finish here
@@ -520,10 +644,13 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 \cleardoublepage
 \chapter{Evaluation}
 	\section{Comparison with original aims}
+	
+	\section{Dataset collection}
+
 	\section{Testing}
 		repeated sequence vs single recording
 		repeated sequence vs repeated with experimentation
-		\subsection{Dataset collection}
+	
 	\section{Performance Analysis}
 	talk about the performance of the harvester
 	talk about using sibling lists in suffix trees and alphabet size

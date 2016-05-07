@@ -3,55 +3,62 @@
 \contentsline {section}{\numberline {1.2}Challenges}{2}{section.1.2}
 \contentsline {section}{\numberline {1.3}Summary of related work}{3}{section.1.3}
 \contentsline {chapter}{\numberline {2}Preparation}{5}{chapter.2}
-\contentsline {section}{\numberline {2.1}Database collection}{5}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Beat tracking techniques}{5}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Feature extraction from notation}{6}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.1}Starting point}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Database collection}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Beat tracking techniques}{5}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Feature extraction from notation}{6}{subsection.2.2.2}
 \contentsline {subsubsection}{Optical Music Recognition}{6}{section*.7}
 \contentsline {subsubsection}{ASCII Drum Tablature Parsing}{7}{section*.8}
-\contentsline {subsection}{\numberline {2.1.3}Choice of data source}{7}{subsection.2.1.3}
-\contentsline {section}{\numberline {2.2}Machine learning vs Information retrieval}{8}{section.2.2}
-\contentsline {section}{\numberline {2.3}Querying}{8}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Suffix trees}{8}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.2.3}Choice of data source}{7}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Machine learning vs Information retrieval}{8}{section.2.3}
+\contentsline {section}{\numberline {2.4}Querying}{8}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Suffix trees}{8}{subsection.2.4.1}
 \contentsline {subsubsection}{Exploring algorithms for Suffix tree construction}{9}{section*.9}
-\contentsline {subsection}{\numberline {2.3.2}Matching techniques}{9}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.4.2}Matching techniques}{9}{subsection.2.4.2}
 \contentsline {subsubsection}{String metrics}{9}{section*.10}
 \contentsline {subsubsection}{Exact Matching}{10}{section*.11}
 \contentsline {subsubsection}{Choice of matching technique}{10}{section*.12}
-\contentsline {section}{\numberline {2.4}Changes from proposal}{10}{section.2.4}
-\contentsline {section}{\numberline {2.5}Tools Used}{10}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Investigating MIDI}{10}{subsection.2.5.1}
+\contentsline {section}{\numberline {2.5}Changes from proposal}{10}{section.2.5}
+\contentsline {section}{\numberline {2.6}Tools Used}{10}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Investigating MIDI}{10}{subsection.2.6.1}
 \contentsline {subsubsection}{Investigating Roland HD-1 drum kit}{11}{section*.13}
-\contentsline {subsection}{\numberline {2.5.2}Misc}{12}{subsection.2.5.2}
-\contentsline {section}{\numberline {2.6}Summary}{12}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.2}Misc}{12}{subsection.2.6.2}
+\contentsline {section}{\numberline {2.7}Requirement Analysis}{12}{section.2.7}
+\contentsline {section}{\numberline {2.8}Summary}{12}{section.2.8}
 \contentsline {chapter}{\numberline {3}Implementation}{13}{chapter.3}
 \contentsline {section}{\numberline {3.1}Overview of system}{13}{section.3.1}
 \contentsline {section}{\numberline {3.2}Harvester}{13}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Overview of Parser}{14}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Lexical Analysis}{14}{subsection.3.2.2}
-\contentsline {subsubsection}{Comment removal}{14}{section*.14}
-\contentsline {subsection}{\numberline {3.2.3}Information lost}{14}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Inference Module}{15}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Suffix Tree's}{15}{subsection.3.3.1}
-\contentsline {subsubsection}{Definition of Suffix Tree's}{15}{section*.15}
-\contentsline {subsection}{\numberline {3.3.2}Suffix Tree Construction: Ukonnens Algorithm}{16}{subsection.3.3.2}
-\contentsline {subsubsection}{Overview of algorithm}{16}{section*.16}
-\contentsline {subsubsection}{Implicit suffix tree}{16}{section*.17}
-\contentsline {subsubsection}{Suffix extension rules}{17}{section*.18}
-\contentsline {subsection}{\numberline {3.3.3}Finding repeated Structures}{18}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Bar inferrence}{18}{subsection.3.3.4}
-\contentsline {subsubsection}{Quantisation}{18}{section*.19}
-\contentsline {section}{\numberline {3.4}Distance metrics}{18}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Hamming Distance}{18}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Edit distance}{18}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Cyclic extensions}{19}{subsection.3.4.3}
-\contentsline {section}{\numberline {3.5}Summary}{19}{section.3.5}
-\contentsline {chapter}{\numberline {4}Evaluation}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Comparison with original aims}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}Testing}{21}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Dataset collection}{21}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Performance Analysis}{21}{section.4.3}
-\contentsline {section}{\numberline {4.4}Summary}{21}{section.4.4}
-\contentsline {chapter}{\numberline {5}Conclusion}{23}{chapter.5}
-\contentsline {section}{\numberline {5.1}Lessons learnt}{23}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future work}{23}{section.5.2}
-\contentsline {chapter}{Bibliography}{25}{section.5.2}
+\contentsline {subsection}{\numberline {3.2.3}Pre-parser}{15}{subsection.3.2.3}
+\contentsline {subsubsection}{Comment removal}{15}{section*.14}
+\contentsline {subsubsection}{Spliting into sub-sequences}{16}{section*.15}
+\contentsline {subsection}{\numberline {3.2.4}Parsing}{17}{subsection.3.2.4}
+\contentsline {subsubsection}{Sequence Specifications}{17}{section*.16}
+\contentsline {subsubsection}{Parsing to sequence specifications}{18}{section*.17}
+\contentsline {subsection}{\numberline {3.2.5}Information lost}{18}{subsection.3.2.5}
+\contentsline {section}{\numberline {3.3}Inference Module}{19}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Suffix Tree's}{19}{subsection.3.3.1}
+\contentsline {subsubsection}{Definition of Suffix Tree's}{19}{section*.18}
+\contentsline {subsection}{\numberline {3.3.2}Suffix Tree Construction: Ukonnens Algorithm}{20}{subsection.3.3.2}
+\contentsline {subsubsection}{Implicit suffix tree}{20}{section*.19}
+\contentsline {subsubsection}{Overview of algorithm}{21}{section*.20}
+\contentsline {subsubsection}{Suffix extension rules}{21}{section*.21}
+\contentsline {subsection}{\numberline {3.3.3}Finding repeated Structures}{22}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Bar inferrence}{22}{subsection.3.3.4}
+\contentsline {subsubsection}{Quantisation}{22}{section*.22}
+\contentsline {section}{\numberline {3.4}Distance metrics}{22}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Hamming Distance}{22}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Edit distance}{22}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Cyclic extensions}{23}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}Summary}{23}{section.3.5}
+\contentsline {chapter}{\numberline {4}Evaluation}{25}{chapter.4}
+\contentsline {section}{\numberline {4.1}Comparison with original aims}{25}{section.4.1}
+\contentsline {section}{\numberline {4.2}Dataset collection}{25}{section.4.2}
+\contentsline {section}{\numberline {4.3}Testing}{25}{section.4.3}
+\contentsline {section}{\numberline {4.4}Performance Analysis}{25}{section.4.4}
+\contentsline {section}{\numberline {4.5}Summary}{25}{section.4.5}
+\contentsline {chapter}{\numberline {5}Conclusion}{27}{chapter.5}
+\contentsline {section}{\numberline {5.1}Lessons learnt}{27}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future work}{27}{section.5.2}
+\contentsline {chapter}{Bibliography}{29}{section.5.2}

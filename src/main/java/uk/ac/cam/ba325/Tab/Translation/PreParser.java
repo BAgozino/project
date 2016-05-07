@@ -25,7 +25,6 @@ public class PreParser {
                 case INSTRUMENT:{
                     lineHasInstrument = true;
                     try{
-                        Lexer.Token t1 = tokens.get(i+1);
                         if (tokens.get(i+1).type != Lexer.TokenType.TRACKDIVIDER){
                             tokens.remove(i);
                             i--;
