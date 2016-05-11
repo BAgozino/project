@@ -68,9 +68,7 @@ public class PreParser {
                     lineHasInstrument=false;
                     break;
                 }
-                case WHITESPACE:{
-                    break;
-                }
+
             }
 
 

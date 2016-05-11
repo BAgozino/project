@@ -13,7 +13,7 @@ public class Lexer {
     public static enum TokenType {
         // Token types cannot have underscores
         INSTRUMENT("HH|HF|H|CC|C1|C2|C|RD|R|SN|S|BD|B|T1|HT|T2|LT|FT|T"), TRACKDIVIDER("\\|"), BEAT("x|X|o|0|#|f|@"),
-        REST("-|g"),NEWLINE("\n"), WHITESPACE("[ \t\f\r]+");
+        REST("-|g"),NEWLINE("\n");
 
         public final String pattern;
 
@@ -62,11 +62,11 @@ public class Lexer {
             } else if(matcher.group(TokenType.REST.name()) != null) {
                 tokens.add(new Token(TokenType.REST, matcher.group(TokenType.REST.name())));
                 continue;
-            } else if(matcher.group(TokenType.NEWLINE.name()) != null){
+            } else if(matcher.group(TokenType.NEWLINE.name()) != null) {
                 tokens.add(new Token(TokenType.NEWLINE, matcher.group(TokenType.NEWLINE.name())));
                 continue;
-            } else if (matcher.group(TokenType.WHITESPACE.name()) != null)
-                continue;
+            }
+
         }
 
         return tokens;

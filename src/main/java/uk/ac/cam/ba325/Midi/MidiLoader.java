@@ -140,7 +140,7 @@ public class MidiLoader {
     public static void main(String[] args){
         MidiLoader midiLoader = new MidiLoader();
 
-        midiLoader.loadMidiFile("../StudyData/Jared-9-2-0.mid");
+        midiLoader.loadMidiFile("../StudyData/Jared/Jared-9-2-0.mid");
         midiLoader.printCsv("../StudyData/test.txt", midiLoader.onEventsToCsvMidiEvent());
         DrumNoteDeltaSequences d = midiLoader.buildDrumNoteDeltaSequences();
         DrumNoteDeltaSuffixTree st = new DrumNoteDeltaSuffixTree(d);

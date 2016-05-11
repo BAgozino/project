@@ -1,4 +1,4 @@
-f% Draft #1
+% Draft #1
 \documentclass[12pt,twoside,notitlepage]{report}
 \usepackage{a4wide}
 \usepackage{hyperref}
@@ -71,9 +71,9 @@ To build a system that is able to infer the intended sequence of
 pattern of strokes on a drum kit from those that are captured. The system then aims at matching this sequence against possible popular rock songs that were originally performed before the year 2002 regardless of the variations in pressure and timing of each individual stroke and the performance as a whole. The project aims to detail the possibility of using distance metrics on short drum performances as a basis for imitation based querying of drum notation.
 
 \section*{Work Completed}
-The system has been built to infer and extract a candidate sample pattern from MIDI performance data by examining for repeated sequences in a repeated bar performance. This sample pattern is then compared with the database and returns the closest match within some bound. Multiple distance metrics have been implemented to assess the advantages and disadvantages of each in this domain.
+The system has been built to infer and extract a candidate sample pattern from MIDI performance data by examining for repeated sequences in a repeated bar performance. This sample pattern is then compared with the database and ranks all the patterns in the database. Multiple distance metrics have been implemented to assess the advantages and disadvantages of each in this domain.
 
-A parser has been built to parse informal ASCII Drum Tablature that has been successful in parsing (TODO percent) of the notation to an appropriate format for use in the database that the system queries against.
+A parser has been built to parse informal ASCII Drum Tablature that has been successful in parsing over 10,000 individual pattern of the notation to an appropriate format for use in the database that the system queries against.
 
 
 \section*{Special Difficulties}
@@ -86,10 +86,10 @@ None
 I, Biko Agozino of St John's College, being a candidate for Part II of the Computer Science Tripos, hereby declare that this dissertation and the work described in it are my own work, unaided except as may be specified below, and that the dissertation does not contain material that has already been used to any substantial extent for a comparable purpose.
 
 \bigskip
-\leftline{Signed [signature]}
+\leftline{Signed}
 
 \medskip
-\leftline{Date [date]}
+\leftline{Date}
 
 \cleardoublepage
 
@@ -114,9 +114,9 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 	This dissertation describes the implementation and evaluation of an query-by-example method for searching collaborative databases of drum rhythms, transcribed by users, found in pre-2002 contemporary music.
 	
 	\section{\label{sec:Motivation}Motivation}
-	The relationship between computers and music has been apparent since the 1950s when Trevor Pearcey and Maston Beard pioneered what was likely the first computer capable perform music, CSIRAC\footnotemark \footnotetext{Council for Scientific and Industrial Research Automatic Computer}, which was able to broadcast music programmed on punched-paper data tape in a similar notation to standard musical notation\cite{CSIRAC}. At the time it took specialised, multimillion-dollar, computers hours or even days to generate a few minutes of simple tunes\cite{Mathews1963}.
+	The relationship between computers and music has been apparent since the 1950s when Trevor Pearcey and Maston Beard pioneered what was likely the first computer capable perform music, CSIRAC\footnotemark \footnotetext{Council for Scientific and Industrial Research Automatic Computer}, which was able to broadcast music programmed on punched-paper data tape in a similar notation to standard musical notation\cite{CSIRAC}. At the time it took specialised, multimillion-dollar, computers hours or even days to generate a few minutes of simple tunes, according to Mathews in his early (1963) discussion on the possibilities of using computers as a musical instrument\cite{Mathews1963}.
 	
-	Since the early days of Computer Music research, computers have become both more accessible and more powerful. This has allowed computers to be more frequently used in the composition of music by both amateur and professional musicians. (TODO rephrase this sentence) This coupled with the onset of MIDI\footnotemark \footnotetext{Musical Instrument Digital Interface: Developed in the early 1980s\cite{Midi1995}} that coincided samplers and digital synthesisers- which opened possibilities to hobbyists to have musical studios in their homes and develop their own sounds. Many of the popular genres we hear today were spawned as a result of this musical revolution.
+	Since the early days of Computer Music research, computers have become both more accessible and more powerful. This has allowed computers to be more frequently used in the composition of music by both amateur and professional musicians.This was coupled with the development of the MIDI protocol\footnotemark \footnotetext{Musical Instrument Digital Interface: Developed in the early 1980s\cite{Midi1995}} which connected samplers and sythesisers, and provided a useful framework for comunicating between two electrical musical device. Hobbyists now had the opportunity to have reletively cheap musical studios in their homes to express their creativity which is the environment that many of the popular genres we hear today were spawned from, and as a result of this musical revolution.
 	
 	More recently a significant amount of research has been done into QBE\footnotemark \footnotetext{Query-by-Example} systems as they pertain to music. Most notably Shazam\cite{Shazam}, which is a commercial service that aims at music recognition by using audio samples, that may be distorted, in order to query a database of over 3 million tracks.
 	
@@ -130,7 +130,7 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 	
 	My goal in developing the system was to build a natural drum rhythm recognition system that:
 	\begin{itemize}
-		\item{Returns both the inferred rhythm and all rhythms that are similar found in the database}
+		\item{Returns both the inferred rhythm and all rhythms that are similar found in the database;}
 		\item{Does not require an extensive digital user interface;}
 		\item{Extracts the rhythm from repeated play;}
 		\item{Be trivially extended to work in real time}
@@ -149,10 +149,13 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 	Imitation based querying
 
 	Sequence matching
+	
+	Much of this is discussed in the preparation, do I actually need this section?
 
 \cleardoublepage
 
 \chapter{Preparation}
+(todo rewrite this intro when prep section is final)
 
 	With any project of a non-trivial size it is important to spend a good amount of time carefully planning and organising tasks. In the case of this project it proved particularly useful when it became clear that the implementation of the system had to significantly change, from the one that was originally proposed, when the available resources and preferred system features were taken into account.
 	
@@ -160,6 +163,8 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 	
 	
 	\section{Starting point}
+todo discuss previous attempts at the project in a different form along with my background with the domain and unfamiliarity with the computer science techniques?
+	
 	\section{Database collection}
 	
 	Clearly, the success of the project heavily relies upon whether an adequate database can be built. Therefore, it is a task that I decided to tackle first so as to provide the base for the future work. Here I will discuss the possible data sources that were considered along with a comparison and argument for the final choice.
@@ -167,65 +172,64 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 		\subsection{Beat tracking techniques}
 		
 		\begin{figure}[h]
-			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
-			\caption{\label{beatTracking} Shown here is the aim of beat tracking audio signals.}
+			\centerline{\includegraphics[scale=2]{figures/BeatTrackingGoto.eps}}
+			\caption{\label{beatTracking} Shown here is the aim of beat tracking is to transform musical audio signals into a representation of the beat structure\cite{Goto2001}}
 \end{figure}
 
 		Beat tracking, as defined by Goto\cite{Goto2001}, is the process of inferring the hierarchical beat structure from musical audio signals. The idea here, depicted in figure \ref{beatTracking}, is that real-time audio from popular music can be used as a source of data in order to extract features about the song. 
 		
-		The advantage of this is that the amount of data available is effectively limitless(todo justify or rewrite) and, if perfect beat tracking were achievable, the rhythm extracted will be a perfect representation of the underlying rhythm. Additionally this approach may allow further features(todo what features?), apart from the beat timings, to contribute to the database - allowing for a richer searching experience.
+		The advantage of this is that the amount of data available to extract features from only limited to how many songs have been released in an acceptable format. In Goto's case this was compact disk's though the approach could be extended to mp3, or any other file encoding. Furthermore, if perfect beat tracking were achievable, the rhythm extracted will be a perfect representation of the underlying rhythm. Additionally this approach may allow further features such as lyrics, melody, tempo, or the Mel-frequency cepstral coefficient, which is a measure of musical timbre. These additional features would contribute to the database - allowing for a richer searching experience.
 		
 		Perfect beat tracking, however, is a very challenging field. Recent attempts at solving the problem (\cite{Ellis2007} \cite{EllisPoliner2007} \cite{DaviesPlumbley2007}) have reported efficient algorithms, but with only an accuracy of around 60\%.
 		\subsection{Feature extraction from notation}
 		There are two distinct techniques that can be implemented in order to extract features of drum rhythms from rhythm notation that I will outline here. I will discuss each in turn before returning to the comparison between methods in \ref{subsec:ChoiceOfDataSource}
 			\subsubsection{Optical Music Recognition}
-			\begin{figure}[h]
-			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
-			\caption{\label{PercussionNotation} Shown here is a standard percussion notation bar}
+			
+		Musical notation has been a practice in many cultures since as long as we have record, as Scelta states\cite{Scelta} "Systems of signs and symbols for writing music developed along-side written language as a need to pass along consistent information presented iteself". Much like written language, musical notation has been refined over thousands of years, and what we now think of as 'standard notation' has been firmly established since the 18th century\cite{Scelta}. This standard is of the format of 5 horisontal lines, called a stave, with symbols at varying positions along the staves to represent the pitch and relative time of each note.
+		
+		Percussion notation, a specific musical notation that pertains to percussion instruments, is much less standardised and only (relatively) recently has there been a push for a standardised practice, Weinberg produced an extensive set of guidlines to the practice\cite{Weinberg1994}.
+		
+		There has been a significant research(\cite{Johansen2009}\cite{BainbridgeBell2001}) into Music OCR\footnotemark \footnotetext{Music Optical Character Recognition, sometimes referred to as Optical Music Recognition}, which involves using computer vision techniques in order to allow computers to read sheet music. Applying these techniques to Weinberg's percussion notation can enable extraction of feature sets that can be queried.
+		\begin{figure}[h]
+			\centerline{\includegraphics[scale=0.5]{figures/Characteristic_rock_drum_pattern.png}}
+			\caption{\label{PercussionNotation} Shown here is the standard percussion notation for a popular rhythm often found in rock music}
 \end{figure}
-		Musical notation has been a practice in many cultures since as long as we have record\cite{Scelta}. As such the notation has been refined over thousands of years, and what we now think of as 'standard notation' has been firmly established since the 18th century\cite{Scelta}. This standard is of the format of 5 horisontal lines, called a stave, with symbols at varying positions along the staves to represent the pitch and relative time of each note.
-		
-		Percussion notation, a specific musical notation that pertains to percussion instruments, is much less standardised and only (relatively) recently has there been a push for a standardised practice\cite{Weinberg1994}.
-		
-		There has been a significant research\cite{Johansen2009}\cite{BainbridgeBell2001} into Music OCR\footnotemark \footnotetext{Music Optical Character Recognition, sometimes referred to as Optical Music Recognition}, which involves using computer vision techniques in order to allow computers to read sheet music. Applying these techniques to percussion notation can enable extraction of feature sets that can be queried.
-		
 			\subsubsection{ASCII Drum Tablature Parsing}
 						\begin{figure}[h]
-			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
-			\caption{\label{DrumTablature} Shown here is an ASCII drum tablature bar}
+			\centerline{\includegraphics[scale=1]{figures/exampledrumtab2.eps}}
+			\caption{\label{DrumTablature} Shown here is a the ASCII drum tablature the same rhythm found in figure \ref{PercussionNotation}}
 \end{figure}
 				In drum tablature, each line corresponds to a single component of the drum kit, as shown in figure \ref{DrumTablature}. This contrasts with standard notation, where the height of each note refers to the pitch of the note. Enthusiast transcribers have taken to the ASCII character-encoding scheme in order to share their work over collaborative databases\footnotemark \footnotetext{http://drumbum.com/drumtabs}.
 				
-				This ASCII format, while intend to be read by people, may prove to be a great candidate for a general tablature parser. In fact, this problem has been attempted to be solved in a similar case of guitar tablature\cite{Knowles2013}. However, this solution does not solve it in the general case where the tablature may contain comments to help the human reader. My solution will have to account for this as the collaborative database will not be perfectly void of errors.
+				This ASCII format, while intended to be read by people, may prove to be a great candidate for a general tablature parser. In fact, this problem has been attempted to be solved in a similar case of guitar tablature\cite{Knowles2013}, where a parser was written to quite successfully extract the specifications of a strictly defined guitar notation. However, this solution does not solve it in the general case where the tablature may contain comments to help the human reader. My solution will have to account for this as the collaborative database will not be perfectly void of errors.
 		\subsection{\label{subsec:ChoiceOfDataSource}Choice of data source}
 		Both beat tracking and music OCR are very challenging fields, each large enough to justify their independent research. ASCII Drum Tablature is very feasible in the time frame and given the large amount of data available in this format it should be feasible to collate an adequate database.
 		
 		It is important, however, to keep in mind the disadvantages of selecting this data source:
 		\begin{enumerate}
 			\item{As it is a collaborative database, we can not easily verify the accuracy of the transcriptions}
-			\item{As there is no standardised format a parser can only be tailored towards a specific practice (todo specific or common practice?)}
+			\item{As there is no standardised format a parser can only be tailored towards a common practice}
 		\end{enumerate}
 		
-		Problem 1 would be solved by both of the alternatives discussed, however problem 2 can only be solved by beat tracking as percussion notation is also not standardised. 
+		Problem 1 would be solved by both of the alternatives discussed, however problem 2 can only be solved by beat tracking as percussion notation is also not standardised. Though beat tracking hasn't been shown to be very accurate, and when the project relies heavily on the timing information in order to match performances to songs it may be better to choose a data source that can directly map the source to the features extracted.
 		
-		(todo possibly rewrite this argument to compare and contrast each data source and then conclude with ASCII drum tablature, Isak says no need to rewrite argument, maybe reiterate why tab parsing is better here)
+		The datasource will therefore be ASCII Drum Tablature using a collaborative database that I found to have thousands of transcribed songs, each containing about 100 patterns, meaning there should be no problem writing a parser that can extract the rhythms of a subset of these songs.		
 		
-		
-		
-	\section{Machine learning vs Information retrieval}
-	This may make more sense in the querying section (todo add any preperation stuff)
+
 	\section{Querying}
 	Now that the data source has been decided, it is important to discuss how the querying system will work. I will start by outlining methods for inferring the bar from a sequence of beats on the drum. I will then discuss the possible ways of using this sequence to query the database.
 	
 
 		\subsection{\label{subsec:PrepSuffix}Suffix trees}
 		
-		When thinking about the design of the system from an end-user stand point I originally wanted the user to play the drum rhythm they wish to look up just once, which is then used as the example to query the database. The problem with this, as discovered after some initial data collection (see Evaluation (todo reference chapter?), was that the latency of the system caused by start up and shut down caused the example to be distorted. In order to tackle this problem I decided it was wise to design a system that could extract repeated structures from continuous play of the same bar.
+		When thinking about the design of the system from an end-user stand point I originally wanted the user to play the drum rhythm they wish to look up just once, which is then used as the example to query the database. The problem with this, as discovered after some initial data collection (see Evaluation \ref{sec:Eval Inference module}), was that the latency of the system caused by start up and shut down caused the example to be distorted. In order to tackle this problem I decided it was wise to design a system that could extract repeated structures from continuous play of the same bar.
 		
-		A suffix tree\cite{Weiner1973} is a tree in which each path, from root to leaf of the tree, correspond to exactly one suffix of the string used to build it. For example, with the string "BANANA" there will be a path corresponding to the suffix "A", a path for the suffix "NA", "ANA", etc. The reason it is useful is that repeated substrings, e.g. "NA", will share an edge along the tree. This means that it is easy to find repeated structures, and a linear algorithm\cite{Gusfield1999} for doing so will be presented in the Implementation(todo section) chapter.		
+		A suffix tree\cite{Weiner1973} is a tree in which each path, from root to leaf of the tree, correspond to exactly one suffix of the string used to build it. For example, with the string "BANANA\$" (see figure \ref{SuffixTree}) there is a path corresponding to the suffix "A\$", a path for the suffix "NA\$", "ANA\$", etc. The reason it is useful is that repeated substrings, e.g. "NA", will share an edge along the tree. This means that it is easy to find repeated structures, and a linear algorithm\cite{Ukonnen1995} for doing so will be presented in \ref{subsec:Finding repeated Structures}.	
+		
+		Once a suffix tree has been created, the repeated structures can be extracted and the sequence can then be transformed into a similar form to the population of the database in order to perform matching techniques.
 \begin{figure}[h]
-			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
-			\caption{\label{SuffixTree} Suffix tree of the String "BANANA\$"}
+			\centerline{\includegraphics[scale = 0.75]{figures/SuffixTreeExample.eps}}
+			\caption{\label{SuffixTree} Suffix tree of the string "BANANA\$"}
 \end{figure}
 		
 			\subsubsection{Exploring algorithms for Suffix tree construction}
@@ -238,48 +242,38 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 			Ukonnens algorithm\cite{Ukkonen1995} is an on-line solution to suffix tree construction. This is important for the implementation as for the system to work in real time the suffix tree building must efficiently work in real time. As shown in \ref{subsubsec:Ukonnens} the algorithm works in both linear time and space if run off-line which is optimal.
 		\subsection{Matching techniques}
 
-		If we assume both the parser and sequence inference are able to extract features correctly, and then represent them in our database as two dimensional strings of data, we must now 	(todo finish)	
-		
-		When we have a candidate sequence to query the database we will need to consider how to evaluate which rhythms are similar to be relevant to the user. I will discuss two distinct methods and explain my choice towards one of them 
+		If we assume both the parser and sequence inference are able to extract features correctly, and then represent them in our database as two dimensional strings of data, we must now come up with a way of comparing the two of them	in order to find the closest matches. Here I will discuss two distinct methods,String metrics and Exact matching, and explain my choice towards one of them 
 			\subsubsection{String metrics}
 			String metrics measure the reverse similarity, or distance, between two strings. There are many metrics to choose from, such as the Hamming Distance\cite{Hamming1950}, and the Levenshtein Distance\cite{Levenshtein1966}.
 			
-			The advantage to this technique is that a similarity ranking can be derived where patterns most similar to the inferred pattern are towards the top of the ranking.
+			The advantage to this technique is that a similarity ranking can be derived where patterns most similar to the inferred pattern are towards the top of the ranking
 			\subsubsection{Exact Matching}
 			An alternative technique is to perform exact matching on all of the patterns in the database to find a pattern that is the same as the inferred pattern. R.S. Bird presented an algorithm\cite{Bird1977}, which is an extension of the Knuth-Morris-Pratt algorithm\cite{KnuthMorrisPratt1974}, for matching two-dimensional stings.
 			
-			todo explain this algorithm?
 			
 			\subsubsection{Choice of matching technique}
-			I chose to use String metrics as the matching technique to perform the database search as it will account for any deficiencies that the pattern inference has. 			
-			
-			todo expand on this
+			I chose to use String metrics as the matching technique to perform the database search as it will account for any deficiencies that the pattern inference has. Exact matching, as the name suggests, only returns patterns that are exact copies of the query sequence, and as there is a good chance that the pattern inference will not be exactly correct, there is a good chance that nothing will be returned. Furthermore, all patterns that are close to the query pattern should be returned as they may be of interest to the user, not just the single pattern that is exactly the same.
 			
 	\section{Changes from proposal}
-	
-	todo I couldn't find a place to fit this in, perhaps discus here?	
+	todo
 	\section{Tools Used}
 	Here I will outline the key tools and frameworks I had to familiarise myself in order to implement the project.
 		\subsection{\label{Midi}Investigating MIDI}
-		MIDI is a protocol that allows for communication between a large majority of electronic musical instruments. The MIDI specification\cite{MIDI}, describes MIDI messages as individual packets that are sent over one, or all, of the 16 channels. Each message is one byte of data, circumfixed by a start and stop bit, transmitted serially in the format shown in figure \ref{MIDIMessage}. 		
-		
-			\begin{figure}[h]
-			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
-			\caption{\label{MIDIMessage} todo describe diagram of midi message}
-\end{figure}
+		MIDI is a protocol that allows for communication between a large majority of electronic musical instruments. The MIDI specification\cite{MIDI}, describes MIDI messages as individual packets that are sent over one, or all, of the 16 channels. Each message is one byte of data, circumfixed by a start and stop bit, transmitted serially. 		
+	
 
-		Messages can either be "channel messages" - in which the message is broadcast to across a single channel, or "system messages" - in which all the channels are notified of the message.
+		MIDI uses the concept of channels in order to group messages of the same origin. Messages can either be "channel messages" - in which the message is broadcast to across a single channel, or "system messages" - in which all the channels are notified of the message.
 		
-		MIDI also has no requirement to broadcast timing information in absolute terms, though leaves it up to choice of manufacturers. One solution, called MIDI Time Stamping\cite{Walker2007}, involves marking MIDI events with the time they are played and storing them in a buffer in the MIDI interface ahead of time. This means that the messages timing information will not be disrupted by USB or software latency. However, this solution requires strong coupling between both the hardware and software of the system and so most MIDI device manufacturers elect to leave the job of timing information to the Sequencers
+		MIDI also has no requirement to broadcast timing information in absolute terms, though leaves it up to choice of manufacturers. One solution, called MIDI Time Stamping\cite{Walker2007}, involves marking MIDI events with the time they are played and storing them in a buffer in the MIDI interface ahead of time. This means that the messages timing information will not be disrupted by USB or software latency. However, this solution requires strong coupling between both the hardware and software of the system and so most MIDI device manufacturers elect to leave the job of timing information to the sequencers
 		
-		Sequencers are software or hardware devices that can record, edit, and playback music. For this project we require a software sequencer as we need to then manipulate the MIDI recordings. We also require a lightweight solution that will not cause timing delays due to excessive processing. For these reasons, and the extra customisability options stemming from an open-source solution, I have chosen to use the MIDI software sequencer, Midish\footnotemark \footnotetext{http://www.midish.com}, which is one of the most popular sequencers for Unix-like operating systems.
+		Sequencers are software or hardware devices that can record, edit, and playback music. For this project I require a software sequencer as I need to then manipulate the MIDI recordings. I also require a lightweight solution that will not cause timing delays due to excessive processing. For these reasons, and the extra customisability options stemming from an open-source solution, I have chosen to use the MIDI software sequencer, Midish\footnotemark \footnotetext{http://www.midish.com}, which is one of the most popular sequencers for Unix-like operating systems.
 		
 		
 		
 			\subsubsection{Investigating Roland HD-1 drum kit}
 			In order to explore the available options for the project I spent some time familiarising myself with the available interface for midi input into the system, namely a Roland HD-1 drum kit owned by the Rainbow Group at the computer lab. While I attempted to design the system to make sure it is transferable to any MIDI drum kit, and extendible to any MIDI device for that matter, there may be some slight difference as the implementation was tailored towards this model.
 
-			The drum kit does not have any special timing features, like MIDI Time stamping, and so I have to rely on the timing information provided by the software sequencer, Midish. 
+			The drum kit does not have any special timing features, like MIDI time stamping, and so I have to rely on the timing information provided by the software sequencer, Midish. 
 			
 			A standard practice with drum kits is to filter out all but the dedicated channel for percussion instruments, channel 10, in order to reduce any noise, and latency, that could occur from messages being sent on other channels. However, looking into the specification, along with some experimentation, I found that while messages were primarily transmitted over channel 10, in the case of polyphonic messages\footnote{Messages that occur simultaneously - i.e. more than one drum being hit at the same time} some messages leaked into channel 1. For this reason it is more appropriate to allow all messages on all channels through for recording and filter out the superfluous information at a later stage.			
 			
@@ -287,12 +281,16 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 			
 			I found it logical from here to split the recording into separate note channels, each representing a component of the drum kit, in order to analyse the repeated sequences for each component individually, and then trying to infer the overall pattern from the combination of these patterns. In order to apply the string analytical techniques discussed in \ref{subsec:PrepSuffix} these Note On messages must be converted into some alphabet that encodes their timing information. The logical solution is to use the time delay between each neighbouring pairs of Note On messages rounded to some value (see Evaluation for a discussion on what is the best value to round to).
 			
-			todo talk about information lost in highhat (move to evaluation?)
+			
 			
 			todo list the drum components available
 			
-		\subsection{Misc}
-		todo jack? Java? Google TreeMultiset? give examiners all imformation regarding competency to create a solution
+		\subsection{Misc}\label{subsec:tools used: misc}
+
+		\textbf{Java:} The majourity of this project will be implemented using the programming language Java. I chose Java as I am very familiar with it having completed Part IA and IB of Tripos. Additionally, Java offers an extensive sound library for manipulating MIDI, javax.sound.midi, which will prove useful when inputting the MIDI recordings into the system.
+		
+		\textbf{Google Tree Multiset:}	A package provided by Google's Guava-libraries which will allow for efficient ordering of a set of values, allowing for duplicates. I will be using this package to store the results of the distance metric matching.
+
 		
 	\section{Requirement Analysis}
 	todo
@@ -301,48 +299,44 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 \cleardoublepage
 \chapter{Implementation}
 	\section{Overview of system}	
+	todo rewrite
 	
 	The design of the system revolved around two main modules, the Harvester and the Inference module, that interact only in the database query stage, as shown in figure \ref{SystemDesign}. 
 	
 	\begin{figure}[h]
-			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
-			\caption{\label{SystemDesign} Here is a view of the two pipelines that make up the system}
+			\centerline{\includegraphics[scale=0.5]{figures/SystemDesign.eps}}
+			\caption{\label{SystemDesign} Here is a modular view of the system, solid lines represent flow of information, while the dotted lines indicate a look-up request}
 \end{figure}
 	-parser
 	-midi input
 	-bar extraction
 	-matching
-	\section{Harvester}
+	
+	
+	\section{Harvester}\label{sec:Harvester}
 	As outlined in the \ref{subsec:ChoiceOfDataSource} the source for the database will in the format of ASCII drum tablature, which is intended to be human-readable, and so parsing it is not a trivial problem. 
 	
 	The goal of the harvester is to collect a database sufficient enough to act as the search space for the Query-by-Example system
 	
 	As shown in figure \ref{exampleIdealParse} the parser takes an ASCII file containing specifications of the rhythms found in the song and delivers each bar-long rhythm, saved seperately, for use later in the querying stage of the system.
 	
-	
-	-important to remove all erronous sequences
 
-	-define the "Ideal" format of Tablature
-
-	-7.8mb of parsed data at 135bytes each approx 60000 rhythms
-
-	-7.8MB vs 11.9MB
-	
-		\subsection{Overview of Parser}
 \begin{figure}[h]
-			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
-			\caption{\label{exampleIdealParse} Here is an example of how the system will translate and format the drum tablature for pattern matching in the database}
+			\center{\includegraphics[scale=0.5]{figures/ExampleParse.eps}}
+			\caption{\label{exampleIdealParse} Here is an example of how the system will translate and format the drum tablature - creating Sequence Specifications that are saved in the database}
 \end{figure}
 
 		When analysing the system the parser
 
-		The parser incorporates a pipeline structure in order to chain the processing elements of the following stages:
+		The Harvester incorporates a pipeline structure in order to chain the processing elements of the following stages:
+		
+		todo flowchart?
 		\begin{enumerate}
 			\item{Lexical Analysis}
-			\item{Comment removal}
-			\item{Syntactic analysis}
+			\item{Pre-parser}
+			\item{Parser}
 		\end{enumerate}
-		
+		In this section, each stage will be discussed in detail.
 		
 
 		\subsection{Lexical Analysis}
@@ -368,38 +362,27 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 		
 		todo perhaps include full lexing code in the appendix?
 		\subsection{Pre-parser}
-			In the aptly named pre-parsing stage, the parser sets up the sequence of tokens for the parser to process. The reason for this conceptual difference is that the pre-parser has no complicated processing tasks and is merely given the job of organising the data in a parse-friendly format. 
+			In the aptly named pre-parsing stage, the harvester sets up the sequence of tokens for the parser to process. The reason for this conceptual difference is that the pre-parser has no complicated processing tasks and is merely given the job of organising the data in a parse-friendly format. 
 			
 			\subsubsection{Comment removal}
 			One important job for the pre-parser is to remove any of the tokens that were incorrectly matched - usually due to their appearance in the comments that are written to inform the reader of any subtlties to the performance. 
 			
-			In order to achieve this context has to be introduced into the system, so that we know what is definitly not a comment. I implemented this through a simple finite state machine shown in figure \ref{fsaf}. Iterating through the sequence of tokens while in state $S_1$ the pre-parser removes all \emph{TrackDivider}, \emph{Beat}, \emph{Rest}, and solo \emph{Instrument} tokens. The transition function T1 occurs when there is an \emph{Instrument} token followed immediately by a \emph{TrackDivider} token. This transition occurs preemptively, meaning before the pre-parser has the chance to remove the occurance of the \emph{Instrument} token.
+			In order to achieve this context has to be introduced into the system, so that we know what is definitly not a comment. I implemented this through a simple finite state machine shown in figure \ref{fsaf}. Iterating through the sequence of tokens while in state S1 the pre-parser removes all \emph{TrackDivider}, \emph{Beat}, \emph{Rest}, and solo \emph{Instrument} tokens. The transition function T1 occurs when there is an \emph{Instrument} token followed immediately by a \emph{TrackDivider} token. This transition occurs preemptively, meaning before the pre-parser has the chance to remove the occurance of the \emph{Instrument} token.
 			
-			While in state $S_2$ the pre-parser does nothing, as it is assumed that the line is now a specification of the beats on a drum component. It transitions on T2 back to the initial state when a \emph{NewLine} token is found.
+			While in state S2 the pre-parser does nothing, as it is assumed that the line is now a specification of the beats on a drum component. It transitions on T2 back to the initial state when a \emph{NewLine} token is found.
 			
 			This solution does not remove all comments but handles most of them so that the parser can find the patterns. The implementation of this can be foind in the appendix todo.
 			\begin{figure}
 			
 				 
-			\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
-				
-           	    \tikzstyle{every state}=[fill=red,draw=none,text=white]
-            	\node[initial,state] (A) {$S_1$};
-            	\node[state] 		 (B) [right of =A] {$S_2$};
-            	
-            	\path (A) edge   node {T1} (B)
-            			edge [loop right]  node{T2} (A)
-            	
-            		  (B) edge     node {T3} (A)
-            				edge  node {T4} (B);
-            \end{tikzpicture}  
-            \caption{\label{fsaf} todo make this in dia and fix it}                         
+			\centerline{\includegraphics[scale=0.5]{figures/StateMachine.eps}} 
+            \caption{\label{fsaf} Finite State Machine for comment removal, see \textbf{Comment removal} for an explanation of the states and transition functions.}                         
             \end{figure}
             
             \subsubsection{Spliting into sub-sequences}
             Another job of the pre-parser is to analyse the sequence of tokens, now with most of the comments removed, and split the sequence in to sub-sequences recursively exactly three times. This is to allow for easy parsing which will be detailed later
             
-            In order to describe these splits I must reiterate the structure of the tablature files. Each file may have multiple "blocks" that may refer to multiple "patterns" which can be be split into individual "lines" which each line pertaining to one drum component, as outlined in figure \ref{fig:tabStruct}.
+            In order to describe these splits I must reiterate the structure of the tablature files. Each file may have multiple "blocks" that may refer to multiple "patterns" which can be be split into individual "lines" with each line pertaining to one drum component, as outlined in figure \ref{fig:tabStruct}.
            
             
             \begin{figure}[h]
@@ -414,7 +397,7 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 			The final split is that of the individual patterns. Each line is now split on the \emph{TrackDivider} tokens. The first segment of each line is expected to map to the drum component, with the successive segments representing the beats and rests of the pattern. todo possible diagram?
 			
 			
-		\subsection{Parsing}
+		\subsection{Parsing}\label{subsec:Parsing}
 			Due to all this pre-precessing the job of converting the 4 level sequences representing each drum tablature file, which was built in the previous step, to a datastructure that we can match against is very simple.
 			
 			Before I outline the method for parsing the pre-processed sequences I must first outline the structure the data will be stored in.
@@ -435,7 +418,7 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 						\item{\textbf{0} - Representing a Rest event (lack of a beat impulse)}
 					\end{itemize}
 					
-				This simplified notation therefore only depicts the \emph{reletive} timing information of the system and a lot of information is removed including power, special notes, and multiple beats within one time division are abstracted away, which again will be discussed in detail in the Evaluation chapter.
+				This simplified notation therefore only depicts the \emph{relative} timing information of the system and a lot of information is removed including power, special notes, and multiple beats within one time division are abstracted away, which again will be discussed in detail in the Evaluation chapter.
 				
 				\subsubsection{Parsing to sequence specifications}
 				
@@ -465,13 +448,13 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 				\end{algorithm}
 				
 				One step that is masked in this algorithm in the actual implementation is that only sequenceSegments that fit the resolution of the system are added. This is to simplify the pattern matching process later. Due to the way the nature of drum tablature (see todo relevent section) this step will not result in incorrect parses of patterns, as if one sequence segment is of an incompatable resolution then all other segments will be of the same incompatable resolution. Leading to whole sequences being ignored, which means we get a smaller database but still one with integrity.
-		\subsection{Information lost}
-					As discussed in (todo ref relevent section) ASCII Drum Tablature has a lot of superfolous information that cannot be retrieved without significant natural language processing. Furthermore due to the lack of a standardised practice in terms of formatting, and symbol use, a large subset of the drum tablature cannot be harvested without a significantly more complicated parser. As this was not the focus of the project I decided to create a solution that would serve to create a decent database rather than one that solves the general case.
-		todo move to evaluation?
-	\section{Inference Module}
+
+
+	\section{Inference Module}\label{sec:Inference Module}
 
 	In order to extract and infer the pattern the user intended to play the Inference module has the following pipeline.
 
+todo make into flowchart?
 	\begin{itemize}
 		\item{Split the recording into eight note channels representing each drum component}
 		\item{Calculate the time deltas between each drum beat on each channel}
@@ -482,7 +465,7 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 		\item{Return both the inferred pattern and this ordered list of matches to user}
 	\end{itemize}
 	
-	The first two steps are justified and explained in \ref{Midi}. The successive steps are explained in detail here.
+	The first two steps are justified and explained in \ref{Midi}. The successive steps are explained in detail here. 
 		\subsection{\label{subsec:SuffixTree}Suffix Tree's}
 		A suffix tree, as discussed in \ref{subsec:PrepSuffix}, is a data structure that will help in discovering repeated structure in each note channel. Gusfield's\cite{Gusfield1999} description of the data structure formed the basis for the implementation, along with the basis for the repeated structure extraction algorithm.
 		
@@ -511,8 +494,8 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 				The first concept that I will introduce is that of an \emph{implicit suffix tree}. If we have a suffix tree T for the sequence S\$, which is the sequence S terminated by ther terminal character \$, the \emph{implicit} suffix tree for sequence S is formed by removing every copy of \$ from the edge labels of the tree, then removing any edge that has no label and removing any node that does not have atleast two children. This is depicted in figure \ref{fig:implicitSuffixTree}
 				
 				\begin{figure}[h]
-			\centerline{\includegraphics[scale=0.5]{figures/PLACEHOLDER.eps}}
-			\caption{\label{fig:implicitSuffixTree} Here is the Suffix tree for S\$ and implicit suffix tree for S}
+			\centerline{\includegraphics[scale=0.5]{figures/SuffixTreeToImplicitSuffixTree.eps}}
+			\caption{\label{fig:implicitSuffixTree} Here is the implicit suffix tree for the string BANANA. For a complete suffix tree refer to \ref{SuffixTree}}
 \end{figure}
 
 				Further to this, a implicit suffix tree for any sub-sequence S[0..i] of S can be formed by taking the suffix tree for S[0..i]\$ and deleting the same required labels, edges, and nodes. This implicit suffix tree is notated as $T_i$.
@@ -534,7 +517,7 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 							\For{j from 1 to i+1}
 								\State{Begin {extension j}}
 								\State{Find the end of the path from the root labeled S[j..i] in the current tree. If needed, extend the path by adding character S(i+1), thus assuring that string S[j..i+1] is in the tree (possibly implicitly).}
-								
+							\EndFor
 
 						\EndFor
 
@@ -546,20 +529,132 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 				
 				
 				\subsubsection{Suffix extension rules}
-				In order to define the important details of the extension stages of algorithm \ref{algo:Ukonnen} 
-			\subsection{Finding repeated Structures}
-			Once the suffix tree has been built it is a simple problem to find the repeated structures from it as each internal path\footnote{Internal paths are paths starting at the root and ending at an internal node} corresponds to a repeated point. For this I implemented a simple DFS\footnote{Depth-First Search} algorithm
-			todo finish here
+				In order to define the important details of the extension stages of algorithm \ref{algo:Ukonnen} three rules for extension must be discussed.
+				
+				Consider the example of being in phase i and extension j, so having to add string S[j..i]::S(i+1) to the tree. The algorithm first locates the end of S[j..i] in the tree (todo point to this discussion) and then extends that that path according to one of the following rules:
+					\begin{enumerate}
+						\item{If in the current tree, the path S[j..i] starting from the root ends at a leaf then to extend the tree character S(i+1) is added to the end of the label on the edge leading to the leaf. (todo diagram?)}
+						\item{If in the current tree, the path S[j..i] starting from the root ends at a point where no next character is S(i+1) but there is at least one path to follow then}
+							\begin{itemize}
+								\item{A new edge leading to a leaf from the end of S[j..i] has to be created labelled with S(i+1).}
+								\item{If S[j..i] ends in the middle of an edge that edge must also be split at this point, adding another internal node, to accomodate for the new edge}
+							\end{itemize}
+						\item{If in the current tree, the path S[j..i] starting from the root ends at a point where there is some path starting with character S(i+1), meaning S[j..i+1] is already in the current tree, we do nothing explicitly to the tree.}
+					\end{enumerate}
+					
+					
+			\subsection{Speeding up Ukkonen's algorithm}
+				
+					Looking at algorithm \ref{algo:Ukonnen}, in conjunction with the three rules discussed earlier, it is still clear that the solution does not run in $O(n)$ time. Infact, a naive implementation could be as bad as $O(n^3)$ time by finding all of the ends of the suffixes by walking through the tree. Therefore it is important to implement several speedups that were orriginally detailed by Ukkonen \cite{Ukkonen1995}.
+					
+					\subsubsection{Suffix links}
 
+\begin{figure}[h]
+			\centerline{\includegraphics[scale=0.5]{figures/SuffixTreeWithSuffixLinks.eps}}
+			\caption{\label{fig:SuffixLinks} Example of the familiar BANANA\$ string, shown first at \ref{SuffixTree}, now with the suffix links explicitly shown with the dotted lines}
+\end{figure}					
+					
+					The most important technique used to speed up the building of suffix trees are the concept of \emph{suffix links}. Suffix links are defined by the following scenario taken from Gusfield \cite{Gusfield1997}: Let $xA$ denote an arbitrary string, where $x$ denotes a single character and $A$ denotes a (possibly empty) substring. For an internal node $v$ with path-label $xa$, if there is another node $s(v)$ with path-label $A$, then a pointer from $v$ to $s(v)$ is called a \emph(suffix link). Further to this if $a$ is empty the suffix link will point to the root node, though none wil be pointing out from the root as it is not an internal node. 
+					
+					In extension j for some phase i, consider the case that a new internal node, $v$, is created with the path-label of $xA$, then in extension j+1 of the same phase i either the path $A$ either ends at an internal node (or the root in the case $A$ is empty), or a new internal node at the end of the string $A$ will be created. In either case a new suffix link is created leading from node $v$ to the node discovered in extension j+1. It therefore follows that all internal nodes present in extension j for some phase will have a suffix link leading out of it by the end of extension j+1 of the same phase.
+					
+					The reason suffix links are useful is because they provide a short cut when traversing a tree implementing extensions for some phase of the algorithm. Recall the naive method of walking through the tree to find the substring prefixing the character needed to be added, in extension 1 of phase i you find the string S[1..i], which is always the longest path from the root and so can be pointed to constantly. You then extend it with Rule 1, and instead of now starting from the root in extension 2 to find S[2..i], you may follow the suffix link to the next node, thereby cutting out steps of the costly walkthrough.
+					(todo may need to rewrite this final paragraph)
+					\subsubsection{Skip/Count Trick}
+					In order to further decrease the cost of walking down the tree to find the end of a suffix $A$, we may implement the following trick:
+					\begin{itemize}
+						\item{When at a node find the next arc to follow}
+						\item{If the length of that arc is shorter than the length of $A$, jump to the next arc}
+					\end{itemize}
+					
+					This trick allowes the algorithm to condense the number of comparisons along a path to be proportional to the number of nodes in the path, rather than the number of characters in it. Additionally, with the earlier optimisation of \emph{index pointers} discussed in \ref{subsec:SuffixTree}, the length of each edge can be found in constant time.
+					
+					(todo if I rewrite the final paragraph of the suffix link disscussion if may be apt to include here a discussion of how efficient the algorithm is now - ie $O(n^2)$)
+					
+					\subsubsection{Implicit extensions}
+					Recall in \ref{subsubsec:Ukonnens} I outlined the rules that are followed when performing suffix extension. Through analysing the cases the rules are followed we can find ways of speeding up the algorithm even more.
+					
+					
+					For the first optimisation recall rule 3 is followed, leading to no explicit operations to the tree, when the suffix being added $S[j..i+1]$ already appears in the tree. However, as we are adding this suffix to an implicit suffic tree that means that $S[j+1..i+1]$ is also in the tree, and all suffixes $S[k..i+1]$, for $j<=k<=i+1$ where $k$ is an integer, are in the tree. Therefore for the remaining extensions in that phase no explicit operations to the tree need to occur. Additionally, if we consider that rule 1 does not create any new nodes (be it leaves or internal nodes), we can see that a new siffix link needs to be added only after extensions that involve rule 2. These two observations lead to the following observation trick:
+					\begin{itemize}
+						\item{End any phase $i+1$ the first time that extension rule 3 applies as there is no need to explicitly extend the tree any more in this phase.}
+					\end{itemize}
+					This is a good way of reducing work, but it is not clear how this affects the worst-case time bound. However if we combine it with the next observation and optimisation it becomes more clear.
+					
+					If you again consider the extension rules, it is clear that there is no rule that turns a leaf into an internal node or root, i.e. if a node is a leaf it is always a leaf (and if a node is an internal node it is always an internal node, but that doesn't matter for this optimisation). In phase 1 there is exactly 1 leaf created (creating the implicit suffix tree for just the first character). Therefore in every subsequent phase $i$ there is an initial sequence of consecutive extensions where extension rule 1 or 2 apply before the phase can be terminated by application of rule 3 as per the previous optimisation. This initial sequence can clearly not shrink in size as the phases are iterated through as the number of leaves can only increase due to applications of rule 2. 
+					
+					This observation leads to an optimisation that takes advantage of \emph{index pointers} introduced in \ref{subsec:SuffixTree}:
+					\begin{itemize}
+						\item{When a leaf is initialised, instead of explicitly labelling the edge pointing to it with the index pointer (start,end), instead have some \emph{endGlobal} that coincides with the phase of the algorithm and populate the index pointer with (start,<pointer to \emph{endGlobal}>)\footnote{Of course in Java this pointer is implemented by shared references to an object that acts as an $int$ wrapper}}
+					\end{itemize}
+					This allows the \emph{endGlobal} to be set once each phase, i+1, allowing for constant-time application of rule 1 for the entire phase, i.e. adding the newest character S(i+1) to each leaf in one step.
+					
+					\subsubsection{Active Points}
+					possibly discuss this concept, though implicitly discussed earlier
+					\subsubsection{Complexity of algorithm}
+					possibly discuss if needed. Maybe more appropiate in the Performance analysis section of the evaluation
+			\subsection{Finding repeated Structures}\label{subsec:Finding repeated Structures}
+			Once the suffix tree has been built it is a simple problem to find the repeated structures from it as each internal path\footnote{Internal paths are paths starting at the root and ending at an internal node} corresponds to a repeated sequence. For this I implemented a simple DFS\footnote{Depth-First Search} algorithm \ref{algo:Repeated Struction}.
 			
-		\subsection{Bar inferrence}
-		Now we have the repeated structures for each note channel. I explored a few options 
+			Remember that, although so far in our discussion on suffix trees I have abstracted suffix trees to be formed of strings of characters, the underlying structure of the sequences are pairwise time offsets, for which characters are extracted by rounding these offsets. Therefore, when computing the sumOfEdge() procedure in algorithm \ref{algo:Repeated Struction} we merely add these characters up, which can be computed in $O(n)$ time and constant space.
+			
+			\begin{algorithm}
+			\caption{Algorithm for finding the repeated structures in a suffix tree}
+			\label{algo:Repeated Struction}
+			\begin{algorithmic}[1]
+			\State{maxLength = the maximum length we allow for a repeated pattern}
+			\Procedure{findRepeat}{SuffixTreeNode node,int currentLength,RepeatedStructure rs}
+				
+				\ForAll{non-leaf children, n, of node}
+					
+					\State{sumOfEdge = addTimeDeltas(n)}
+					\If{sumOfEdge+currentLength > maxLength}
+						\State{The algorithm has overshot the expected bar length so end recursive call}
+					\Else
+						\State{currentLength += sumOfEdge}
+						\If{rs.length < currentLength}
+							\State{We have found a better match for the repeated structure}
+							\State{So set rs to point to this repeat instead}
+							\State{findRepeat(n,currentLength,rs)}
+						\ElsIf{rs.length == currentLength}
+								\State{both repeats are of equal length so must find best candidate}
+								\State{set rs to the one with the most children}
+								\State{findRepeat(n,currentLength,rs)}
+						\Else
+							\State{Dont change anything, previous repeat is still the best}
+							\State{findRepeat(n,currentLength,rs)}
+						\EndIf
+					\EndIf
+				\EndFor
+			\EndProcedure
+			\Procedure{addTimeDeltas}{SuffixTreeNode node}
+				\State{indexPointer = index pointer of the edge leading to node}
+				\State{sum = sum of the timeDeltas represented by indexPointer}
+				\State \Return{sum}
+			\EndProcedure
+			\end{algorithmic}
+		\end{algorithm}
+		
+		A RepeatedStructure is defined as a tuple of natural numbers, ($endTickIndex$ * $length$ * $numberOfRepeats$), that represent the timing information of repeats in the suffix tree, as well as the number of times the subsequence repeats. $endTickIndex$ is found by taking the end value of the lowest edge in the path that corresponds to the repeat, which maps to the last character of the first instance of the repeat. $length$ is determined by summing the path from the root to the end of the repeat, i.e. currentLength in algorithm \ref{algo:Repeated Struction}. $numberOfRepeats$ is determined by counting the number of children of the repeats deeps node.
+		
+		The value for $maxLength$ is defined as the maximum length that we recognise as a bar of a performance, when the bar is repeated multiple times. Therefore ideally it would be exactly $idealLength = (lengthOfPerformance)/(expectedNumberOfRepeats)$. This clearly relies on the user playing exactly the number of repeats they were planning to, and each repeat to end at the perfect time. Therefore in order to allow for some margin of error in both cases allow $maxLength = 3/2*(lengthOfRerformance)/(expectedNumberOfRepeats)$. This means that it is at max looking for 1.5 bars of the performance, which isn't mathematically sound but has been seen to work well in practice when we look at the bar inference step in \ref{subsec:barinference}.
+		
+		
+		\subsection{Bar inferrence}\label{subsec:barinference}
+		Recall that we split the MIDI recording into 8 sequences (\ref{sec:Inference Module}) each representing one of the 8 componenets to the drumkit. These 8 sequences then each were processed into suffix trees (\ref{subsec:SuffixTree}) and analysed to find their repeated structures (\ref{subsec:Finding repeated Structures}).
+		
+		We now consider these repeated structures to be candidates for finding the overall best repeated structure by finding the structure that minimises the distance from the perfect length\footnote{defined as (length of the recording)/(Expected number of repeats)}. We then use the timing information of this repeat as the basis for the inferred bar.
+		
 			\subsubsection{Quantisation}
-			Quantisation is the process of 
-	\section{Distance metrics}
-	todo write short intro discussing what we have so far (a database of 8x16 strings and a candidate 8x16 string)
+			Quantisation, as it pertains to drum rhythms, is the process of taking continious information regarding timing offset of impulses on the drumkit and grouping the information into discrete time slices, or quanta. 
+			
+			The number of quanta corresponds directly with the resolution of the system. Once we have the timing information of the best repeat, we can work out the quanta boundaries of the resulting pattern using the formula $quantumStart_i = startTime + i*(endTime-startTime)/(resolution)$ for all $i$ from $0$ to $resolution$, where $endTime$ can be calculated from $endTickIndex$ of the repeated structure, and $startTime$ can be calculated by $startTime = endTime-(repeatedStructure.length)$.
+			
+		It is then a simple matter of populating the familiar Sequence datastructure defined in \ref{subsec:Parsing}	to complete the task of the inference module.
+	\section{Distance metrics}\label{sec:Distance metrics}
+	The aim of the querying system is to inform the user of the system of all patterns that are similar to the pattern they used to query the database with, which provides a way of fixing any minor mistakes in the inference module, as well as giving the user an intuitive tool for drum rhythm look-up. Further to this, the user might also be just as interested in the most dissimilar rhythms, and therefore I find it appropiate to return an ordered list of all the patterns in the database, for this I used Google's implementation of the \emph{Tree Multiset} datastructure which was discussed in \ref{subsec:tools used: misc}.
 	
-	In order to apply these algorithms to this domain it is appropiate to consider each row of the strings as sperate to the others. Therefore the overall edit distance for the drum patterns is the sum of the individual edit distances
+	This module assumes the availablility of a database of Sequence objects (\ref{subsec:Parsing}) as well as a query Sequence object that is of the same resolution. In order to apply these algorithms to this domain it is appropiate to consider each row of the strings as seperate to the others. Therefore the overall distance of the drum patterns are the sum of the individual edit distances across all eight rows.
 	
 	\subsection{Hamming Distance}
 		The Hamming distance\cite{Hamming1950} between two strings, of equal length, measures the minimum number of substitutions in order to change one string into the other. The algorithm, shown in Algorithm \ref{algo:Hamming}, computes the Hamming distance in $O(n)$ time where n is the length of one of the sequences. It is important to note here that the traditional Hamming distance is not defined for strings of unequal length, though given the domain we will never deal with strings of unequal length so there is no need to extend the algorithm.
@@ -587,7 +682,7 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 		
 		The advantage the Edit distance has over the Hamming distance is that it does not over penalise for (todo finish comparison).
 		
-		(todo possibly more detailed explanation of how WagnerFischer works)
+		(todo possibly more detailed explanation of how WagnerFischer works including diagrams and the works)
 		
 		\begin{algorithm}
 				\caption{Wagner-Fischer algorithm for computing the Edit distance of two strings}
@@ -635,32 +730,73 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 		
 		
 		\subsection{Cyclic extensions}
-		(todo some justification for why a cyclic extension is needed)
+		\begin{figure}[h]
+			\centerline{\includegraphics[scale=0.5]{figures/Cyclic.eps}}
+			\caption{\label{fig:cyclic example} Example of two patterns that have a cyclic distance of 0 are distant when seen in isolation. The red arrow notates the start point of the cycle.}
+\end{figure}	
+		When we consider the two patterns shown in figure \ref{fig:cyclic example} we can see standard implementations of these edit distance algorithms may not return the best result. If one were to play one of the rhythms continiously it would be unintelligible from the other, due to that the only difference is the phase offset. Therefore, if the querying module aims at returning all relevent information to the user then surely the pattern should be returned with a distance of 0, meaning an exact match, rather than (todo insert what the edit and hamming distances would be).
 		
-		In order to extend the distance metrics to find the best match regardless of whether the bar is inferred offset from itself
+		In order to extend the distance metrics to find the best match regardless of whether the bar is inferred (or played) with a phase offset we must rotate one of the sequences and compute the distance metric at every point of rotation. We then take the lowest distance as the \emph{cyclic distance} between the two Sequences.
+		
+		Rotating a two dimensional list is ofcourse very expensive in time, and so I use an implementation trick of passing a third parameter, the offset, when calling the distance metric which is an integer that refers to the position (column) we consider the begining of the Sequence. Then through simple modulu arithmitic we can work out where we are in the list at every iteration of the algorithms.
+		
 	\section{Summary}
+	In this chapter I discussed the design decisions and implementation I undertook to achieve the aims of each module. 
 	
+	I started with a thorough discussion on how the Harvester module was implemented in \ref{sec:Harvester} that aims at being a general solution for extracting drum rhythms from ASCII drum tablature, and populating the database for later comparisons.
+	
+	I followed this with an explanation of the Inference module in \ref{sec:Inference Module}, which uses the comparison of multiple suffix trees in order to extract a repeated structure and infer a quantised pattern from a MIDI recording of performance data.
+	
+	I ended with a detailed depiction of the algorithms used to compare the distance between two sequences in \ref{sec:Distance metrics}. They aim to return the user with an ordered list of the most similar patterns.
 
 \cleardoublepage
 \chapter{Evaluation}
-	\section{Comparison with original aims}
-	
-	\section{Dataset collection}
 
-	\section{Testing}
-		repeated sequence vs single recording
-		repeated sequence vs repeated with experimentation
+	Due to the modular
+	\section{Comparison with original aims}
+	compare with requirement analysis section of prep
+	\section{Dataset collection}
+	Discussion on how the HCI study was conducted
+	\section{Evaluating the Havesting module}
+	Discus where the parser loses information
+			\subsection{Information lost}
+					As discussed in \ref{subsec:ChoiceOfDataSource} ASCII Drum Tablature has a lot of superfolous information that cannot be retrieved without significant natural language processing. Furthermore due to the lack of a standardised practice in terms of formatting, and symbol use, a large subset of the drum tablature cannot be harvested without a significantly more complicated parser. As this was not the focus of the project I decided to create a solution that would serve to create a decent database rather than one that solves the general case.
+	\section{Evaluating the Inference module}\label{sec:Eval Inference module}
+		repeated sequence vs single recording computing the average distance from the actual sequence and computing a t-test to see if they are significantly different
+
+		
+		
+		add in repeated with experimentation and discuss results				
+		
+		analyse the results.
+		
+		discuss choice of rounding factor
+				
+		todo talk about information lost in highhat
+
+		talk about using sibling lists in suffix trees and alphabet size
+	\section{Evaluating the Querying module}
+		maybe graph of how long it takes to return values for each metric
+		
+		discus how there is no indexing and that this could improve performance
+		
+		discus the difficiency of when a pattern is just 2x another pattern
 	
 	\section{Performance Analysis}
 	talk about the performance of the harvester
-	talk about using sibling lists in suffix trees and alphabet size
+	
 	
 	\section{Summary}
 	
 \cleardoublepage
 \chapter{Conclusion}
+	Discussion on how each module can be considered a seperate diliverable, with the entire system adding to the value
 	\section{Lessons learnt}
+	Importance of prior research, prototyping, and planning
+	
 	\section{Future work}
+	How to improve the project, probabalistic stuff
+	
 
 \cleardoublepage
 
@@ -757,7 +893,7 @@ I, Biko Agozino of St John's College, being a candidate for Part II of the Compu
 	\emph{Binary coddes capable of correcting deletions, insertions, and reversals},
 	Soviet physics doklady,
 	1966.
-	\bibitem{Ukonen1995}
+	\bibitem{Ukkonen1995}
 	Ukkonen, Esko.
 	\emph{On-line construction of suffix trees},
 	University of Helsinki,

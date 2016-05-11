@@ -1,10 +1,13 @@
 package uk.ac.cam.ba325.Midi;
 
+import uk.ac.cam.ba325.Tab.Translation.Sequence;
+import uk.ac.cam.ba325.Tab.Translation.Strike;
+
 /**
  * Created by root on 07/03/16.
  */
 public class DrumNoteDeltaSequences {
-
+    private static int RESOLUTION = 16;
     private NoteDeltaSequence bassDrum;
     private NoteDeltaSequence crashCymbal;
     private NoteDeltaSequence floorTom;
@@ -13,7 +16,7 @@ public class DrumNoteDeltaSequences {
     private NoteDeltaSequence lowTom;
     private NoteDeltaSequence rideCymbal;
     private NoteDeltaSequence snareDrum;
-
+    private NoteDeltaSequence[] drums = new NoteDeltaSequence[8];
     private long length;
 
     public DrumNoteDeltaSequences(long length){
@@ -26,6 +29,56 @@ public class DrumNoteDeltaSequences {
         lowTom = new NoteDeltaSequence(length);
         rideCymbal = new NoteDeltaSequence(length);
         snareDrum = new NoteDeltaSequence(length);
+        drums[0] = highHat;
+        drums[1] = bassDrum;
+        drums[2] = snareDrum;
+        drums[3] = floorTom;
+        drums[4] = lowTom;
+        drums[5] = highTom;
+        drums[6] = crashCymbal;
+        drums[7] = rideCymbal;
+    }
+
+    public Sequence getSequence(){
+        int startTime = 0;
+        long endTime = length;
+        long[] quanta = new long[RESOLUTION];
+        for(int i = 0; i<RESOLUTION; i++){
+            quanta[i] = startTime+ i*(endTime-startTime)/RESOLUTION;
+        }
+
+        Strike[] strikes = new Strike[RESOLUTION];
+        Sequence pattern = new Sequence(RESOLUTION);
+
+        for(int j = 0; j<drums.length; j++){
+            NoteDeltaSequence instrument = drums[j];
+            for(int i=0; i<strikes.length;i++){//reset strikes
+                strikes[i] = new Strike(0);
+            }
+
+            for(TickDelta tick : instrument){
+                int index = quantaIndex(tick,quanta);
+                if(index!=-1){
+                    strikes[index].setValue(1);
+                }
+            }
+            pattern.setLine(j,strikes);
+        }
+
+        return pattern;
+    }
+
+    public int quantaIndex(TickDelta tick, long[] quanta){
+        if(tick.getEndTime()<quanta[0] && tick.getEndTime()>quanta[RESOLUTION-1]){
+            return -1;
+        }else{
+            for(int i=0; i<quanta.length; i++){
+                if(quanta[i] >tick.getEndTime()){
+                    return i-1;
+                }
+            }
+            return 15;
+        }
     }
 
     public long getLength() {

@@ -7,7 +7,6 @@ import uk.ac.cam.ba325.Midi.TickDelta;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * Created by root on 04/04/16.
@@ -219,11 +218,11 @@ public class UkkonenSuffixTree {
     }
 
 
-    long h_maxLength; //init in constructor = 50+m_sequence.getEndOfTrack()/10;
+    long h_maxLength; //init in constructor
     public RepeatedStructure getRepeatedStructure(){
 
 
-        RepeatedStructure repeatedStructure = new RepeatedStructure(0,0,m_root.getChildren().size(),this);
+        RepeatedStructure repeatedStructure = new RepeatedStructure(0,0,m_root.getChildren().size());
 
         recursiveUpdateRepeat(repeatedStructure,0,m_root);
 
@@ -360,7 +359,7 @@ public class UkkonenSuffixTree {
 
     public static void main(String[] args){
         NoteDeltaSequence testSequence = new NoteDeltaSequence(25);
-        long[] ticks = {1,2,4,7,8,10,14,15,17,20,25};//
+        long[] ticks = {1,2,4,7,9,12,14};//
         long[] ticks2 = {1,2,4,5,7,8,10};
         NoteDeltaSequence testSequence2 = new NoteDeltaSequence(10);
         testSequence2.add(new TickDelta(-1,-1));
@@ -369,11 +368,11 @@ public class UkkonenSuffixTree {
         }
         testSequence2.add(new TickDelta(-2,-1));
 
-        testSequence.add(new TickDelta(-1,-1));
+
         for(long tick: ticks){
             testSequence.addTick(tick);
         }
-        testSequence.add(new TickDelta(-2,-1));
+
 
         UkkonenSuffixTree testTree = new UkkonenSuffixTree(testSequence);
         UkkonenSuffixTree testTree2 = new UkkonenSuffixTree(testSequence2);

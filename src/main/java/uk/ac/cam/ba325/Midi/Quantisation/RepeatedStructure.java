@@ -7,24 +7,18 @@ public class RepeatedStructure {
     private int endTickIndex;
     private long length;
     private int numberOfChildren;
-    private UkkonenSuffixTree tree;
 
-    public RepeatedStructure(int endTickIndex, long length, int numberOfchildren, UkkonenSuffixTree tree) {
+
+    public RepeatedStructure(int endTickIndex, long length, int numberOfchildren) {
         this.endTickIndex = endTickIndex;
         this.length = length;
         this.numberOfChildren = numberOfchildren;
-        this.tree = tree;
+
     }
 
 
 
-    public UkkonenSuffixTree getTree() {
-        return tree;
-    }
 
-    public void setTree(UkkonenSuffixTree tree) {
-        this.tree = tree;
-    }
 
     public void setStructure(int endTick, long length, int numberOfchildren) {
         this.endTickIndex = endTick;

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.23)  7 MAY 2016 19:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.23)  10 MAY 2016 23:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,19 +6,6 @@ entering extended mode
 (./Dissertation.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 f
-     % Draft #1
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Missing character: There is no f in font nullfont!
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -31,17 +18,12 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \c@subsubsection=\count83
 \c@paragraph=\count84
 \c@subparagraph=\count85
-
-Overfull \hbox (20.0pt too wide) in paragraph at lines 1--308
-[]
- []
-
 \c@figure=\count86
 \c@table=\count87
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
+)
 (/usr/share/texlive/texmf-dist/tex/latex/a4wide/a4wide.sty
 Package: a4wide 1994/08/30
 
@@ -646,7 +628,9 @@ LaTeX Info: Redefining \nameref on input line 19.
 \MPnumerator=\count133
 \makeMPintoPDFobject=\count134
 \everyMPtoPDFconversion=\toks37
-) ABD: EveryShipout initializing macros [2
+) ABD: EveryShipout initializing macros [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -664,7 +648,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 54--64
  []
 
 [1
-
 
 ] [2] [3] [4
 
@@ -689,7 +672,12 @@ Underfull \vbox (badness 1783) has occurred while \output is active []
 Chapter 1.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 117.
-[1
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.122 
+       [1
 
 
 ]
@@ -709,111 +697,124 @@ l.143
 
 ]
 Chapter 2.
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 170.
+Package epstopdf Info: Source file: <figures/BeatTrackingGoto.eps>
+(epstopdf)                    date: 2016-05-10 14:47:52
+(epstopdf)                    size: 2502813 bytes
+(epstopdf)             Output file: <figures/BeatTrackingGoto-eps-converted-to.
+pdf>
+(epstopdf)                    date: 2016-05-10 14:53:54
+(epstopdf)                    size: 58141 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/BeatTrackingGoto-e
+ps-converted-to.pdf figures/BeatTrackingGoto.eps>
+(epstopdf)             \includegraphics on input line 175.
 Package epstopdf Info: Output file is already uptodate.
-<figures/PLACEHOLDER-eps-converted-to.pdf, id=323, 420.57124pt x 210.7875pt>
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
 
-<use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 170.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
+<figures/BeatTrackingGoto-eps-converted-to.pdf, id=329, 187.70125pt x 104.39pt>
+File: figures/BeatTrackingGoto-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/BeatTrackingGoto-eps-converted-to.pdf>
+Package pdftex.def Info: figures/BeatTrackingGoto-eps-converted-to.pdf used on 
+input line 175.
+(pdftex.def)             Requested size: 375.40158pt x 208.77945pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5
+
+Underfull \vbox (badness 6188) has occurred while \output is active []
+
+ [5
 
 ]
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 183.
-Package epstopdf Info: Output file is already uptodate.
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
- <use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 183.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
- [6pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.187 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-2.2}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.187 
-       <./figures/PLACEHOLDER-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 194.
-Package epstopdf Info: Output file is already uptodate.
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
-
-<use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 194.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
- [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.205 			\item{
-               As it is a collaborative database, we can not easily verify t...
-]
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 227.
-Package epstopdf Info: Output file is already uptodate.
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
- <use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 227.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
- [8]
-
-LaTeX Warning: Citation `Ukkonen1995' on page 9 undefined on input line 238.
-
-[9pdfTeX warning (ext4): destination with the same identifier (name{figure.2.4}
+[6pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.248 			\subsubsection
-                       {Exact Matching}]
+l.186 			\subsubsection
+                       {Optical Music Recognition} <./figures/BeatTrackingGoto-
+eps-converted-to.pdf>]
+<figures/Characteristic_rock_drum_pattern.png, id=361, 848.16875pt x 243.91125p
+t>
+File: figures/Characteristic_rock_drum_pattern.png Graphic file (type png)
+ <use figures/Characteristic_rock_drum_pattern.png>
+Package pdftex.def Info: figures/Characteristic_rock_drum_pattern.png used on i
+nput line 194.
+(pdftex.def)             Requested size: 424.08333pt x 121.95532pt.
+Package epstopdf Info: Source file: <figures/exampledrumtab2.eps>
+(epstopdf)                    date: 2016-05-10 16:12:56
+(epstopdf)                    size: 34423 bytes
+(epstopdf)             Output file: <figures/exampledrumtab2-eps-converted-to.p
+df>
+(epstopdf)                    date: 2016-05-10 16:13:11
+(epstopdf)                    size: 12619 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/exampledrumtab2-ep
+s-converted-to.pdf figures/exampledrumtab2.eps>
+(epstopdf)             \includegraphics on input line 199.
+Package epstopdf Info: Output file is already uptodate.
 
-LaTeX Warning: Citation `KnuthMorrisPratt1974' on page 10 undefined on input li
-ne 249.
+<figures/exampledrumtab2-eps-converted-to.pdf, id=362, 294.09875pt x 162.6075pt
+>
+File: figures/exampledrumtab2-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/exampledrumtab2-eps-converted-to.pdf>
+Package pdftex.def Info: figures/exampledrumtab2-eps-converted-to.pdf used on i
+nput line 199.
+(pdftex.def)             Requested size: 294.09802pt x 162.6071pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.205 		\subsection
+                   {\label{subsec:ChoiceOfDataSource}Choice of data source} <./
+figures/Characteristic_rock_drum_pattern.png>] [8pdfTeX warning (ext4): destina
+tion with the same identifier (name{figure.2.3}) has been already used, duplica
+te ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.217 
+       <./figures/exampledrumtab2-eps-converted-to.pdf>]
+
+LaTeX Warning: Citation `Ukonnen1995' on page 9 undefined on input line 227.
+
+Package epstopdf Info: Source file: <figures/SuffixTreeExample.eps>
+(epstopdf)                    date: 2016-05-10 23:04:25
+(epstopdf)                    size: 27105 bytes
+(epstopdf)             Output file: <figures/SuffixTreeExample-eps-converted-to
+.pdf>
+(epstopdf)                    date: 2016-05-10 23:07:09
+(epstopdf)                    size: 12360 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SuffixTreeExample-
+eps-converted-to.pdf figures/SuffixTreeExample.eps>
+(epstopdf)             \includegraphics on input line 231.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SuffixTreeExample-eps-converted-to.pdf, id=396, 372.39125pt x 392.4662
+5pt>
+File: figures/SuffixTreeExample-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/SuffixTreeExample-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SuffixTreeExample-eps-converted-to.pdf used on
+ input line 231.
+(pdftex.def)             Requested size: 279.29274pt x 294.34895pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9] [10pdfTeX warning (ext4): destination with the same identifier (name{figure
+.2.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.250 			\subsubsection
+                       {Exact Matching} <./figures/SuffixTreeExample-eps-conver
+ted-to.pdf>]
+
+LaTeX Warning: Citation `KnuthMorrisPratt1974' on page 11 undefined on input li
+ne 251.
 
 Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
 (epstopdf)                    date: 2016-04-14 13:34:41
@@ -823,42 +824,49 @@ Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
 (epstopdf)                    size: 4271 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
 nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 267.
+(epstopdf)             \includegraphics on input line 265.
 Package epstopdf Info: Output file is already uptodate.
+<figures/PLACEHOLDER-eps-converted-to.pdf, id=421, 420.57124pt x 210.7875pt>
 File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
+
 <use figures/PLACEHOLDER-eps-converted-to.pdf>
 Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 267.
+ line 265.
 (pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[10] [11pdfTeX warning (ext4): destination with the same identifier (name{figur
+[11] [12pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.2.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.286 			I
-          n MIDI systems, the activation and release of a particular note ar...
-] [12]
+l.283 
+       <./figures/PLACEHOLDER-eps-converted-to.pdf>] [13] [14]
 Chapter 3.
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 308.
+Package epstopdf Info: Source file: <figures/SystemDesign.eps>
+(epstopdf)                    date: 2016-05-10 18:21:54
+(epstopdf)                    size: 107198 bytes
+(epstopdf)             Output file: <figures/SystemDesign-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2016-05-10 18:22:02
+(epstopdf)                    size: 47980 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SystemDesign-eps-c
+onverted-to.pdf figures/SystemDesign.eps>
+(epstopdf)             \includegraphics on input line 311.
 Package epstopdf Info: Output file is already uptodate.
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
-<use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 308.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
- [13
+
+<figures/SystemDesign-eps-converted-to.pdf, id=458, 1042.89626pt x 426.59375pt>
+File: figures/SystemDesign-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/SystemDesign-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SystemDesign-eps-converted-to.pdf used on inpu
+t line 311.
+(pdftex.def)             Requested size: 521.44685pt x 213.29634pt.
+
+Underfull \vbox (badness 5548) has occurred while \output is active []
+
+ [15
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) 
@@ -866,32 +874,54 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.325 	-
-        define the "Ideal" format of Tablature]
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 333.
-Package epstopdf Info: Output file is already uptodate.
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
+l.323 	T
+        he goal of the harvester is to collect a database sufficient enough ...
+ <./figures/SystemDesign-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/ExampleParse.eps>
+(epstopdf)                    date: 2016-05-10 19:07:02
+(epstopdf)                    size: 502699 bytes
+(epstopdf)             Output file: <figures/ExampleParse-eps-converted-to.pdf>
 
-<use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 333.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
- [14pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+(epstopdf)                    date: 2016-05-10 19:07:09
+(epstopdf)                    size: 171469 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/ExampleParse-eps-c
+onverted-to.pdf figures/ExampleParse.eps>
+(epstopdf)             \includegraphics on input line 329.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/ExampleParse-eps-converted-to.pdf, id=468, 594.22pt x 357.335pt>
+File: figures/ExampleParse-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figures/ExampleParse-eps-converted-to.pdf>
+Package pdftex.def Info: figures/ExampleParse-eps-converted-to.pdf used on inpu
+t line 329.
+(pdftex.def)             Requested size: 297.10927pt x 178.66705pt.
+ [16pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.355 		I
-         n order to lex the drum tablature files without complicated process...
-] [15]
+l.350 
+       <./figures/ExampleParse-eps-converted-to.pdf>] [17]
+Package epstopdf Info: Source file: <figures/StateMachine.eps>
+(epstopdf)                    date: 2016-05-10 19:23:30
+(epstopdf)                    size: 11227 bytes
+(epstopdf)             Output file: <figures/StateMachine-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2016-05-10 19:24:13
+(epstopdf)                    size: 5970 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/StateMachine-eps-c
+onverted-to.pdf figures/StateMachine.eps>
+(epstopdf)             \includegraphics on input line 382.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/StateMachine-eps-converted-to.pdf, id=490, 257.96375pt x 145.54375pt>
+File: figures/StateMachine-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figures/StateMachine-eps-converted-to.pdf>
+Package pdftex.def Info: figures/StateMachine-eps-converted-to.pdf used on inpu
+t line 382.
+(pdftex.def)             Requested size: 128.98155pt x 72.77168pt.
 Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
 (epstopdf)                    date: 2016-04-14 13:34:41
 (epstopdf)                    size: 8665 bytes
@@ -900,140 +930,231 @@ Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
 (epstopdf)                    size: 4271 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
 nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 406.
+(epstopdf)             \includegraphics on input line 393.
 Package epstopdf Info: Output file is already uptodate.
 File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
- <use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 406.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
- [16pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-3}) has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.412 			T
-          he next split is splitting each block into lines, this is done by ...
-pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4}) 
-has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.412 			T
-          he next split is splitting each block into lines, this is done by ...
-]
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 426.
-Package epstopdf Info: Output file is already uptodate.
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
- <use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 426.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
- [17pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-5}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.436 					\end{itemize}
-                        ]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 445.
- [18] [19]
-
-LaTeX Warning: Citation `Ukkonen1995' on page 20 undefined on input line 508.
-
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 514.
-Package epstopdf Info: Output file is already uptodate.
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/PLACEHOLDER-eps-converted-to.pdf>
 Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 514.
+ line 393.
 (pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[20]
-
-LaTeX Warning: Citation `Gusfeild1999' on page 21 undefined on input line 523.
-
-[21pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6
+[18pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.550 
-      ] [22] [23] [24]
+l.398 
+       <./figures/StateMachine-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
+(epstopdf)                    date: 2016-04-14 13:34:41
+(epstopdf)                    size: 8665 bytes
+(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-04-14 13:43:21
+(epstopdf)                    size: 4271 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
+nverted-to.pdf figures/PLACEHOLDER.eps>
+(epstopdf)             \includegraphics on input line 413.
+Package epstopdf Info: Output file is already uptodate.
+File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figures/PLACEHOLDER-eps-converted-to.pdf>
+Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
+ line 413.
+(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[19pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.418 
+      ]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 432.
+ [20pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.455 
+      ] [21] [22]
+Package epstopdf Info: Source file: <figures/SuffixTreeToImplicitSuffixTree.eps
+>
+(epstopdf)                    date: 2016-05-10 23:01:53
+(epstopdf)                    size: 14411 bytes
+(epstopdf)             Output file: <figures/SuffixTreeToImplicitSuffixTree-eps
+-converted-to.pdf>
+(epstopdf)                    date: 2016-05-10 23:12:15
+(epstopdf)                    size: 6191 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SuffixTreeToImplic
+itSuffixTree-eps-converted-to.pdf figures/SuffixTreeToImplicitSuffixTree.eps>
+(epstopdf)             \includegraphics on input line 501.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SuffixTreeToImplicitSuffixTree-eps-converted-to.pdf, id=537, 274.02374
+pt x 226.8475pt>
+File: figures/SuffixTreeToImplicitSuffixTree-eps-converted-to.pdf Graphic file 
+(type pdf)
+
+<use figures/SuffixTreeToImplicitSuffixTree-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SuffixTreeToImplicitSuffixTree-eps-converted-t
+o.pdf used on input line 501.
+(pdftex.def)             Requested size: 137.01154pt x 113.42346pt.
+
+
+LaTeX Warning: Citation `Gusfeild1999' on page 23 undefined on input line 510.
+
+
+LaTeX Warning: Citation `Gusfield1975' on page 23 undefined on input line 513.
+
+
+Overfull \hbox (7.90306pt too wide) in paragraph at lines 538--539
+[]\OT1/cmr/m/n/12 Consider the ex-am-ple of be-ing in phase i and ex-ten-sion j
+, so hav-ing to add string S[j..i]::S(i+1)
+ []
+
+[23pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.539 					\begin{enumerate}
+                             <./figures/SuffixTreeToImplicitSuffixTree-eps-conv
+erted-to.pdf>]
+Package epstopdf Info: Source file: <figures/SuffixTreeWithSuffixLinks.eps>
+(epstopdf)                    date: 2016-05-10 23:07:03
+(epstopdf)                    size: 32077 bytes
+(epstopdf)             Output file: <figures/SuffixTreeWithSuffixLinks-eps-conv
+erted-to.pdf>
+(epstopdf)                    date: 2016-05-10 23:07:09
+(epstopdf)                    size: 14092 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SuffixTreeWithSuff
+ixLinks-eps-converted-to.pdf figures/SuffixTreeWithSuffixLinks.eps>
+(epstopdf)             \includegraphics on input line 557.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SuffixTreeWithSuffixLinks-eps-converted-to.pdf, id=557, 372.39125pt x 
+414.54875pt>
+File: figures/SuffixTreeWithSuffixLinks-eps-converted-to.pdf Graphic file (type
+ pdf)
+ <use figures/SuffixTreeWithSuffixLinks-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SuffixTreeWithSuffixLinks-eps-converted-to.pdf
+ used on input line 557.
+(pdftex.def)             Requested size: 186.19516pt x 207.27386pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Citation `Gusfield1997' on page 24 undefined on input line 561.
+
+[24]
+Underfull \vbox (badness 3735) has occurred while \output is active []
+
+ [25pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.567 					\subsubsection
+                         {Skip/Count Trick} <./figures/SuffixTreeWithSuffixLink
+s-eps-converted-to.pdf>] [26] [27] [28] [29] [30]
+Package epstopdf Info: Source file: <figures/Cyclic.eps>
+(epstopdf)                    date: 2016-05-10 23:22:26
+(epstopdf)                    size: 18857 bytes
+(epstopdf)             Output file: <figures/Cyclic-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=figures/Cyclic-eps-convert
+ed-to.pdf figures/Cyclic.eps>
+(epstopdf)             \includegraphics on input line 738.
+runsystem(repstopdf --outfile=figures/Cyclic-eps-converted-to.pdf figures/Cycli
+c.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <figures/Cyclic-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-05-10 23:25:31
+(epstopdf)                    size: 7613 bytes.
+
+<figures/Cyclic-eps-converted-to.pdf, id=631, 437.635pt x 68.255pt>
+File: figures/Cyclic-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figures/Cyclic-eps-converted-to.pdf>
+Package pdftex.def Info: figures/Cyclic-eps-converted-to.pdf used on input line
+ 738.
+(pdftex.def)             Requested size: 218.81696pt x 34.12741pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[31] [32pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.3.8}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.756 \cleardoublepage
+                       <./figures/Cyclic-eps-converted-to.pdf>]
 Chapter 4.
-[25
+[33
 
 
-] [26
-
-]
+] [34]
 Chapter 5.
-[27
+[35
 
-] [28
+
+] [36
 
 ]
 No file Dissertation.bbl.
-[29
+[37
 
-] [30]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 794.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 794.
+] [38]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 937.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 937.
  (./Dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 794.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 794.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 937.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 937.
 Package rerunfilecheck Info: File `Dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 81FD51DF183E471556C7AB2FBEDA7273;3081.
+(rerunfilecheck)             Checksum: F244F25B34F369EAB9DA90CBD9FE570E;3185.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 794.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 937.
  ) 
 Here is how much of TeX's memory you used:
- 18100 strings out of 493029
- 347966 string characters out of 6136234
- 403657 words of memory out of 5000000
- 21181 multiletter control sequences out of 15000+600000
+ 18104 strings out of 493029
+ 348690 string characters out of 6136234
+ 407796 words of memory out of 5000000
+ 21152 multiletter control sequences out of 15000+600000
  11480 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,11n,68p,842b,931s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,8n,66p,841b,426s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pf
-b></usr/share/texmf/fonts/type1/fkr/tipa/tipa12.pfb>
-Output written on Dissertation.pdf (38 pages, 225940 bytes).
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+l12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></us
+r/share/texmf/fonts/type1/fkr/tipa/tipa12.pfb>
+Output written on Dissertation.pdf (46 pages, 584251 bytes).
 PDF statistics:
- 641 PDF objects out of 1000 (max. 8388607)
- 581 compressed objects within 6 object streams
- 163 named destinations out of 1000 (max. 500000)
- 402 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 766 PDF objects out of 1000 (max. 8388607)
+ 680 compressed objects within 7 object streams
+ 185 named destinations out of 1000 (max. 500000)
+ 460 words of extra memory for PDF output out of 10000 (max. 10000000)
 

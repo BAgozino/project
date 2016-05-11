@@ -61,4 +61,17 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" default="false" assert-keyword="false" jdk-15="false" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="UMLDiagramComponent">
+    <diagram name="RepeatedStructure">
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="uk.ac.cam.ba325.Midi.Quantisation.RepeatedStructure" />
+      <command command-class="de.frag.umlplugin.uml.command.ConnectClassesCommand" />
+      <command command-class="de.frag.umlplugin.uml.command.ConnectClassesUsedCommand" />
+      <command command-class="de.frag.umlplugin.uml.command.AddUsingClassesCommand" psi-class="uk.ac.cam.ba325.Midi.Quantisation.RepeatedStructure" />
+      <command command-class="de.frag.umlplugin.uml.command.AddUsedClassesCommand" psi-class="uk.ac.cam.ba325.Midi.Quantisation.RepeatedStructure" />
+      <compartment-visibility>
+        <show-fields class="uk.ac.cam.ba325.Midi.Quantisation.RepeatedStructure" />
+        <show-methods class="uk.ac.cam.ba325.Midi.Quantisation.RepeatedStructure" />
+      </compartment-visibility>
+    </diagram>
+  </component>
 </project>
