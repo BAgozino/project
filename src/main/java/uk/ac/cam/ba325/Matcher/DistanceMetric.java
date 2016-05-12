@@ -1,16 +1,11 @@
 package uk.ac.cam.ba325.Matcher;
 
-import com.google.common.collect.Multiset;
-import uk.ac.cam.ba325.Matcher.Helpers.DistanceConstants;
-import uk.ac.cam.ba325.Matcher.Helpers.DistanceMetricComparator;
-import uk.ac.cam.ba325.Matcher.Helpers.DistanceMetricResult;
-import uk.ac.cam.ba325.Matcher.Helpers.InvalidDistanceMetric;
+import uk.ac.cam.ba325.Matcher.Helpers.*;
 import uk.ac.cam.ba325.Midi.DrumNoteDeltaSequences;
 import uk.ac.cam.ba325.Midi.MidiLoader;
 import uk.ac.cam.ba325.Midi.Quantisation.DrumNoteDeltaSuffixTree;
 import uk.ac.cam.ba325.Tab.Translation.Sequence;
 import uk.ac.cam.ba325.Tab.Translation.Strike;
-import com.google.common.collect.TreeMultiset;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +23,7 @@ public class DistanceMetric {
      * @return
      */
     public static int twoDimensionalEditDistance(Sequence sequence1, Sequence sequence2, int offset){
-        System.out.print("\t \t \t  starting twodimensionalEdit distance");
+
         int returnValue = 0;
         returnValue += editDistance(sequence1.getBassDrums(),sequence2.getBassDrums(),offset);
         returnValue += editDistance(sequence1.getCrashCymbals(),sequence2.getCrashCymbals(),offset);
@@ -93,7 +88,7 @@ public class DistanceMetric {
     }
 
     public static int twoDimensionalHammingDistance(Sequence sequence1, Sequence sequence2,int offset){
-        System.out.print("\t \t \t  starting twodimensionalHamming distance");
+
         int returnValue =0;
         returnValue += hammingDistance(sequence1.getBassDrums(),sequence2.getBassDrums(),offset);
         returnValue += hammingDistance(sequence1.getCrashCymbals(),sequence2.getCrashCymbals(),offset);
@@ -103,7 +98,7 @@ public class DistanceMetric {
         returnValue += hammingDistance(sequence1.getLowToms(),sequence2.getLowToms(),offset);
         returnValue += hammingDistance(sequence1.getRideCymbals(),sequence2.getRideCymbals(),offset);
         returnValue += hammingDistance(sequence1.getSnareDrums(),sequence2.getSnareDrums(),offset);
-        System.out.println("\t \t \t \t returns with:"+ returnValue);
+
         return returnValue;
     }
 
@@ -133,11 +128,11 @@ public class DistanceMetric {
     }
 
 
-    public static TreeMultiset<DistanceMetricResult> topMatches(int returnNumber,
-                                          String metricType,
-                                          Sequence query) throws InvalidDistanceMetric, IOException{
+    public static ResultListArray topMatches(int returnNumber,
+                                             String metricType,
+                                             Sequence query) throws InvalidDistanceMetric, IOException{
         System.out.println("\t \t \tStarting topMatches");
-        TreeMultiset<DistanceMetricResult> results = TreeMultiset.create(new DistanceMetricComparator());
+        ResultListArray results = new ResultListArray();
 
         File database = new File("src/main/resources/Database");
 
@@ -226,10 +221,12 @@ public class DistanceMetric {
 
 
         uk.ac.cam.ba325.Tab.Translation.Sequence query = st.getBestSequence();
-        TreeMultiset hamming = topMatches(5,DistanceConstants.STRAIGHT_HAMMING,query);
-        TreeMultiset edit = topMatches(5,DistanceConstants.STRAIGHT_EDIT,query);
-        TreeMultiset cHamming = topMatches(5, DistanceConstants.CYCLIC_HAMMING,query);
-        TreeMultiset cEdit = topMatches(5, DistanceConstants.CYCLIC_EDIT,query);
+        ResultListArray hamming = topMatches(5,DistanceConstants.STRAIGHT_HAMMING,query);
+        int sum = 0;
+
+        ResultListArray edit = topMatches(5,DistanceConstants.STRAIGHT_EDIT,query);
+        ResultListArray cHamming = topMatches(5, DistanceConstants.CYCLIC_HAMMING,query);
+        ResultListArray cEdit = topMatches(5, DistanceConstants.CYCLIC_EDIT,query);
 
         int hammingD = twoDimensionalHammingDistance(test,query,0);
         int editD = twoDimensionalEditDistance(test,query,0);

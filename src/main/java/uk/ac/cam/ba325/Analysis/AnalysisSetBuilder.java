@@ -1,20 +1,17 @@
 package uk.ac.cam.ba325.Analysis;
 
-import com.google.common.collect.Multiset;
-import com.google.common.collect.TreeMultiset;
-import org.apache.commons.io.FilenameUtils;
 import uk.ac.cam.ba325.Matcher.DistanceMetric;
 import uk.ac.cam.ba325.Matcher.Helpers.DistanceConstants;
-import uk.ac.cam.ba325.Matcher.Helpers.DistanceMetricResult;
 import uk.ac.cam.ba325.Matcher.Helpers.InvalidDistanceMetric;
+import uk.ac.cam.ba325.Matcher.Helpers.ResultListArray;
 import uk.ac.cam.ba325.Midi.DrumNoteDeltaSequences;
 import uk.ac.cam.ba325.Midi.MidiLoader;
 import uk.ac.cam.ba325.Midi.Quantisation.DrumNoteDeltaSuffixTree;
+import uk.ac.cam.ba325.Midi.TickDelta;
 import uk.ac.cam.ba325.Tab.Translation.Sequence;
 
 import java.io.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by root on 09/05/16.
@@ -107,12 +104,12 @@ public class AnalysisSetBuilder {
 
     }
 
-    public boolean printCsv(String path, List<CSVDistanceEval> csvs){
+    public boolean printCsv(String path, List csvs){
         try {
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(path)));
 
-            for (CSVDistanceEval csv : csvs) {
-                writer.write(csv.toCsv());
+            for (Object csv : csvs) {
+                writer.write(csv.toString());
             }
             writer.flush();
         } catch (IOException ioe){
@@ -152,10 +149,8 @@ public class AnalysisSetBuilder {
 
 
 
-    private MetricValues getMetricValue(int queryD, TreeMultiset<DistanceMetricResult> topmatches){
+    private MetricValues getMetricValue(int queryD, ResultListArray topmatches){
         System.out.println("\t \t \tStarting getMetricValue");
-        int first = -1;
-        int last = -1;
         int i=0;
 
 
@@ -172,16 +167,125 @@ public class AnalysisSetBuilder {
 //            }
 //            i+=result.getCount();
 //        }
-        MetricValues ret = new MetricValues(queryD,first,last);
+        MetricValues ret = topmatches.getRank(queryD);
         System.out.println("\t\t\t\t returning with: "+ret);
         return ret;
     }
+
+    public int numberOfDuplicatesInDatabase(String metricType){
+        File database = new File("src/main/resources/Database");
+        int numberRemoved = 0;
+        Sequence first;
+        Sequence second;
+        for (File band : database.listFiles()) {
+            for (File song : band.listFiles()) {
+                ArrayList<File> bars = new ArrayList<File>(Arrays.asList(song.listFiles()));
+
+                for (int i=0; i<bars.size(); i++) {
+                    try {
+                        first = new Sequence(bars.get(i), 16);
+                        for (int j = i + 1; j < bars.size(); j++) {
+                            second = new Sequence(bars.get(j), 16);
+                            switch (metricType) {
+                                case DistanceConstants.STRAIGHT_HAMMING:
+                                    if (DistanceMetric.twoDimensionalHammingDistance(first, second, 0) == 0) {
+                                        bars.remove(j);
+                                        numberRemoved++;
+                                    }
+                                    break;
+                                case DistanceConstants.CYCLIC_HAMMING:
+                                    if (DistanceMetric.twoDimensionalCyclicHammingDistance(first, second) == 0) {
+                                        bars.remove(j);
+                                        numberRemoved++;
+                                    }
+                                    break;
+                            }
+                        }
+                    }catch (IOException e){
+                        //nil
+                    }
+                }
+            }
+        }
+        return numberRemoved;
+    }
+
+
+
+    public LinkedList<CSVRoundValue> roundValueDatasetBuild(String outputPath,String participant){
+        File directory = new File(participant);
+        MidiLoader midiLoader = new MidiLoader();
+        LinkedList<CSVRoundValue> roundValues = new LinkedList<>();
+        Sequence query;
+        DrumNoteDeltaSuffixTree st;
+        RecordingFile record ;
+        Sequence test;
+        String path;
+        for(double i=1.0; i<50; i++) {
+            TickDelta.ROUNDVALUE = i;
+            for (File file : directory.listFiles()) {
+                path = file.getAbsolutePath();
+                if (path.endsWith(".mid")) {
+                    System.out.println("\t Starting for file:" + path);
+                    try {
+                        record = new RecordingFile(path);
+                        test = matchAgainst[record.getTabNumber()];
+                        midiLoader.loadMidiFile(path);
+
+                        DrumNoteDeltaSequences d = midiLoader.buildDrumNoteDeltaSequences();
+
+                        switch (record.getDatasetNumber()) {
+                            case 0:
+                                //nil
+                                System.out.print("\t done file: " + path);
+                                break;
+                            case 1:
+                                //nil
+
+                                System.out.print("\t done file: " + path);
+                                break;
+                            case 2:
+                                st = new DrumNoteDeltaSuffixTree(d);
+                                query = st.getBestSequence();
+                                roundValues.add(new CSVRoundValue(
+                                        DistanceMetric.twoDimensionalHammingDistance(test,query,0),
+                                        DistanceMetric.twoDimensionalEditDistance(test,query,0),
+                                        DistanceMetric.twoDimensionalCyclicHammingDistance(test,query),
+                                        DistanceMetric.twoDimensionalCyclicEditDistance(test,query),
+                                        i
+                                ));
+                                System.out.print("\t done file: " + path);
+                                break;
+                            case 3:
+                                //nil
+                                System.out.print("\t done file: " + path);
+                                break;
+
+
+                        }
+                    } catch (Exception e){
+                        //nil
+                    }
+                }
+            }
+
+
+        }
+
+        //printCsv(outputPath,roundValues);
+        return roundValues;
+    }
+
+
 
     public static void main(String[] args)throws IOException, InvalidDistanceMetric{
         String path ="/home/biko/Projects/StudyData/Sean";
 
         AnalysisSetBuilder analysisSetBuilder = new AnalysisSetBuilder();
 
+        int dupsCyclic = analysisSetBuilder.numberOfDuplicatesInDatabase(DistanceConstants.CYCLIC_HAMMING);
+        int dups = analysisSetBuilder.numberOfDuplicatesInDatabase(DistanceConstants.STRAIGHT_HAMMING);
+        System.out.println("testing");
         try {
             analysisSetBuilder.buildCSV(path);
         } catch (Exception e){
@@ -191,6 +295,21 @@ public class AnalysisSetBuilder {
         analysisSetBuilder.printCsv("/home/biko/Projects/StudyData/results/Sean2.txt",analysisSetBuilder.two);
         analysisSetBuilder.printCsv("/home/biko/Projects/StudyData/results/Sean3.txt",analysisSetBuilder.three);
 
+
+        path = "/home/biko/Projects/StudyData/Sean";
+        try {
+            analysisSetBuilder.buildCSV(path);
+        } catch (Exception e){
+            System.out.print("This is just for testing");
+        }
+        analysisSetBuilder.printCsv("/home/biko/Projects/StudyData/results/Jared1.txt",analysisSetBuilder.one);
+        analysisSetBuilder.printCsv("/home/biko/Projects/StudyData/results/Jared2.txt",analysisSetBuilder.two);
+        analysisSetBuilder.printCsv("/home/biko/Projects/StudyData/results/Jared3.txt",analysisSetBuilder.three);
+
+        LinkedList<CSVRoundValue> values = analysisSetBuilder.roundValueDatasetBuild("/home/biko/Projects/StudyData/results/RoundingFactorAnalysis/Jared.txt",
+                path);
+        values.addAll(analysisSetBuilder.roundValueDatasetBuild("/home/biko/Projects/StudyData/results/RoundingFactorAnalysis/Sean.txt",
+                "/home/biko/Projects/StudyData/Sean"));
 
     }
 }

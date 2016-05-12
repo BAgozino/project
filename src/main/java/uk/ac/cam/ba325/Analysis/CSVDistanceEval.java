@@ -14,7 +14,9 @@ public class CSVDistanceEval {
 
     private MetricValues cHamming;
 
-
+    public String toString(){
+        return toCsv();
+    }
     public String toCsv(){
         return hamming.toString()+","+edit.toString()+","+cHamming.toString()+","+cEdit.toString()+","+tab+"\n";
     }

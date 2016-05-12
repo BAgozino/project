@@ -6,7 +6,7 @@ package uk.ac.cam.ba325.Midi;
 public class TickDelta {
 
     public static final int ERROR_RANGE = 20;
-    public static final double ROUNDVALUE = 1.0;
+    public static double ROUNDVALUE = 5.0;
 
     private long dTick;
     private long endTime;
@@ -16,6 +16,7 @@ public class TickDelta {
         this.dTick = dTick;
         this.endTime = tick;
     }
+
 
 
     public long getEndTime() {

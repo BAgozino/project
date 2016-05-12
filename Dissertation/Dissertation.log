@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.23)  10 MAY 2016 23:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.23)  12 MAY 2016 07:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -527,6 +527,47 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 zlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
+(/usr/share/texlive/texmf-dist/tex/latex/tabu/tabu.sty
+Package: tabu 2011/02/26 v2.8 - flexible LaTeX tabulars (FC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen155
+\extrarowheight=\dimen156
+\NC@list=\toks36
+\extratabsurround=\skip50
+\backup@length=\skip51
+)
+(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box39
+\sift@deathcycles=\count127
+\@vwid@loff=\dimen157
+\@vwid@roff=\dimen158
+)
+\c@taburow=\count128
+\tabu@nbcols=\count129
+\tabu@cnt=\count130
+\tabu@Xcol=\count131
+\tabu@alloc=\count132
+\tabu@nested=\count133
+\tabu@target=\dimen159
+\tabu@spreadtarget=\dimen160
+\tabu@naturalX=\dimen161
+\tabucolX=\dimen162
+\tabu@Xsum=\dimen163
+\extrarowdepth=\dimen164
+\abovetabulinesep=\dimen165
+\belowtabulinesep=\dimen166
+\tabustrutrule=\dimen167
+\tabu@thebody=\toks37
+\tabu@footnotes=\toks38
+\tabu@box=\box40
+\tabu@arstrutbox=\box41
+\tabu@hleads=\box42
+\tabu@vleads=\box43
+\tabu@cellskip=\skip52
+)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
@@ -534,7 +575,7 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.
 tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen155
+\arrowsize=\dimen168
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryautomata.code.tex
@@ -549,54 +590,84 @@ File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
 s.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
 
-\pgfnodepartlowerbox=\box39
-\pgfnodeparttwobox=\box40
-\pgfnodepartthreebox=\box41
-\pgfnodepartfourbox=\box42
-\pgfnodeparttwentybox=\box43
-\pgfnodepartnineteenbox=\box44
-\pgfnodeparteighteenbox=\box45
-\pgfnodepartseventeenbox=\box46
-\pgfnodepartsixteenbox=\box47
-\pgfnodepartfifteenbox=\box48
-\pgfnodepartfourteenbox=\box49
-\pgfnodepartthirteenbox=\box50
-\pgfnodeparttwelvebox=\box51
-\pgfnodepartelevenbox=\box52
-\pgfnodeparttenbox=\box53
-\pgfnodepartninebox=\box54
-\pgfnodeparteightbox=\box55
-\pgfnodepartsevenbox=\box56
-\pgfnodepartsixbox=\box57
-\pgfnodepartfivebox=\box58
+\pgfnodepartlowerbox=\box44
+\pgfnodeparttwobox=\box45
+\pgfnodepartthreebox=\box46
+\pgfnodepartfourbox=\box47
+\pgfnodeparttwentybox=\box48
+\pgfnodepartnineteenbox=\box49
+\pgfnodeparteighteenbox=\box50
+\pgfnodepartseventeenbox=\box51
+\pgfnodepartsixteenbox=\box52
+\pgfnodepartfifteenbox=\box53
+\pgfnodepartfourteenbox=\box54
+\pgfnodepartthirteenbox=\box55
+\pgfnodeparttwelvebox=\box56
+\pgfnodepartelevenbox=\box57
+\pgfnodeparttenbox=\box58
+\pgfnodepartninebox=\box59
+\pgfnodeparteightbox=\box60
+\pgfnodepartsevenbox=\box61
+\pgfnodepartsixbox=\box62
+\pgfnodepartfivebox=\box63
 )))
-\c@define=\count127
- (./Dissertation.aux)
+\c@define=\count134
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2015/09/18 v0.5d Insert pages of external PDF documents (AM)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count135
+\calc@Bcount=\count136
+\calc@Adimen=\dimen169
+\calc@Bdimen=\dimen170
+\calc@Askip=\skip53
+\calc@Bskip=\skip54
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count137
+\calc@Cskip=\skip55
+)
+(/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
+)
+\AM@pagewidth=\dimen171
+\AM@pageheight=\dimen172
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2015/09/18 v0.5d Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box64
+\AM@toc@title=\toks39
+\c@AM@survey=\count138
+\AM@templatesizebox=\box65
+)
+(./Dissertation.aux)
 \openout1 = `Dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 19.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 19.
-
-(/usr/share/texmf/tex/latex/tipa/t3cmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 21.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 21.
+ (/usr/share/texmf/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 19.
-\AtBeginShipoutBox=\box59
-Package hyperref Info: Link coloring OFF on input line 19.
+LaTeX Font Info:    ... okay on input line 21.
+\AtBeginShipoutBox=\box66
+Package hyperref Info: Link coloring OFF on input line 21.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -604,11 +675,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count128
+\c@section@level=\count139
 )
-LaTeX Info: Redefining \ref on input line 19.
-LaTeX Info: Redefining \pageref on input line 19.
-LaTeX Info: Redefining \nameref on input line 19.
+LaTeX Info: Redefining \ref on input line 21.
+LaTeX Info: Redefining \pageref on input line 21.
+LaTeX Info: Redefining \nameref on input line 21.
 
 (./Dissertation.out) (./Dissertation.out)
 \@outlinefile=\write4
@@ -617,33 +688,41 @@ LaTeX Info: Redefining \nameref on input line 19.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count129
-\scratchdimen=\dimen156
-\scratchbox=\box60
-\nofMPsegments=\count130
-\nofMParguments=\count131
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count132
-\MPscratchDim=\dimen157
-\MPnumerator=\count133
-\makeMPintoPDFobject=\count134
-\everyMPtoPDFconversion=\toks37
-) ABD: EveryShipout initializing macros [1
+\scratchcounter=\count140
+\scratchdimen=\dimen173
+\scratchbox=\box67
+\nofMPsegments=\count141
+\nofMParguments=\count142
+\everyMPshowfont=\toks40
+\MPscratchCnt=\count143
+\MPscratchDim=\dimen174
+\MPnumerator=\count144
+\makeMPintoPDFobject=\count145
+\everyMPtoPDFconversion=\toks41
+) ABD: EveryShipout initializing macros
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
+) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 54.
+(Font)              <14.4> on input line 56.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 54.
+(Font)              <7> on input line 56.
 
-Overfull \hbox (7.41025pt too wide) in paragraph at lines 54--64
+Overfull \hbox (7.41025pt too wide) in paragraph at lines 56--66
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--64
+Underfull \hbox (badness 10000) in paragraph at lines 56--66
 
  []
 
@@ -658,45 +737,55 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 2.
-
-Underfull \vbox (badness 1783) has occurred while \output is active []
-
  [5
 
-])
+]
+Underfull \vbox (badness 4779) has occurred while \output is active []
+
+ [6])
 \tf@toc=\write5
 \openout5 = `Dissertation.toc'.
 
 
-[6]
+[7] [8
+
+]
 Chapter 1.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 117.
+(Font)              <5> on input line 118.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.122 
+l.123 
        [1
 
-
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 133.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 134.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 133.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 134.
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.143 
-       [2] [3] [4
+       [2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
+[4]
+Chapter 2.
+
+Underfull \vbox (badness 2343) has occurred while \output is active []
+
+ [5
+
 
 ]
-Chapter 2.
 Package epstopdf Info: Source file: <figures/BeatTrackingGoto.eps>
 (epstopdf)                    date: 2016-05-10 14:47:52
 (epstopdf)                    size: 2502813 bytes
@@ -706,40 +795,30 @@ pdf>
 (epstopdf)                    size: 58141 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/BeatTrackingGoto-e
 ps-converted-to.pdf figures/BeatTrackingGoto.eps>
-(epstopdf)             \includegraphics on input line 175.
+(epstopdf)             \includegraphics on input line 205.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/BeatTrackingGoto-eps-converted-to.pdf, id=329, 187.70125pt x 104.39pt>
+<figures/BeatTrackingGoto-eps-converted-to.pdf, id=442, 187.70125pt x 104.39pt>
 File: figures/BeatTrackingGoto-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/BeatTrackingGoto-eps-converted-to.pdf>
 Package pdftex.def Info: figures/BeatTrackingGoto-eps-converted-to.pdf used on 
-input line 175.
+input line 205.
 (pdftex.def)             Requested size: 375.40158pt x 208.77945pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \vbox (badness 6188) has occurred while \output is active []
-
- [5
-
-]
-[6pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}
-) has been already used, duplicate ignored
+ [6pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.186 			\subsubsection
-                       {Optical Music Recognition} <./figures/BeatTrackingGoto-
-eps-converted-to.pdf>]
-<figures/Characteristic_rock_drum_pattern.png, id=361, 848.16875pt x 243.91125p
+l.210 
+       <./figures/BeatTrackingGoto-eps-converted-to.pdf>]
+<figures/Characteristic_rock_drum_pattern.png, id=471, 848.16875pt x 243.91125p
 t>
 File: figures/Characteristic_rock_drum_pattern.png Graphic file (type png)
  <use figures/Characteristic_rock_drum_pattern.png>
 Package pdftex.def Info: figures/Characteristic_rock_drum_pattern.png used on i
-nput line 194.
+nput line 224.
 (pdftex.def)             Requested size: 424.08333pt x 121.95532pt.
+ [7]
 Package epstopdf Info: Source file: <figures/exampledrumtab2.eps>
 (epstopdf)                    date: 2016-05-10 16:12:56
 (epstopdf)                    size: 34423 bytes
@@ -749,38 +828,36 @@ df>
 (epstopdf)                    size: 12619 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/exampledrumtab2-ep
 s-converted-to.pdf figures/exampledrumtab2.eps>
-(epstopdf)             \includegraphics on input line 199.
+(epstopdf)             \includegraphics on input line 229.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/exampledrumtab2-eps-converted-to.pdf, id=362, 294.09875pt x 162.6075pt
+<figures/exampledrumtab2-eps-converted-to.pdf, id=487, 294.09875pt x 162.6075pt
 >
 File: figures/exampledrumtab2-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/exampledrumtab2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exampledrumtab2-eps-converted-to.pdf used on i
-nput line 199.
+nput line 229.
 (pdftex.def)             Requested size: 294.09802pt x 162.6071pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}
-) has been already used, duplicate ignored
+ [8pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.205 		\subsection
+l.235 		\subsection
+                   {\label{subsec:ChoiceOfDataSource}Choice of data source}pdfT
+eX warning (ext4): destination with the same identifier (name{figure.2.3}) has 
+been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.235 		\subsection
                    {\label{subsec:ChoiceOfDataSource}Choice of data source} <./
-figures/Characteristic_rock_drum_pattern.png>] [8pdfTeX warning (ext4): destina
-tion with the same identifier (name{figure.2.3}) has been already used, duplica
-te ignored
+figures/Characteristic_rock_drum_pattern.png> <./figures/exampledrumtab2-eps-co
+nverted-to.pdf>]
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.217 
-       <./figures/exampledrumtab2-eps-converted-to.pdf>]
+LaTeX Warning: Citation `Ukonnen1995' on page 9 undefined on input line 257.
 
-LaTeX Warning: Citation `Ukonnen1995' on page 9 undefined on input line 227.
-
+[9]
 Package epstopdf Info: Source file: <figures/SuffixTreeExample.eps>
 (epstopdf)                    date: 2016-05-10 23:04:25
 (epstopdf)                    size: 27105 bytes
@@ -790,60 +867,29 @@ Package epstopdf Info: Source file: <figures/SuffixTreeExample.eps>
 (epstopdf)                    size: 12360 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/SuffixTreeExample-
 eps-converted-to.pdf figures/SuffixTreeExample.eps>
-(epstopdf)             \includegraphics on input line 231.
+(epstopdf)             \includegraphics on input line 261.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/SuffixTreeExample-eps-converted-to.pdf, id=396, 372.39125pt x 392.4662
+<figures/SuffixTreeExample-eps-converted-to.pdf, id=516, 372.39125pt x 392.4662
 5pt>
 File: figures/SuffixTreeExample-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/SuffixTreeExample-eps-converted-to.pdf>
 Package pdftex.def Info: figures/SuffixTreeExample-eps-converted-to.pdf used on
- input line 231.
+ input line 261.
 (pdftex.def)             Requested size: 279.29274pt x 294.34895pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[9] [10pdfTeX warning (ext4): destination with the same identifier (name{figure
-.2.4}) has been already used, duplicate ignored
+ [10pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.250 			\subsubsection
-                       {Exact Matching} <./figures/SuffixTreeExample-eps-conver
-ted-to.pdf>]
+l.269 
+       <./figures/SuffixTreeExample-eps-converted-to.pdf>]
+Underfull \vbox (badness 1783) has occurred while \output is active []
 
-LaTeX Warning: Citation `KnuthMorrisPratt1974' on page 11 undefined on input li
-ne 251.
+ [11]
+[12] [13] [14] [15] [16
 
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 265.
-Package epstopdf Info: Output file is already uptodate.
-<figures/PLACEHOLDER-eps-converted-to.pdf, id=421, 420.57124pt x 210.7875pt>
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
-
-<use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 265.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[11] [12pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.2.5}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.283 
-       <./figures/PLACEHOLDER-eps-converted-to.pdf>] [13] [14]
+]
 Chapter 3.
 Package epstopdf Info: Source file: <figures/SystemDesign.eps>
 (epstopdf)                    date: 2016-05-10 18:21:54
@@ -854,29 +900,24 @@ Package epstopdf Info: Source file: <figures/SystemDesign.eps>
 (epstopdf)                    size: 47980 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/SystemDesign-eps-c
 onverted-to.pdf figures/SystemDesign.eps>
-(epstopdf)             \includegraphics on input line 311.
+(epstopdf)             \includegraphics on input line 353.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/SystemDesign-eps-converted-to.pdf, id=458, 1042.89626pt x 426.59375pt>
+<figures/SystemDesign-eps-converted-to.pdf, id=578, 1042.89626pt x 426.59375pt>
 File: figures/SystemDesign-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/SystemDesign-eps-converted-to.pdf>
 Package pdftex.def Info: figures/SystemDesign-eps-converted-to.pdf used on inpu
-t line 311.
+t line 353.
 (pdftex.def)             Requested size: 521.44685pt x 213.29634pt.
-
-Underfull \vbox (badness 5548) has occurred while \output is active []
-
- [15
-
+ [17
 
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.323 	T
-        he goal of the harvester is to collect a database sufficient enough ...
- <./figures/SystemDesign-eps-converted-to.pdf>]
+l.362 
+       <./figures/SystemDesign-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/ExampleParse.eps>
 (epstopdf)                    date: 2016-05-10 19:07:02
 (epstopdf)                    size: 502699 bytes
@@ -886,23 +927,23 @@ Package epstopdf Info: Source file: <figures/ExampleParse.eps>
 (epstopdf)                    size: 171469 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/ExampleParse-eps-c
 onverted-to.pdf figures/ExampleParse.eps>
-(epstopdf)             \includegraphics on input line 329.
+(epstopdf)             \includegraphics on input line 380.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/ExampleParse-eps-converted-to.pdf, id=468, 594.22pt x 357.335pt>
+<figures/ExampleParse-eps-converted-to.pdf, id=589, 594.22pt x 357.335pt>
 File: figures/ExampleParse-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/ExampleParse-eps-converted-to.pdf>
 Package pdftex.def Info: figures/ExampleParse-eps-converted-to.pdf used on inpu
-t line 329.
+t line 380.
 (pdftex.def)             Requested size: 297.10927pt x 178.66705pt.
- [16pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [18pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.350 
-       <./figures/ExampleParse-eps-converted-to.pdf>] [17]
+l.391 		\end{enumerate}
+                        <./figures/ExampleParse-eps-converted-to.pdf>] [19]
 Package epstopdf Info: Source file: <figures/StateMachine.eps>
 (epstopdf)                    date: 2016-05-10 19:23:30
 (epstopdf)                    size: 11227 bytes
@@ -912,79 +953,58 @@ Package epstopdf Info: Source file: <figures/StateMachine.eps>
 (epstopdf)                    size: 5970 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/StateMachine-eps-c
 onverted-to.pdf figures/StateMachine.eps>
-(epstopdf)             \includegraphics on input line 382.
+(epstopdf)             \includegraphics on input line 428.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/StateMachine-eps-converted-to.pdf, id=490, 257.96375pt x 145.54375pt>
+<figures/StateMachine-eps-converted-to.pdf, id=609, 257.96375pt x 145.54375pt>
 File: figures/StateMachine-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/StateMachine-eps-converted-to.pdf>
 Package pdftex.def Info: figures/StateMachine-eps-converted-to.pdf used on inpu
-t line 382.
+t line 428.
 (pdftex.def)             Requested size: 128.98155pt x 72.77168pt.
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 393.
-Package epstopdf Info: Output file is already uptodate.
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
-
-<use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 393.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[18pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.398 
-       <./figures/StateMachine-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <figures/PLACEHOLDER.eps>
-(epstopdf)                    date: 2016-04-14 13:34:41
-(epstopdf)                    size: 8665 bytes
-(epstopdf)             Output file: <figures/PLACEHOLDER-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-04-14 13:43:21
-(epstopdf)                    size: 4271 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/PLACEHOLDER-eps-co
-nverted-to.pdf figures/PLACEHOLDER.eps>
-(epstopdf)             \includegraphics on input line 413.
-Package epstopdf Info: Output file is already uptodate.
-File: figures/PLACEHOLDER-eps-converted-to.pdf Graphic file (type pdf)
-
-<use figures/PLACEHOLDER-eps-converted-to.pdf>
-Package pdftex.def Info: figures/PLACEHOLDER-eps-converted-to.pdf used on input
- line 413.
-(pdftex.def)             Requested size: 210.28511pt x 105.3935pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[19pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.418 
-      ]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 432.
  [20pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-5}) has been already used, duplicate ignored
+3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.455 
-      ] [21] [22]
+l.436 
+       <./figures/StateMachine-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/DrumTablatureStructure.eps>
+(epstopdf)                    date: 2016-05-12 00:13:30
+(epstopdf)                    size: 122078 bytes
+(epstopdf)             Output file: <figures/DrumTablatureStructure-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2016-05-12 00:13:34
+(epstopdf)                    size: 46015 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/DrumTablatureStruc
+ture-eps-converted-to.pdf figures/DrumTablatureStructure.eps>
+(epstopdf)             \includegraphics on input line 439.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/DrumTablatureStructure-eps-converted-to.pdf, id=620, 602.25pt x 684.55
+75pt>
+File: figures/DrumTablatureStructure-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/DrumTablatureStructure-eps-converted-to.pdf>
+Package pdftex.def Info: figures/DrumTablatureStructure-eps-converted-to.pdf us
+ed on input line 439.
+(pdftex.def)             Requested size: 301.12425pt x 342.27791pt.
+ [21pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.450 			T
+          his "Drum Tablature File" object is then passed on to the 3rd and ...
+ <./figures/DrumTablatureStructure-eps-converted-to.pdf>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 461.
+
+Underfull \vbox (badness 3579) has occurred while \output is active []
+
+ [22]
+[23]
 Package epstopdf Info: Source file: <figures/SuffixTreeToImplicitSuffixTree.eps
 >
 (epstopdf)                    date: 2016-05-10 23:01:53
@@ -995,37 +1015,58 @@ Package epstopdf Info: Source file: <figures/SuffixTreeToImplicitSuffixTree.eps
 (epstopdf)                    size: 6191 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/SuffixTreeToImplic
 itSuffixTree-eps-converted-to.pdf figures/SuffixTreeToImplicitSuffixTree.eps>
-(epstopdf)             \includegraphics on input line 501.
+(epstopdf)             \includegraphics on input line 531.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/SuffixTreeToImplicitSuffixTree-eps-converted-to.pdf, id=537, 274.02374
+<figures/SuffixTreeToImplicitSuffixTree-eps-converted-to.pdf, id=664, 274.02374
 pt x 226.8475pt>
 File: figures/SuffixTreeToImplicitSuffixTree-eps-converted-to.pdf Graphic file 
 (type pdf)
 
 <use figures/SuffixTreeToImplicitSuffixTree-eps-converted-to.pdf>
 Package pdftex.def Info: figures/SuffixTreeToImplicitSuffixTree-eps-converted-t
-o.pdf used on input line 501.
+o.pdf used on input line 531.
 (pdftex.def)             Requested size: 137.01154pt x 113.42346pt.
 
 
-LaTeX Warning: Citation `Gusfeild1999' on page 23 undefined on input line 510.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
+[24]
 
-LaTeX Warning: Citation `Gusfield1975' on page 23 undefined on input line 513.
+LaTeX Warning: Citation `Gusfield1975' on page 25 undefined on input line 543.
 
+Package epstopdf Info: Source file: <figures/Rule1.eps>
+(epstopdf)                    date: 2016-05-12 00:37:57
+(epstopdf)                    size: 13923 bytes
+(epstopdf)             Output file: <figures/Rule1-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-05-12 00:38:18
+(epstopdf)                    size: 6609 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/Rule1-eps-converte
+d-to.pdf figures/Rule1.eps>
+(epstopdf)             \includegraphics on input line 570.
+Package epstopdf Info: Output file is already uptodate.
+<figures/Rule1-eps-converted-to.pdf, id=678, 227.85126pt x 166.6225pt>
+File: figures/Rule1-eps-converted-to.pdf Graphic file (type pdf)
 
-Overfull \hbox (7.90306pt too wide) in paragraph at lines 538--539
+<use figures/Rule1-eps-converted-to.pdf>
+Package pdftex.def Info: figures/Rule1-eps-converted-to.pdf used on input line 
+570.
+(pdftex.def)             Requested size: 227.8507pt x 166.62209pt.
+
+Overfull \hbox (7.90306pt too wide) in paragraph at lines 568--573
 []\OT1/cmr/m/n/12 Consider the ex-am-ple of be-ing in phase i and ex-ten-sion j
 , so hav-ing to add string S[j..i]::S(i+1)
  []
 
-[23pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[25pdfTeX warning (ext4): destination with the same identifier (name{figure.3.5
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.539 					\begin{enumerate}
+l.576 							\begin{itemize}
                              <./figures/SuffixTreeToImplicitSuffixTree-eps-conv
 erted-to.pdf>]
 Package epstopdf Info: Source file: <figures/SuffixTreeWithSuffixLinks.eps>
@@ -1037,107 +1078,517 @@ erted-to.pdf>
 (epstopdf)                    size: 14092 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/SuffixTreeWithSuff
 ixLinks-eps-converted-to.pdf figures/SuffixTreeWithSuffixLinks.eps>
-(epstopdf)             \includegraphics on input line 557.
+(epstopdf)             \includegraphics on input line 591.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/SuffixTreeWithSuffixLinks-eps-converted-to.pdf, id=557, 372.39125pt x 
+<figures/SuffixTreeWithSuffixLinks-eps-converted-to.pdf, id=693, 372.39125pt x 
 414.54875pt>
 File: figures/SuffixTreeWithSuffixLinks-eps-converted-to.pdf Graphic file (type
  pdf)
  <use figures/SuffixTreeWithSuffixLinks-eps-converted-to.pdf>
 Package pdftex.def Info: figures/SuffixTreeWithSuffixLinks-eps-converted-to.pdf
- used on input line 557.
+ used on input line 591.
 (pdftex.def)             Requested size: 186.19516pt x 207.27386pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation `Gusfield1997' on page 24 undefined on input line 561.
+LaTeX Warning: Citation `Gusfield1997' on page 26 undefined on input line 595.
 
-[24]
-Underfull \vbox (badness 3735) has occurred while \output is active []
-
- [25pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-7}) has been already used, duplicate ignored
+[26pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.567 					\subsubsection
-                         {Skip/Count Trick} <./figures/SuffixTreeWithSuffixLink
-s-eps-converted-to.pdf>] [26] [27] [28] [29] [30]
+l.596 
+       <./figures/Rule1-eps-converted-to.pdf>] [27pdfTeX warning (ext4): destin
+ation with the same identifier (name{figure.3.7}) has been already used, duplic
+ate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.605 						\item{
+                  If the length of that arc is shorter than the length of $A...
+ <./figures/SuffixTreeWithSuffixLinks-eps-converted-to.pdf>] [28] [29] [30]
+Underfull \vbox (badness 3158) has occurred while \output is active []
+
+ [31]
+[32]
 Package epstopdf Info: Source file: <figures/Cyclic.eps>
 (epstopdf)                    date: 2016-05-10 23:22:26
 (epstopdf)                    size: 18857 bytes
 (epstopdf)             Output file: <figures/Cyclic-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-05-10 23:25:31
+(epstopdf)                    size: 7613 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/Cyclic-eps-convert
 ed-to.pdf figures/Cyclic.eps>
-(epstopdf)             \includegraphics on input line 738.
-runsystem(repstopdf --outfile=figures/Cyclic-eps-converted-to.pdf figures/Cycli
-c.eps)...executed safely (allowed).
-
-Package epstopdf Info: Result file: <figures/Cyclic-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-05-10 23:25:31
-(epstopdf)                    size: 7613 bytes.
-
-<figures/Cyclic-eps-converted-to.pdf, id=631, 437.635pt x 68.255pt>
+(epstopdf)             \includegraphics on input line 775.
+Package epstopdf Info: Output file is already uptodate.
+ <figures/Cyclic-eps-converted-to.pdf, id=766, 437.635pt x 68.255pt>
 File: figures/Cyclic-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/Cyclic-eps-converted-to.pdf>
 Package pdftex.def Info: figures/Cyclic-eps-converted-to.pdf used on input line
- 738.
+ 775.
 (pdftex.def)             Requested size: 218.81696pt x 34.12741pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[31] [32pdfTeX warning (ext4): destination with the same identifier (name{figur
+[33] [34pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.3.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.756 \cleardoublepage
+l.793 \cleardoublepage
                        <./figures/Cyclic-eps-converted-to.pdf>]
 Chapter 4.
-[33
-
-
-] [34]
-Chapter 5.
 [35
 
 
-] [36
+]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 828.
+
+[36]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 856.
+
+[37pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.877 
+      ]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 879.
+
+Package epstopdf Info: Source file: <figures/noRepeatanal.eps>
+(epstopdf)                    date: 2016-05-12 02:17:47
+(epstopdf)                    size: 71665 bytes
+(epstopdf)             Output file: <figures/noRepeatanal-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2016-05-12 02:17:52
+(epstopdf)                    size: 15198 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/noRepeatanal-eps-c
+onverted-to.pdf figures/noRepeatanal.eps>
+(epstopdf)             \includegraphics on input line 906.
+Package epstopdf Info: Output file is already uptodate.
+<figures/noRepeatanal-eps-converted-to.pdf, id=811, 979.66pt x 518.93875pt>
+File: figures/noRepeatanal-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figures/noRepeatanal-eps-converted-to.pdf>
+Package pdftex.def Info: figures/noRepeatanal-eps-converted-to.pdf used on inpu
+t line 906.
+(pdftex.def)             Requested size: 489.82881pt x 259.46873pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [38pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.917 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+4.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.917 
+      ] [39pdfTeX warning (ext4): destination with the same identifier (name{fi
+gure.4.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.924 
+       <./figures/noRepeatanal-eps-converted-to.pdf>]
+Underfull \vbox (badness 3323) has occurred while \output is active []
+
+ [40pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.964 		I
+          showed the showed that the Harvester is able to extract about 12,0...
+] [41] [42
+
+]
+Chapter 5.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [43
+
+]
+[44] [45] [46
 
 ]
 No file Dissertation.bbl.
-[37
+[47
 
-] [38]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 937.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 937.
- (./Dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 937.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 937.
+] [48]
+Appendix A.
+Package epstopdf Info: Source file: <figures/HammingPercentageRank.eps>
+(epstopdf)                    date: 2016-05-12 04:43:00
+(epstopdf)                    size: 20979 bytes
+(epstopdf)             Output file: <figures/HammingPercentageRank-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2016-05-12 04:43:04
+(epstopdf)                    size: 8855 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/HammingPercentageR
+ank-eps-converted-to.pdf figures/HammingPercentageRank.eps>
+(epstopdf)             \includegraphics on input line 1193.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/HammingPercentageRank-eps-converted-to.pdf, id=897, 421.575pt x 316.18
+124pt>
+File: figures/HammingPercentageRank-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/HammingPercentageRank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/HammingPercentageRank-eps-converted-to.pdf use
+d on input line 1193.
+(pdftex.def)             Requested size: 316.18047pt x 237.13535pt.
+Package epstopdf Info: Source file: <figures/EditPercentageRank.eps>
+(epstopdf)                    date: 2016-05-12 03:35:36
+(epstopdf)                    size: 22589 bytes
+(epstopdf)             Output file: <figures/EditPercentageRank-eps-converted-t
+o.pdf>
+(epstopdf)                    date: 2016-05-12 04:03:02
+(epstopdf)                    size: 8541 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/EditPercentageRank
+-eps-converted-to.pdf figures/EditPercentageRank.eps>
+(epstopdf)             \includegraphics on input line 1197.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/EditPercentageRank-eps-converted-to.pdf, id=898, 421.575pt x 316.18124
+pt>
+File: figures/EditPercentageRank-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/EditPercentageRank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/EditPercentageRank-eps-converted-to.pdf used o
+n input line 1197.
+(pdftex.def)             Requested size: 316.18047pt x 237.13535pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package epstopdf Info: Source file: <figures/CyclicHammingPercentageRank.eps>
+(epstopdf)                    date: 2016-05-12 03:37:37
+(epstopdf)                    size: 22100 bytes
+(epstopdf)             Output file: <figures/CyclicHammingPercentageRank-eps-co
+nverted-to.pdf>
+(epstopdf)                    date: 2016-05-12 04:05:57
+(epstopdf)                    size: 9082 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/CyclicHammingPerce
+ntageRank-eps-converted-to.pdf figures/CyclicHammingPercentageRank.eps>
+(epstopdf)             \includegraphics on input line 1202.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/CyclicHammingPercentageRank-eps-converted-to.pdf, id=899, 429.605pt x 
+339.2675pt>
+File: figures/CyclicHammingPercentageRank-eps-converted-to.pdf Graphic file (ty
+pe pdf)
+ <use figures/CyclicHammingPercentageRank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/CyclicHammingPercentageRank-eps-converted-to.p
+df used on input line 1202.
+(pdftex.def)             Requested size: 322.20296pt x 254.45pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package epstopdf Info: Source file: <figures/CyclicEdidPercentageRank.eps>
+(epstopdf)                    date: 2016-05-12 03:38:50
+(epstopdf)                    size: 23115 bytes
+(epstopdf)             Output file: <figures/CyclicEdidPercentageRank-eps-conve
+rted-to.pdf>
+(epstopdf)                    date: 2016-05-12 04:06:23
+(epstopdf)                    size: 8923 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/CyclicEdidPercenta
+geRank-eps-converted-to.pdf figures/CyclicEdidPercentageRank.eps>
+(epstopdf)             \includegraphics on input line 1207.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/CyclicEdidPercentageRank-eps-converted-to.pdf, id=900, 421.575pt x 316
+.18124pt>
+File: figures/CyclicEdidPercentageRank-eps-converted-to.pdf Graphic file (type 
+pdf)
+ <use figures/CyclicEdidPercentageRank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/CyclicEdidPercentageRank-eps-converted-to.pdf 
+used on input line 1207.
+(pdftex.def)             Requested size: 316.18047pt x 237.13535pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[49
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.A.1}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1212 \chapter
+               {Project Proposal} <./figures/HammingPercentageRank-eps-converte
+d-to.pdf>]
+Overfull \hbox (12.73439pt too wide) has occurred while \output is active
+\OT1/cmr/m/n/12 50 \OT1/cmr/m/sl/12 APPENDIX A.  PERCENTAGE RANKINGS OF DISTANC
+E METRICS ON DATASET 2
+ []
+
+[50pdfTeX warning (ext4): destination with the same identifier (name{figure.A.2
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1212 \chapter
+               {Project Proposal}pdfTeX warning (ext4): destination with the sa
+me identifier (name{figure.A.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1212 \chapter
+               {Project Proposal} <./figures/EditPercentageRank-eps-converted-t
+o.pdf> <./figures/CyclicHammingPercentageRank-eps-converted-to.pdf>] [51pdfTeX 
+warning (ext4): destination with the same identifier (name{figure.A.4}) has bee
+n already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1212 \chapter
+               {Project Proposal} <./figures/CyclicEdidPercentageRank-eps-conve
+rted-to.pdf>]
+Appendix B.
+<BikoAgozinoProposal.pdf, id=946, 614.295pt x 794.97pt>
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf>
+Package pdftex.def Info: BikoAgozinoProposal.pdf used on input line 1213.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf>
+Package pdftex.def Info: BikoAgozinoProposal.pdf used on input line 1213.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+
+<BikoAgozinoProposal.pdf, id=949, page=1, 614.295pt x 794.97pt>
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 1>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page1 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 1>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page1 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+
+[52
+
+]
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 1>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page1 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 1>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page1 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 1>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page1 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+
+[53 <./BikoAgozinoProposal.pdf>]
+<BikoAgozinoProposal.pdf, id=969, page=2, 614.295pt x 794.97pt>
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 2>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page2 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 2>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page2 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 2>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page2 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [54 <./BikoAgozinoProposal.pdf>]
+<BikoAgozinoProposal.pdf, id=994, page=3, 614.295pt x 794.97pt>
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 3>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page3 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 3>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page3 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 3>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page3 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [55 <./BikoAgozinoProposal.pdf>]
+<BikoAgozinoProposal.pdf, id=1002, page=4, 614.295pt x 794.97pt>
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 4>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page4 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 4>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page4 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 4>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page4 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [56 <./BikoAgozinoProposal.pdf>]
+<BikoAgozinoProposal.pdf, id=1007, page=5, 614.295pt x 794.97pt>
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 5>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page5 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 5>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page5 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 5>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page5 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [57 <./BikoAgozinoProposal.pdf>]
+<BikoAgozinoProposal.pdf, id=1023, page=6, 614.295pt x 794.97pt>
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 6>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page6 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 6>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page6 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 6>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page6 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [58 <./BikoAgozinoProposal.pdf>]
+<BikoAgozinoProposal.pdf, id=1029, page=7, 614.295pt x 794.97pt>
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 7>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page7 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 7>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page7 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 7>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page7 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [59 <./BikoAgozinoProposal.pdf>]
+<BikoAgozinoProposal.pdf, id=1034, page=8, 614.295pt x 794.97pt>
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 8>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page8 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 8>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page8 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 8>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page8 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [60 <./BikoAgozinoProposal.pdf>]
+<BikoAgozinoProposal.pdf, id=1039, page=9, 614.295pt x 794.97pt>
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 9>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page9 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+ <use BikoAgozinoProposal.pdf, page 9>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page9 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: BikoAgozinoProposal.pdf Graphic file (type pdf)
+
+<use BikoAgozinoProposal.pdf, page 9>
+Package pdftex.def Info: BikoAgozinoProposal.pdf, page9 used on input line 1213
+.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [61 <./BikoAgozinoProposal.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1214.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1214.
+
+(./Dissertation.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1214.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1214.
+
 Package rerunfilecheck Info: File `Dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: F244F25B34F369EAB9DA90CBD9FE570E;3185.
+(rerunfilecheck)             Checksum: D5D9D72B43DDEBE5EBF6C552391DD8D2;4100.
 
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 937.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1214.
  ) 
 Here is how much of TeX's memory you used:
- 18104 strings out of 493029
- 348690 string characters out of 6136234
- 407796 words of memory out of 5000000
- 21152 multiletter control sequences out of 15000+600000
+ 19715 strings out of 493029
+ 374299 string characters out of 6136234
+ 440213 words of memory out of 5000000
+ 22645 multiletter control sequences out of 15000+600000
  11480 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,8n,66p,841b,426s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,18n,66p,1018b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
@@ -1151,10 +1602,10 @@ s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 l12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></us
 r/share/texmf/fonts/type1/fkr/tipa/tipa12.pfb>
-Output written on Dissertation.pdf (46 pages, 584251 bytes).
+Output written on Dissertation.pdf (71 pages, 766287 bytes).
 PDF statistics:
- 766 PDF objects out of 1000 (max. 8388607)
- 680 compressed objects within 7 object streams
- 185 named destinations out of 1000 (max. 500000)
- 460 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1142 PDF objects out of 1200 (max. 8388607)
+ 996 compressed objects within 10 object streams
+ 263 named destinations out of 1000 (max. 500000)
+ 646 words of extra memory for PDF output out of 10000 (max. 10000000)
 
