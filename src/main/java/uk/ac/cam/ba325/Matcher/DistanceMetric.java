@@ -7,8 +7,7 @@ import uk.ac.cam.ba325.Midi.Quantisation.DrumNoteDeltaSuffixTree;
 import uk.ac.cam.ba325.Tab.Translation.Sequence;
 import uk.ac.cam.ba325.Tab.Translation.Strike;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -210,8 +209,8 @@ public class DistanceMetric {
     public static void main(String[] args) throws IOException, InvalidDistanceMetric{
         MidiLoader midiLoader = new MidiLoader();
 
-        midiLoader.loadMidiFile("../StudyData/Jared/Jared-9-2-0.mid");
-        midiLoader.printCsv("../StudyData/test.txt", midiLoader.onEventsToCsvMidiEvent());
+        midiLoader.loadMidiFile("../StudyData/Demo/Demo1.mid");
+        midiLoader.printCsv("../StudyData/Demo/Demo.txt", midiLoader.onEventsToCsvMidiEvent());
         DrumNoteDeltaSequences d = midiLoader.buildDrumNoteDeltaSequences();
         DrumNoteDeltaSuffixTree st = new DrumNoteDeltaSuffixTree(d);
 
@@ -220,14 +219,18 @@ public class DistanceMetric {
 
 
 
-        uk.ac.cam.ba325.Tab.Translation.Sequence query = st.getBestSequence();
+        Sequence query = st.getBestSequence();
+        query.writeToFile(new PrintWriter(new BufferedWriter(
+                new FileWriter("../StudyData/Demo/DemoInferredSequence.txt"))));
         ResultListArray hamming = topMatches(5,DistanceConstants.STRAIGHT_HAMMING,query);
-        int sum = 0;
-
         ResultListArray edit = topMatches(5,DistanceConstants.STRAIGHT_EDIT,query);
         ResultListArray cHamming = topMatches(5, DistanceConstants.CYCLIC_HAMMING,query);
         ResultListArray cEdit = topMatches(5, DistanceConstants.CYCLIC_EDIT,query);
 
+        hamming.toCSV("../StudyData/Demo/DemoHammingDistances.txt");
+        edit.toCSV("../StudyData/Demo/DemoEditDistances.txt");
+        cHamming.toCSV("../StudyData/Demo/DemoCyclicHammingDistances.txt");
+        cEdit.toCSV("../StudyData/Demo/DemoCycylicHammingDistances.txt");
         int hammingD = twoDimensionalHammingDistance(test,query,0);
         int editD = twoDimensionalEditDistance(test,query,0);
         int cHammingD = twoDimensionalCyclicHammingDistance(test,query);
